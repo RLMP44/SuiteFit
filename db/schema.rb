@@ -10,9 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_20_075832) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_20_085650) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apartments", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.float "total_floorspace"
+    t.float "price"
+    t.string "description"
+    t.string "type"
+    t.string "floor_plan"
+    t.string "qr_code"
+    t.bigint "agency_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agency_id"], name: "index_apartments_on_agency_id"
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.string "comment"
+    t.string "result"
+    t.string "arrangement"
+    t.bigint "user_id", null: false
+    t.bigint "apartment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apartment_id"], name: "index_bookmarks_on_apartment_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.float "length"
+    t.float "width"
+    t.string "icon"
+    t.bigint "user_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "bookmark_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bookmark_id"], name: "index_messages_on_bookmark_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +71,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_075832) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.boolean "agency", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "apartments", "users", column: "agency_id"
+  add_foreign_key "bookmarks", "apartments"
+  add_foreign_key "bookmarks", "users"
+  add_foreign_key "items", "users"
+  add_foreign_key "messages", "bookmarks"
+  add_foreign_key "messages", "users"
 end
