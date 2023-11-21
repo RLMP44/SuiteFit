@@ -1,23 +1,23 @@
-class Agency::ApartmentsController < ApplicationController
+class BookmarksController < ApplicationController
   # Inserted a authorization policy in front of each method as a reminder.
   # When writing the method, put it before saving to the database.
   def index
-    @apartments = policy_scope(Apartment)
+    @bookmarks = policy_scope(Bookmark)
   end
 
   def show
-    authorize @apartment
+    authorize @bookmark
   end
 
   def create
-    authorize @apartment
+    authorize @bookmark
   end
 
   def update
-    authorize @apartment
+    authorize @bookmark
   end
 
   def destroy
-    authorize @apartment
+    authorize @bookmark
   end
 end
