@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  # delete once seeds are created
+  skip_before_action :authenticate_user!, only: [:index]
   # Inserted a authorization policy in front of each method as a reminder.
   # When writing the method, put it before saving to the database.
   def index
@@ -19,5 +21,4 @@ class ItemsController < ApplicationController
 
   def destroy
     authorize @item
-  end
 end
