@@ -8,27 +8,32 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-puts("cleaning the db...")
-Apartment.destroy_all
-User.destroy_all
+puts "cleaning the db..."
 Item.destroy_all
 Bookmark.destroy_all
+Apartment.destroy_all
+User.destroy_all
 
-#users
+# users
+puts "creating users..."
+
 mario = User.create!(username: "Mario", email: "mario@mario.com", password: "marioiscool")
 shinji = User.create!(username: "Shinji", email: "shinji@shinji.com", password: "shinjiiscool")
 doug = User.create!(username: "Doug", email: "doug@doug.com", password: "dougiscool")
 ryan = User.create!(username: "Ryan", email: "ryan@ryan.com", password: "ryaniscool")
 jonatan = User.create!(username: "Jonatan", email: "jonatan@jonatan.com", password: "jonataniscool")
 
-#Rep hosts
+# Rep hosts
+
 yann = User.create!(username: "Yann", email: "yann@yann.com", password: "yanniscool" , agency: true)
 celso = User.create!(username: "Celso", email: "celso@celso.com", password: "celsoiscool" , agency: true)
 rachel = User.create!(username: "Rachel", email: "rachel@rachel.com", password: "racheliscool" , agency: true)
 rina = User.create!(username: "Rina", email: "rina@rina.com", password: "rinaiscool" , agency: true)
 trouni = User.create!(username: "Trouni", email: "trouni@trouni.com", password: "trouniiscool" , agency: true)
 
-#Items
+# Items
+puts "Creating items..."
+
 table = Item.create!(
   name: "Table",
   length: 110,
@@ -146,82 +151,87 @@ desk = Item.create!(
   user: ryan
 )
 
-#Apartments
+# Apartments
+puts "Creating apartments..."
+
 meguro_heights_file = URI.open("https://minimini.jp/bookimg_spr/00010014/4018577_op_1.jpg")
 meguro_heights = Apartment.create!(
-  name:"Meguro Heights",
-  address:"Himonya 5-chome, Meguro-ku,",
+  name: "Meguro Heights",
+  address: "Himonya 5-chome, Meguro-ku",
   total_floorspace: 20.64,
   price: 88_000,
-  description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  type:"1LDK",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  category: "1LDK",
   floor_plan: "JSON",
-  qr_code:"QR code",
-  agency: rachel,
-  )
-  meguro_heights.photo.attach(io: meguro_heights_file, filename: "meguro_heights.jpg", content_type: "image/jpg")
-  meguro_heights.save
+  qr_code: "QR code",
+  agency: rachel
+)
+meguro_heights.photos.attach(io: meguro_heights_file, filename: "meguro_heights.jpg", content_type: "image/jpg")
+meguro_heights.save
 
 shimouma_build_file = URI.open("https://minimini.jp/bookimg_spr/00010014/4032358_op_1.jpg")
 shimouma_build = Apartment.create!(
-  name:" Shimouma build",
-  address:"Shimouma 6-chome, Setagaya-ku,",
+  name: "Shimouma build",
+  address: "Shimouma 6-chome, Setagaya-ku",
   total_floorspace: 29.10,
   price: 128_000,
-  description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  type:"1LDK",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  category: "1LDK",
   floor_plan: "JSON",
-  qr_code:"QR code",
-  agency: rachel,
-  )
-  shimouma_build.photo.attach(io: shimouma_build_file, filename: "shimouma_build.jpg", content_type: "image/jpg")
-  shimouma_build.save
+  qr_code: "QR code",
+  agency: rachel
+)
+shimouma_build.photos.attach(io: shimouma_build_file, filename: "shimouma_build.jpg", content_type: "image/jpg")
+shimouma_build.save
 
 vizinho_tokyo_file = URI.open("https://minimini.jp/bookimg_spr/00010014/4032223_op_1.jpg")
 vizinho_tokyo = Apartment.create!(
-  name:"Vizinho Tokyo",
-  address:"Shimouma 1-chome, Setagaya-ku",
+  name: "Vizinho Tokyo",
+  address: "Shimouma 1-chome, Setagaya-ku",
   total_floorspace: 17,
   price: 60_000,
-  description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  type:"1R",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  category: "1R",
   floor_plan: "JSON",
-  qr_code:"QR code",
-  agency: rachel,
-  )
-  vizinho_tokyo.photo.attach(io: vizinho_tokyo_file, filename: "vizinho_tokyo.jpg", content_type: "image/jpg")
-  vizinho_tokyo.save
+  qr_code: "QR code",
+  agency: rachel
+)
+vizinho_tokyo.photos.attach(io: vizinho_tokyo_file, filename: "vizinho_tokyo.jpg", content_type: "image/jpg")
+vizinho_tokyo.save
 
 #Bookmarks
+puts "Creating bookmarks..."
 
 bookmark1 = Bookmark.create!(
   comment: "Small apartment",
   result: "Bad fit",
   arrangement: "JSON",
   user: shinji,
-  apartment_id: vizinho_tokyo
-  )
+  apartment: vizinho_tokyo
+)
 
-  bookmark2 = Bookmark.create!(
+bookmark2 = Bookmark.create!(
   comment: "Nice apartment",
   result: "Good fit",
   arrangement: "JSON",
   user: shinji,
-  apartment_id: shimouma_build
-  )
+  apartment: shimouma_build
+)
 
-  bookmark3 = Bookmark.create!(
+bookmark3 = Bookmark.create!(
   comment: "Perfect size for me",
-    result: "Good fit",
-    arrangement: "JSON",
-    user: ryan,
-    apartment_id: vizinho_tokyo
-    )
+  result: "Good fit",
+  arrangement: "JSON",
+  user: ryan,
+  apartment: vizinho_tokyo
+)
 
-  bookmark4 = Bookmark.create!(
-    comment: "Save for later",
-    result: "Undetermined",
-    arrangement: "JSON",
-    user: ryan,
-    apartment_id: meguro_heights
-    )
+bookmark4 = Bookmark.create!(
+  comment: "Save for later",
+  result: "Undetermined",
+  arrangement: "JSON",
+  user: ryan,
+  apartment: meguro_heights
+)
+
+puts "Finished"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_21_021330) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_21_074111) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_021330) do
     t.float "total_floorspace"
     t.float "price"
     t.string "description"
-    t.string "type"
+    t.string "category"
     t.string "floor_plan"
     t.string "qr_code"
     t.bigint "agency_id", null: false
