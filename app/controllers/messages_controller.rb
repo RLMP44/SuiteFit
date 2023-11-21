@@ -1,0 +1,7 @@
+class MessagesController < ApplicationController
+  # Inserted a authorization policy in front of each method as a reminder.
+  # When writing the method, put it before saving to the database.
+  def create
+    authorize @message
+  end
+end
