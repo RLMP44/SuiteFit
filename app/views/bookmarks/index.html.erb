@@ -1,0 +1,5 @@
+<h1>My Saved Apartments</h1>
+<%= @bookmarks.each do |bookmark| %>
+  <%= bookmark.user.nickname %>
+  <%= bookmark.apartment.name %>
+<% end %>
