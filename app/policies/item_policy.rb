@@ -2,7 +2,7 @@ class ItemPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       # The user can only see items they created
-      record.where(user: user) if !user.agency
+      scope.where(user: user) if !user.agency
     end
   end
 

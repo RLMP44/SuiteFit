@@ -2,7 +2,7 @@ class BookmarkPolicy < ApplicationPolicy
   class Scope
     def resolve
       # The user can only see bookmarks they created
-      record.where(user: user) if !user.agency
+      scope.where(user: user) if !user.agency
     end
   end
 
