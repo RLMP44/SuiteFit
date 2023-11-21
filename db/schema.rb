@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_021330) do
     t.float "price"
     t.string "description"
     t.string "type"
-    t.string "floor_plan" # , null: false
+    t.string "floor_plan"
     t.string "qr_code"
     t.bigint "agency_id", null: false
     t.datetime "created_at", null: false
