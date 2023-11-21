@@ -1,26 +1,25 @@
 <div class="container">
   <h1 class="my-2">My Inventory</h1>
-  <div class="row justify-content-center">
+  <div class="row justify-content-around">
     <%# create individual cards here %>
-    <%# use each.do %>
+    <% @items.each do |item| %>
       <div class="card-product col-5 my-2 mx-2">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-        <div class="card-product-infos">
-          <h2>Item name</h2>
-          <p>Item length</p>
-          <p>Item width</p>
-          <p>Item quantity</p>
-        </div>
-      </div>
-      <%# delete once seeds are up %>
-      <div class="card-product col-5 my-2 mx-2">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-        <div class="card-product-infos">
-          <h2>Item name</h2>
-          <p>Item length</p>
-          <p>Item width</p>
-          <p>Item quantity</p>
-        </div>
+        <div class="row justify-content-between">
+          <div class="col-4">
+            <img src="<%= item.icon %>" />
+          </div>
+          <div class="col-6 card-product-infos">
+            <h2><%= item.name %> X <%= item.quantity %></h2>
+            <p>Length: <%= item.length %></p>
+            <p>Width: <%= item.width %></p>
+          </div>
+          <div class="col-2">
+            <p>delete button</p>
+            <p>edit button
+              <p>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
-  </div>
