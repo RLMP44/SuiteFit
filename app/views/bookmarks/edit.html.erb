@@ -1,9 +1,10 @@
 <div class="container">
   <h1>Place your items!</h1>
-  <div class="row" data-controller="load-canvas">
+  <div class="row justify-content-between" data-controller="load-canvas">
     <%# canvas elements %>
     <canvas id="new-canvas" data-load-canvas-json-value=<%= j @bookmark.arrangement.html_safe %> class="col-7">
       <%# render canvas here %>
+      <%# <img src="my_image.png" id="my-image" data-load-json-target> %>
     </canvas>
     <%# items list menu %>
     <div class="col-4 container" style="border: black; background-color: lightgrey;">
@@ -15,7 +16,7 @@
             <i class="fa-solid fa-circle-plus fa-xl"></i>
             <div class="card-body">
               <h5 class="card-title"><%= item.name %> x <%= item.quantity %></h5>
-              <p class="card-text"><%= item.length %>cm² x <%= item.width %>cm²</p>
+              <p class="card-text"><%= item.length %> cm² x <%= item.width %> cm²</p>
             </div>
           </div>
         <% end %>
