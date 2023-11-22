@@ -4,6 +4,7 @@ import { fabric } from 'fabric'
 // Connects to data-controller="apartment-canvas"
 export default class extends Controller {
   static targets = ["canvas"]
+  static values = [{'floorplanUrl':String}]
   connect() {
     // create new canvas
     const canvas = new fabric.Canvas('new-canvas', {
@@ -11,14 +12,13 @@ export default class extends Controller {
       height: 1000
     })
 
-    const rect = new fabric.Rect({ width: 10, height: 20, fill: '#f55', opacity: 0.7 })
-    canvas.add(rect)
-
-    fabric.Image.fromURL('/app/assets/images/floorplan.jpg', function(oImg) {
-      canvas.add(oImg);
+    // set a floorplan on the canvas
+    console.log(this.floorplanUrlValue)
+    fabric.Image.fromURL(this.floorplanUrlValue, function(floorplan) {
+      canvas.add(floorplan);
     });
     // const floorPlan = document.createElement("img")
-    // floorPlan.scr = "./app/assets/images/floorplan.jpg"
+    // floorPlan.scr = this.floorplanUrlValue
     // const floorPlanInstance = new fabric.Image(floorPlan);
     // canvas.add(floorPlanInstance)
   }

@@ -33,5 +33,5 @@ class ItemPolicy < ApplicationPolicy
 
   private
 
-  attr_reader :user, :scope
+  attr_reader :user, :record
 end

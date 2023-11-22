@@ -38,5 +38,5 @@ class BookmarkPolicy < ApplicationPolicy
 
   private
 
-  attr_reader :user, :scope
+  attr_reader :user, :record
 end
