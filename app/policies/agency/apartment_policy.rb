@@ -1,4 +1,9 @@
 class Agency::ApartmentPolicy < ApplicationPolicy
+  def initialize(user, record)
+    @user = user
+    @record = record
+  end
+
   class Scope < Scope
     def initialize(user, scope)
       # A filter that redirects unauthenticated users to the login page.
@@ -9,8 +14,10 @@ class Agency::ApartmentPolicy < ApplicationPolicy
     end
 
     def resolve
+      # Check if the user is an agency and redirect if they are not
+      raise Pundit::NotAuthorizedError unless user.agency
       # The agency can only see apartments they created
-      scope.where(agency: user) if user.agency
+      scope.where(agency: user)
     end
 
     private
@@ -22,9 +29,13 @@ class Agency::ApartmentPolicy < ApplicationPolicy
     record.agency == user
   end
 
-  def create?
+  def new?
     # Only an agency can create an apartment
     user.agency
+  end
+
+  def create?
+    new?
   end
 
   def update?
