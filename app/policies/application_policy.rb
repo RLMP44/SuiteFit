@@ -51,4 +51,8 @@ class ApplicationPolicy
   def destroy?
     false
   end
+
+  private
+
+  attr_reader :user, :record
 end
