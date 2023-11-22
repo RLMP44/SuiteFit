@@ -1,0 +1,10 @@
+<%= simple_form_for @item,
+html: { data: { action: "turbo:submit-end->item-subscription#resetForm" },
+class: "w-100 form-control" } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :length, label: "Length (cm)" %>
+  <%= f.input :width, label: "Width (cm)" %>
+  <%= f.input :icon %>
+  <%= f.input :quantity %>
+  <%= f.button :submit, class:"btn btn-primary" %>
+<% end %>
