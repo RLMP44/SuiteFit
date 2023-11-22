@@ -3,12 +3,12 @@
   <div class="row wrapper">
     <%#Apartments name, address price %>
     <div class="col-md-8 apt-info">
-        <div>
+        <div class="card">
           <h1><%= @apartment.name%></h1>
           <p><%= @apartment.category %></p>
         </div>
       <%#Apartments description, price, address, total floorspace, agency id %>
-        <div>
+        <div class="card">
           <h3>Description</h3>
           <p><%= @apartment.description %></p>
           <p>Price: <%= @apartment.price.to_i %>¥</p>
@@ -17,7 +17,7 @@
           <p>Agency name: <%= @apartment.agency_id %></p>
         </div>
         <%# QR code %>
-        <div>
+        <div class="card">
           <h4>QR Code</h4>
           <%= @apartment.qr_code %>
         </div>
