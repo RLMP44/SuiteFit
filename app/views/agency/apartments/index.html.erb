@@ -1,31 +1,29 @@
 <div class="container">
   <div class="row">
     <%# create individual cards here %>
-    <div class="col-5 my-3 mx-2">
-      <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Apartment name</h5>
-          <p class="card-text">address</p>
-          <p class="card-text">total_floorspace</p>
-          <p class="card-text">price</p>
-          <p class="card-text">type</p>
-          <a href="#" class="btn btn-primary">View apartment</a>
+    <% @apartments.each do |apartment| %>
+      <div class="col-5 my-3 mx-2">
+        <div class="card" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <%# main display info %>
+            <div>
+              <h5 class="card-title"><%= apartment.name %> - <%= apartment.category %></h5>
+              <p class="card-text"><%= apartment.total_floorspace %> m²</p>
+            </div>
+            <%# subtitle info %>
+            <div>
+              <p class="card-text"><i class="fa-solid fa-location-dot"></i> <%= apartment.address %></p>
+              <p class="card-text">¥<%= apartment.price.to_i %></p>
+            </div>
+            <%# large button at the bottom? %>
+            <div>
+              <a href="#" class="btn btn-primary">View apartment</a>
+              <a href="#" class="btn btn-danger">Edit apartment</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-5 my-3 mx-2">
-      <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Apartment name</h5>
-          <p class="card-text">address</p>
-          <p class="card-text">total_floorspace</p>
-          <p class="card-text">price</p>
-          <p class="card-text">type</p>
-          <a href="#" class="btn btn-primary">View apartment</a>
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>
