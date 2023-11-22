@@ -16,6 +16,7 @@ class BookmarkPolicy < ApplicationPolicy
     private
 
     attr_reader :user, :scope
+
   end
 
   def show?
@@ -35,4 +36,9 @@ class BookmarkPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  private
+
+    attr_reader :user, :record
+
 end

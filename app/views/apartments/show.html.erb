@@ -21,6 +21,12 @@
           <div class="card-apt-show">
             <h4>QR Code</h4>
             <%= @apartment.qr_code %>
+             <%# Create a booking form %>
+            <div class="card-apt-show">
+                <%= simple_form_for [@apartment, @bookmark] do |f| %>
+                  <%= f.button :submit %>
+                <% end %>
+            </div>
           </div>
       </div>
     </div>
