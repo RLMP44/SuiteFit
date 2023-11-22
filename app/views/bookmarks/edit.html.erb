@@ -2,10 +2,9 @@
   <h1>Place your items!</h1>
   <div class="row">
     <%# canvas elements %>
-    <div class="col-8">
-      <h2>Canvas goes here</h2>
-      <p><%= @bookmark.arrangement %></p>
-    </div>
+    <canvas id="new-canvas" class="col-8" data-controller="load-canvas">
+    </canvas>
+    <p><%= @bookmark.arrangement %></p>
     <%# items list menu %>
     <div class="col-4 container" style="border: black; background-color: lightgrey;">
       <div class="row">
