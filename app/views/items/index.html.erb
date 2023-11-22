@@ -22,11 +22,14 @@
               </div>
             </div>
           </div>
+          <h3>Edit item</h3>
+          <%= render "item_form", item: item%>
         <% end %>
       </div>
     </div>
     <%# form for item %>
     <div class="col-4">
+      <h3>New item</h3>
       <%= render "item_form", item: @item%>
     </div>
   </div>
