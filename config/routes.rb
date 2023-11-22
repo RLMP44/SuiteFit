@@ -7,12 +7,13 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # The user can see one apartment, coming from a QR code or otherwise
-  resources :apartments, only: :show
-
+  resources :apartments, only: :show do
+   resources :bookmarks, only: [:create]
+  end
   # The user can see all of their bookmarks, bookmark an apartment, update or destroy a bookmark.
   # The show page is the chat window
   # Messages are nested, so that they belong to a specific chat
-  resources :bookmarks, only: [:index, :update, :create, :destroy, :show] do
+  resources :bookmarks, only: [:index, :update, :destroy, :show] do
     resources :messages, only: :create
   end
 
