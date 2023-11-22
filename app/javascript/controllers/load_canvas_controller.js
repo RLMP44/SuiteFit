@@ -7,7 +7,7 @@ export default class extends Controller {
 
   connect() {
     console.log("hi")
-    const canvas = new fabric.Canvas("canvas")
+    const canvas = new fabric.Canvas("new-canvas")
     // const renderedCanvas = this.loadCanvas(canvas);
   }
 
