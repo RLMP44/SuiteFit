@@ -45,4 +45,8 @@ class Agency::ApartmentPolicy < ApplicationPolicy
   def destroy?
     record.agency == user
   end
+
+  private
+
+  attr_reader :user, :record
 end
