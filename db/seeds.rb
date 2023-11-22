@@ -38,7 +38,7 @@ table = Item.create!(
   name: "Table",
   length: 110,
   width: 70,
-  icon: "fa-solid fa-vault",
+  icon: "fa-solid fa-vault fa-xl",
   quantity: 1,
   user: shinji
 )
@@ -47,7 +47,7 @@ chair = Item.create!(
   name: "Chair",
   length: 76,
   width: 49,
-  icon: "fa-solid fa-chair",
+  icon: "fa-solid fa-chair fa-xl",
   quantity: 1,
   user: shinji
 )
@@ -56,7 +56,7 @@ couch = Item.create!(
   name: "Couch",
   length: 213,
   width: 89,
-  icon: "fa-solid fa-couch",
+  icon: "fa-solid fa-couch fa-xl",
   quantity: 1,
   user: shinji
 )
@@ -65,7 +65,7 @@ single_bed = Item.create!(
   name: "Single bed",
   length: 188,
   width: 92,
-  icon: "fa-solid fa-bed",
+  icon: "fa-solid fa-bed fa-xl",
   quantity: 1,
   user: ryan
 )
@@ -74,7 +74,7 @@ double_bed = Item.create!(
   name: "Double bed",
   length: 188,
   width: 138,
-  icon: "fa-solid fa-bed",
+  icon: "fa-solid fa-bed fa-xl",
   quantity: 1,
   user: shinji
 )
@@ -83,7 +83,7 @@ fridge = Item.create!(
   name: "Fridge",
   length: 55,
   width: 50,
-  icon: "fa-solid fa-toilet-portable",
+  icon: "fa-solid fa-toilet-portable fa-xl",
   quantity: 1,
   user: ryan
 )
@@ -92,7 +92,7 @@ washing_machine = Item.create!(
   name: "Washing machine",
   length: 60,
   width: 50,
-  icon: "fa-solid fa-glass-water",
+  icon: "fa-solid fa-glass-water fa-xl",
   quantity: 1,
   user: shinji
 )
@@ -101,7 +101,7 @@ tv = Item.create!(
   name: "TV",
   length: 120,
   width: 10,
-  icon: "fa-solid fa-tv",
+  icon: "fa-solid fa-tv fa-xl",
   quantity: 1,
   user: shinji
 )
@@ -110,7 +110,7 @@ shelf = Item.create!(
   name: "Shelf",
   length: 80,
   width: 45,
-  icon: "fa-solid fa-table-columns",
+  icon: "fa-solid fa-table-columns fa-xl",
   quantity: 1,
   user: ryan
 )
@@ -119,7 +119,7 @@ microwave = Item.create!(
   name: "Microwave",
   length: 40,
   width: 45,
-  icon: "fa-solid fa-pager",
+  icon: "fa-solid fa-pager fa-xl",
   quantity: 1,
   user: ryan
 )
@@ -128,7 +128,7 @@ trash_can = Item.create!(
   name: "Trash can",
   length: 30,
   width: 20,
-  icon: "fa-solid fa-trash-can",
+  icon: "fa-solid fa-trash-can fa-xl",
   quantity: 1,
   user: shinji
 )
@@ -137,7 +137,7 @@ storage_case = Item.create!(
   name: "Storage case",
   length: 50,
   width: 35,
-  icon: "fa-solid fa-box-archive",
+  icon: "fa-solid fa-box-archive fa-xl",
   quantity: 1,
   user: shinji
 )
@@ -146,7 +146,7 @@ desk = Item.create!(
   name: "Desk",
   length: 80,
   width: 100,
-  icon: "fa-solid fa-laptop fa-rotate-180",
+  icon: "fa-solid fa-laptop fa-rotate-180 fa-xl",
   quantity: 1,
   user: ryan
 )
