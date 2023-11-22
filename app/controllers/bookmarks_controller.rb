@@ -13,6 +13,12 @@ class BookmarksController < ApplicationController
     authorize @bookmark
   end
 
+  def edit
+    @bookmark = Bookmark.find(1)
+    authorize @bookmark
+    @items = current_user.items
+  end
+
   def update
     authorize @bookmark
   end
