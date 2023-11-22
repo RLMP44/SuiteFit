@@ -1,8 +1,8 @@
 <div class="container">
   <h1>Place your items!</h1>
-  <div class="row">
+  <div class="row" data-controller="load-canvas">
     <%# canvas elements %>
-    <canvas id="new-canvas" class="col-8" data-controller="load-canvas">
+    <canvas id="new-canvas" class="col-8">
     </canvas>
     <p><%= @bookmark.arrangement %></p>
     <%# items list menu %>
