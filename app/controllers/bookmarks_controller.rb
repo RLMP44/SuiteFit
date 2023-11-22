@@ -10,7 +10,22 @@ class BookmarksController < ApplicationController
   end
 
   def create
+    @apartment = Apartment.find(params[:apartment_id])
+    @bookmark = Bookmark.new
+    @bookmark.apartment = @apartment
+    @bookmark.user = current_user
     authorize @bookmark
+    if @bookmark.save
+      redirect_to bookmarks_path(@bookmarks)
+    else
+      render "apartments/show", status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @bookmark = Bookmark.find(1)
+    authorize @bookmark
+    @items = current_user.items
   end
 
   def update
@@ -20,4 +35,5 @@ class BookmarksController < ApplicationController
   def destroy
     authorize @bookmark
   end
+
 end

@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Place your items!</h1>
+  <div class="row">
+    <%# canvas elements %>
+    <canvas id="new-canvas" class="col-8" data-controller="load-canvas">
+    </canvas>
+    <p><%= @bookmark.arrangement %></p>
+    <%# items list menu %>
+    <div class="col-4 container" style="border: black; background-color: lightgrey;">
+      <div class="row">
+        <% current_user.items.all.each do |item| %>
+          <%# create cards for each item %>
+          <div class="card col-4 my-3 mx-2" style="width: 200px; border-radius: 3px; drop-shadow: 2px 2px 4px darkgrey;">
+            <i class="<%= item.icon %>" style="height: 50px;"></i>
+            <i class="fa-solid fa-circle-plus fa-xl"></i>
+            <div class="card-body">
+              <h5 class="card-title"><%= item.name %> x <%= item.quantity %></h5>
+              <p class="card-text"><%= item.length %>cm² x <%= item.width %>cm²</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

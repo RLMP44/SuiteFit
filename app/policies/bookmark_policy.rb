@@ -16,6 +16,7 @@ class BookmarkPolicy < ApplicationPolicy
     private
 
     attr_reader :user, :scope
+
   end
 
   def show?
