@@ -4,14 +4,21 @@ import { fabric } from "fabric"
 // Connects to data-controller="load-canvas"
 export default class extends Controller {
   static targets = ["canvas"]
+  static values = {json: String}
 
   connect() {
     console.log("hi")
-    const canvas = new fabric.Canvas("new-canvas")
-    // const renderedCanvas = this.loadCanvas(canvas);
+    // fake json data
+    const serializedjson = this.jsonValue
+    const canvas = new fabric.Canvas("new-canvas", {
+      height: 500,
+      width: 600,
+    })
+    const renderedCanvas = this.loadCanvas(canvas, serializedjson)
+    console.log(renderedCanvas)
   }
 
-  // loadCanvas(canvas, json) {
-  //   return canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
-  // }
+  loadCanvas = (canvas, serializedjson) => {
+    return canvas.loadFromJSON(serializedjson, canvas.renderAll.bind(canvas));
+  }
 }
