@@ -1,224 +1,161 @@
 import { Controller } from "@hotwired/stimulus"
 import { fabric } from 'fabric'
-import jquery from "jquery"
-window.$ = jquery
-window.jQuery = jquery
 
 // Connects to data-controller="apartment-canvas"
 export default class extends Controller {
-  static targets = ["canvas", "drawButton", 'saveButton']
-  static values = {'floorplanUrl': String}
+  static targets = ["canvas", "drawButton", 'saveButton', 'saveFloorplan', 'input']
+  static values = {'floorplanUrl': String, 'id': Number}
+
+
+
   connect() {
-    // create new canvas
-      // drawing a polygon by click
-    var min = 99;
-    var max = 999999;
-    var polygonMode = true;
-    var pointArray = new Array();
-    var lineArray = new Array();
-    var activeLine;
-    var activeShape = false;
-    var canvas
-    // create a canvas with #prototypefabric when the window loads
-    $(window).load(function(){
-        prototypefabric.initCanvas();
-        // create a polygon when #create-polygon is clicked
-        $('#create-polygon').click(function() {
-            prototypefabric.polygon.drawPolygon();
-        });
-    });
-    var prototypefabric = new function () {
-        this.initCanvas = function () {
-            canvas = window._canvas = new fabric.Canvas('new-canvas');
-            canvas.setWidth($(window).width());
-            canvas.setHeight($(window).height()-$('.navbar').height());
-            //canvas.selection = false;
-            fabric.Image.fromURL(this.floorplanUrlValue, function(img) {
-              canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas))
-            })
 
-            canvas.on('mouse:down', function (options) {
-                if(options.target && options.target.id == pointArray[0].id){
-                    prototypefabric.polygon.generatePolygon(pointArray);
-                }
-                if(polygonMode){
-                    prototypefabric.polygon.addPoint(options);
-                }
-            });
-            canvas.on('mouse:up', function (options) {
-
-            });
-            canvas.on('mouse:move', function (options) {
-                if(activeLine && activeLine.class == "line"){
-                    var pointer = canvas.getPointer(options.e);
-                    activeLine.set({ x2: pointer.x, y2: pointer.y });
-
-                    var points = activeShape.get("points");
-                    points[pointArray.length] = {
-                        x:pointer.x,
-                        y:pointer.y
-                    }
-                    activeShape.set({
-                        points: points
-                    });
-                    canvas.renderAll();
-                }
-                canvas.renderAll();
-            });
-        };
-    };
-
-
-
-    prototypefabric.polygon = {
-        drawPolygon : function() {
-            polygonMode = true;
-            pointArray = new Array();
-            lineArray = new Array();
-            activeLine;
-        },
-        addPoint : function(options) {
-            var random = Math.floor(Math.random() * (max - min + 1)) + min;
-            var id = new Date().getTime() + random;
-            var circle = new fabric.Circle({
-                radius: 5,
-                fill: '#ffffff',
-                stroke: '#333333',
-                strokeWidth: 0.5,
-                left: (options.e.layerX/canvas.getZoom()),
-                top: (options.e.layerY/canvas.getZoom()),
-                selectable: false,
-                hasBorders: false,
-                hasControls: false,
-                originX:'center',
-                originY:'center',
-                id:id,
-                    objectCaching:false
-            });
-            if(pointArray.length == 0){
-                circle.set({
-                    fill:'red'
-                })
-            }
-            var points = [(options.e.layerX/canvas.getZoom()),(options.e.layerY/canvas.getZoom()),(options.e.layerX/canvas.getZoom()),(options.e.layerY/canvas.getZoom())];
-            line = new fabric.Line(points, {
-                strokeWidth: 2,
-                fill: '#999999',
-                stroke: '#999999',
-                class:'line',
-                originX:'center',
-                originY:'center',
-                selectable: false,
-                hasBorders: false,
-                hasControls: false,
-                evented: false,
-                    objectCaching:false
-            });
-            if(activeShape){
-                var pos = canvas.getPointer(options.e);
-                var points = activeShape.get("points");
-                points.push({
-                    x: pos.x,
-                    y: pos.y
-                });
-                var polygon = new fabric.Polygon(points,{
-                    stroke:'#333333',
-                    strokeWidth:1,
-                    fill: '#cccccc',
-                    opacity: 0.3,
-                    selectable: false,
-                    hasBorders: false,
-                    hasControls: false,
-                    evented: false,
-                    objectCaching:false
-                });
-                canvas.remove(activeShape);
-                canvas.add(polygon);
-                activeShape = polygon;
-                canvas.renderAll();
-            }
-            else{
-                var polyPoint = [{x:(options.e.layerX/canvas.getZoom()),y:(options.e.layerY/canvas.getZoom())}];
-                var polygon = new fabric.Polygon(polyPoint,{
-                    stroke:'#333333',
-                    strokeWidth:1,
-                    fill: '#cccccc',
-                    opacity: 0.3,
-                    selectable: false,
-                    hasBorders: false,
-                    hasControls: false,
-                    evented: false,
-                    objectCaching:false
-                });
-                activeShape = polygon;
-                canvas.add(polygon);
-            }
-            activeLine = line;
-
-            pointArray.push(circle);
-            lineArray.push(line);
-
-            canvas.add(line);
-            canvas.add(circle);
-            canvas.selection = false;
-        },
-        generatePolygon : function(pointArray){
-            var points = new Array();
-            $.each(pointArray,function(index,point){
-                points.push({
-                    x:point.left,
-                    y:point.top
-                });
-                canvas.remove(point);
-            });
-            $.each(lineArray,function(index,line){
-                canvas.remove(line);
-            });
-            canvas.remove(activeShape).remove(activeLine);
-            var polygon = new fabric.Polygon(points,{
-                stroke:'#333333',
-                strokeWidth:0.5,
-                fill: 'red',
-                opacity: 1,
-                hasBorders: false,
-                hasControls: false
-            });
-            canvas.add(polygon);
-
-            activeLine = null;
-            activeShape = null;
-            polygonMode = false;
-            canvas.selection = true;
-        }
-    };
-    // end
     // canvas should scale to the picture size?
-    // const canvas = this.canvas = new fabric.Canvas('new-canvas', {
-    //   width: 800,
-    //   height: 1000
-    // })
+    this.canvas = new fabric.Canvas('new-canvas', {
+      width: 800,
+      height: 1000
+    })
+
 
     // set a floorplan on the canvas
-    // fabric.Image.fromURL(this.floorplanUrlValue, function(img) {
-    //   img.scaleToWidth(canvas.getWidth());
-    //   // canvas.add(img);
-    //   canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas))
-    // })
+    fabric.Image.fromURL(this.floorplanUrlValue, (img) => {
+      img.scaleToWidth(this.canvas.getWidth());
+      this.canvas.setBackgroundImage(img, this.canvas.renderAll.bind(this.canvas))
+    })
+
+  }
+
+  startDrawing(event) {
+    event.currentTarget.classList.add('d-none')
+    this.saveButtonTarget.classList.remove('d-none')
+    this.drawFloorplan()
   }
 
   // trace a floorplan on the canvas
-  drawFloorplan(event) {
-    // this.canvas.isDrawingMode = true
-    event.currentTarget.classList.add('d-none')
-    this.saveButtonTarget.classList.remove('d-none')
+  drawFloorplan() {
+    this.canvas.on('mouse:down', (o) => {
+      let pointer = this.canvas.getPointer(o.e);
 
+      this.isDown = true;
+      this.origX = pointer.x;
+      this.origY = pointer.y;
+
+      this.rectangle = new fabric.Rect({
+          left: this.origX,
+          top: this.origY,
+          fill: '#5f5',
+          strokeWidth: 0,
+          hasRotatingPoint: false,
+          hasBorders: false,
+          id: this.#generateId('rect')
+      })
+      this.canvas.add(this.rectangle);
+    })
+
+    this.canvas.on('mouse:move', (o) => {
+      // if selecting an object, don't draw a new object
+      if (this.canvas.getActiveObject()){
+
+      } else {
+        if (!this.isDown) return;
+        let pointer = this.canvas.getPointer(o.e);
+        if(this.origX>pointer.x){
+            this.rectangle.set({ left: Math.abs(pointer.x) });
+        }
+        if(this.origY>pointer.y){
+            this.rectangle.set({ top: Math.abs(pointer.y) });
+        }
+
+        this.rectangle.set({ width: Math.abs(this.origX - pointer.x) });
+        this.rectangle.set({ height: Math.abs(this.origY - pointer.y) });
+        this.canvas.renderAll();
+      }
+    })
+
+    this.canvas.on('mouse:up', (o) => {
+      this.isDown = false;
+    })
+  }
+
+  // set the main door (for scaling when loading canvas later)
+  setDoor() {
+    this.canvas.on('mouse:down', (o) => {
+      let pointer = this.canvas.getPointer(o.e);
+
+      this.isDown = true;
+      this.origX = pointer.x;
+      this.origY = pointer.y;
+
+      this.rectangle = new fabric.Rect({
+          left: this.origX,
+          top: this.origY,
+          fill: '#f55',
+          strokeWidth: 0,
+          hasRotatingPoint: false,
+          hasBorders: false,
+          id: 'door'
+      })
+      this.canvas.add(this.rectangle);
+    })
+
+    this.canvas.on('mouse:move', (o) => {
+      if (this.canvas.getActiveObject()){
+
+      } else {
+        if (!this.isDown) return;
+        let pointer = this.canvas.getPointer(o.e);
+        if(this.origX>pointer.x){
+            this.rectangle.set({ left: Math.abs(pointer.x) });
+        }
+        if(this.origY>pointer.y){
+            this.rectangle.set({ top: Math.abs(pointer.y) });
+        }
+
+        this.rectangle.set({ width: Math.abs(this.origX - pointer.x) });
+        this.rectangle.set({ height: Math.abs(this.origY - pointer.y) });
+        this.canvas.renderAll();
+      }
+    })
+
+    this.canvas.on('mouse:up', (o) => {
+      this.isDown = false;
+      this.canvas.off('mouse:down')
+      this.drawFloorplan()
+    })
   }
 
   // save the canvas to JSON/serialize
   saveFloorplan(event) {
-    // this.canvas.isDrawingMode = false
-    event.currentTarget.classList.add('d-none')
-    this.drawButtonTarget.classList.remove('d-none')
-    // JSON.stringify(canvas)
+    event.preventDefault()
+    console.log('submitted')
+    // set all objects as transparent and unselectable
+    this.canvas.forEachObject( o => {
+      o.set({
+        selectable: false,
+        opacity: 0
+      })
+    })
+
+    const floorplan = JSON.stringify(this.canvas)
+    this.#insertFloorplan(floorplan)
+  }
+
+  #insertFloorplan(floorplan) {
+    const url = this.saveFloorplanTarget.action
+    this.inputTarget.value = floorplan
+    const formData = new FormData(this.saveFloorplanTarget)
+
+    console.log(formData)
+    fetch(url, {
+        method: 'PATCH',
+        body: formData
+      }
+    ).then(response => response.json)
+    .then(window.location.href=`/agency/apartments/${this.idValue}`
+    )
+  }
+
+  #generateId(type) {
+    return `${type}-${Math.random().toString(36).substring(2, 9)}`;
   }
 }

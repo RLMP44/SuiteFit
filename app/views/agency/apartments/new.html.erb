@@ -1,9 +1,12 @@
-<div class="container" data-controller="apartment-canvas" data-apartment-canvas-floorplan-url-value=<%= image_url 'floorplan.jpg' %>>
-  <h1 class="my-2">Add an apartment</h1>
-  <button class="btn btn-secondary" data-apartment-canvas-target="drawButton" data-action="click->apartment-canvas#drawFloorplan">Start Drawing</button>
-  <button class="btn btn-secondary d-none" data-apartment-canvas-target="saveButton" data-action="click->apartment-canvas#saveFloorplan">Save</button>
-  <a id="create-polygon" style="cursor:pointer">Create Polygon</a>
-    <div class="canvas-container">
-      <canvas id="new-canvas" class="border" data-apartment-canvas-target="canvas"></canvas>
-    </div>
-</div>
+<h1 class="my-2">Add an apartment</h1>
+<%= simple_form_for @apartment, url: agency_apartments_path do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :price %>
+  <%= f.input :total_floorspace %>
+  <%= f.input :category %>
+  <%= f.input :address %>
+  <%= f.input :photos, as: :file, label: "Upload a floorplan" %>
+  <%= f.input :creation, as: :hidden, input_html: { value: 'true'} %>
+  <%= f.button :submit, "Next", class:"btn btn-secondary" %>
+<% end %>
