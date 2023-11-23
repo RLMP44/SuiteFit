@@ -1,0 +1,37 @@
+/* Create three unequal columns that floats next to each other */
+.row {
+  display: flex;
+}
+
+.column {
+  float: left;
+  padding: 10px;
+  height: 11rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.left {
+  width: 20%;
+  align-items: center;
+}
+
+.right {
+  width: 30%;
+  align-items: center;
+ }
+
+.middle {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
