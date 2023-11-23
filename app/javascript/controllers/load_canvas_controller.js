@@ -6,41 +6,53 @@ export default class extends Controller {
   static targets = ["canvas", "my-image"]
   static values = {
     json: Object,
-    length: String,
-    width: String
   }
 
   connect() {
-    console.log("hi")
     console.log(this.jsonValue)
     // create empty canvas
-    const canvas = new fabric.Canvas("new-canvas", {
-      height: 500,
-      width: 600,
+    this.canvas = new fabric.Canvas("new-canvas", {
+      height: 1000,
+      width: 800,
     })
-    // check for existing arrangement
-    // call function to load canvas from existing bookmark.arrangement json if it exists
-    const renderedCanvas = this.loadCanvas(canvas, this.jsonValue)
+    // call function to load canvas from existing bookmark.arrangement or apartment.floor_plan json
+    const renderedCanvas = this.loadCanvas(this.canvas, this.jsonValue)
     console.log(renderedCanvas)
-    // else
-    // call function to load canvas from existing apartment.floor_plan json
-    // end
+    // get ahold of all items to detect collisions
+    const onChange=(options) => {
+      options.target.setCoords();
+      this.canvas.forEachObject(function(obj) {
+        console.log(obj)
+        if (obj === options.target) return;
+        obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 1);
+      });
+    }
+    this.canvas.on({
+      'object:moving': onChange,
+      'object:scaling': onChange,
+      'object:rotating': onChange,
+    });
   }
 
   // function to add clicked item to canvas
-  add(event, canvas) {
+  add(event) {
     console.log("hi")
-    console.log(this.lengthValue, this.widthValue)
+    console.log(event.currentTarget.dataset.length)
     const rect = new fabric.Rect({
-        height: this.lengthValue,
-        width: this.widthValue,
-        fill: 'blue',
+        height: parseInt(event.currentTarget.dataset.length),
+        width: parseInt(event.currentTarget.dataset.width),
+        fill: '#aac',
+        originX: 'left',
+        originY: 'top',
+        hasBorders: false,
+        transparentCorners: true,
+        cornerSize: 5,
     })
-    canvas.add(rect)
+    this.canvas.add(rect)
   }
 
-  // create function to deserialize json and render apartment floor plan
-  loadCanvas = (canvas, json) => {
+  // function to deserialize json and render apartment floor plan or bookmark arrangement
+  loadCanvas(canvas, json) {
     return canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
   }
 }
@@ -63,17 +75,6 @@ export default class extends Controller {
     //   });
     // canvas.add(imgInstance);
     // canvas.renderAll();
-
-
-// get ahold of all items to detect collisions
-// function onChange(options) {
-//   options.target.setCoords();
-//   canvas.forEachObject(function(obj) {
-//     if (obj === options.target) return;
-//     obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 1);
-//   });
-// }
-//
 
 // const rect = new fabric.Rect({
 //   height: 50,

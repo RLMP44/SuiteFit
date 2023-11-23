@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Place your items in <%= @bookmark.apartment.name %>!</h1>
+  <h1 class="my-3">Place your items in <%= @bookmark.apartment.name %>!</h1>
   <%# check if arrangement already exists, and load either arrangement or floor_plan %>
   <% if @bookmark.arrangement? %>
     <% file_to_load = @bookmark.arrangement %>
@@ -13,7 +13,7 @@
       <button class="btn btn-primary mx-2" style="width: 20%">Save</button>
     </div>
     <%# canvas elements %>
-    <canvas id="new-canvas"  class="col-7">
+    <canvas id="new-canvas"  class="col-8 border border-2 border-primary-subtle my-4" style="border-width: 2px;">
       <%# render canvas here %>
       <%# <img src="my_image.png" id="my-image" data-load-json-target> %>
     </canvas>
@@ -24,13 +24,16 @@
           <%# create cards for each item %>
           <div
             class="card col-4 my-3 mx-2"
-            data-controller="load-canvas"
-            data-load-canvas-length-value="<%= item.length %>"
-            data-load-canvas-width-value="<%= item.width %>"
+            <%# data-controller="load-canvas" %>
             style="width: 200px; border-radius: 3px; drop-shadow: 2px 2px 4px darkgrey;"
           >
             <i class="<%= item.icon %>" style="height: 50px;"></i>
-            <button data-action="click->load-canvas#add" class="fa-solid fa-circle-plus fa-xl"></button>
+            <button
+              data-action="click->load-canvas#add"
+              class="fa-solid fa-circle-plus fa-xl add-item"
+              data-length="<%= item.length %>"
+              data-width="<%= item.width %>"
+              ></button>
             <div class="card-body">
               <h5 class="card-title"><%= item.name %> x <%= item.quantity %></h5>
               <p class="card-text"><%= item.length %> cm² x <%= item.width %> cm²</p>
