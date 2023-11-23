@@ -12,57 +12,29 @@ export default class extends Controller {
 
   connect() {
     console.log("hi")
-    // retrieve apartment floor plan as serialized json
     console.log(this.jsonValue)
     // create empty canvas
     const canvas = new fabric.Canvas("new-canvas", {
       height: 500,
       width: 600,
     })
-    // call function to load canvas
+    // check for existing arrangement
+    // call function to load canvas from existing bookmark.arrangement json if it exists
     const renderedCanvas = this.loadCanvas(canvas, this.jsonValue)
     console.log(renderedCanvas)
-
-    //   // get image/icon element to add to canvas
-    //   const imgElement = this.dataTarget('my-image')
-    //   // find on-canvas length of selected door, scale to size using standard 80 cm door
-    //   const ratio = this.selectedObject.length / 80
-    //   // create instance of user item on canvas and scale with ratio
-    //   const imgInstance = new fabric.Image(imgElement, {
-      //     // pass in data, note that length doesn't exist in fabric so it becomes height
-      //     height: this.dataTarget.length * ratio,
-      //     width: this.dataTarget.width * ratio,
-      //     top: 20,
-      //     left: 20,
-      //     lockScalingX: true,
-      //     lockScalingY: true,
-      //   });
-      // canvas.add(imgInstance);
-      // canvas.renderAll();
-
-
-      // const rect = new fabric.Rect({
-      //   height: 50,
-      //   width: 50,
-      //   fill: 'green',
-      //   top: 100,
-      //   left: 150,
-      //   lockScalingX: true,
-      //   lockScalingY: true,
-      //   hasControls: false,
-      //   lockMovementX: true,
-      //   lockMovementY: true,
-      //   selectable: false,
-      // })
-      // canvas.add(rect)
+    // else
+    // call function to load canvas from existing apartment.floor_plan json
+    // end
   }
 
+  // function to add clicked item to canvas
   add(event, canvas) {
     console.log("hi")
     console.log(this.lengthValue, this.widthValue)
     const rect = new fabric.Rect({
         height: this.lengthValue,
         width: this.widthValue,
+        fill: 'blue',
     })
     canvas.add(rect)
   }
@@ -75,6 +47,24 @@ export default class extends Controller {
 
 // add clear items button
 
+//   // get image/icon element to add to canvas
+  //   const imgElement = this.dataTarget('my-image')
+  //   // find on-canvas length of selected door, scale to size using standard 80 cm door
+  //   const ratio = this.selectedObject.length / 80
+  //   // create instance of user item on canvas and scale with ratio
+  //   const imgInstance = new fabric.Image(imgElement, {
+    //     // pass in data, note that length doesn't exist in fabric so it becomes height
+    //     height: this.dataTarget.length * ratio,
+    //     width: this.dataTarget.width * ratio,
+    //     top: 20,
+    //     left: 20,
+    //     lockScalingX: true,
+    //     lockScalingY: true,
+    //   });
+    // canvas.add(imgInstance);
+    // canvas.renderAll();
+
+
 // get ahold of all items to detect collisions
 // function onChange(options) {
 //   options.target.setCoords();
@@ -84,3 +74,18 @@ export default class extends Controller {
 //   });
 // }
 //
+
+// const rect = new fabric.Rect({
+//   height: 50,
+//   width: 50,
+//   fill: 'green',
+//   top: 100,
+//   left: 150,
+//   lockScalingX: true,
+//   lockScalingY: true,
+//   hasControls: false,
+//   lockMovementX: true,
+//   lockMovementY: true,
+//   selectable: false,
+// })
+// canvas.add(rect)
