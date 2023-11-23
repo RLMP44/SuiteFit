@@ -55,6 +55,11 @@ export default class extends Controller {
     this.canvas.clear()
   }
 
+  save(event) {
+    stringified_file = JSON.stringify(this.canvas)
+
+  }
+
   // function to deserialize json and render apartment floor plan or bookmark arrangement
   loadCanvas(canvas, json) {
     return canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
