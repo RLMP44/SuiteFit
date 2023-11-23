@@ -49,8 +49,9 @@ export default class extends Controller {
     this.canvas.add(rect)
   }
 
+  // method to clear the canvas
   clear(event) {
-    console.log("Hi from clear")
+    // TODO: need to make sure it doesn't erase floor plan
     this.canvas.clear()
   }
 
@@ -59,9 +60,6 @@ export default class extends Controller {
     return canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
   }
 }
-
-// add clear items button
-
 //   // get image/icon element to add to canvas
   //   const imgElement = this.dataTarget('my-image')
   //   // find on-canvas length of selected door, scale to size using standard 80 cm door
