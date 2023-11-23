@@ -35,5 +35,4 @@ class BookmarksController < ApplicationController
   def destroy
     authorize @bookmark
   end
-
 end

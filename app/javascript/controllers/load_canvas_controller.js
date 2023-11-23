@@ -44,3 +44,5 @@ export default class extends Controller {
 }
 
 // add clear items button
+// get ahold of all items to detect collisions
+//
