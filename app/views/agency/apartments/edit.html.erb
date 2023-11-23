@@ -1,4 +1,11 @@
-<h1>Edit</h1> <%= @apartment.name %>
+<%# Header and button back to apartments list%>
+<div class="d-flex justify-content-between">
+  <h1>Edit</h1>
+  <%= link_to "Back to my apartments list", agency_apartments_path, class:"btn btn-primary" %>
+</div>
+<%# Apartments name%>
+<strong><%= @apartment.name %></strong>
+<%# Edit form%>
 <%= form_with model: @apartment, url: agency_apartment_path(@apartment), method: :patch do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>

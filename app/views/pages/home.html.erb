@@ -1,7 +1,12 @@
 <div class="banner">
   <div class="container">
     <h1>Suite Fit</strong></h1>
-  <p>Fitting people with the confidence they need to change homes</p>
-  <a class="btn btn-flat" href="#">Check your fit now!</a>
-</div>
+    <p>Fitting people with the confidence they need to change homes</p>
+    <%# Button for Admins and regular Users%>
+    <% if current_user && current_user.agency? %>
+        <%= link_to "Check your fit now!", agency_apartments_path, class: "btn btn-primary" %>
+    <% else %>
+        <%= link_to "Check your fit now!", items_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>

@@ -6,7 +6,6 @@ class BookmarksController < ApplicationController
   end
 
   def show
-    @bookmark = Bookmark.find(params[:id])
     authorize @bookmark
   end
 

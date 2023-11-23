@@ -29,6 +29,8 @@
     <div class="col-4">
       <h3>New item</h3>
       <%= render "item_form", item: @item, new: true %>
+      <%# Button to bookmarks %>
+       <%= link_to "My bookmarks", bookmarks_path, class:"btn btn-primary" %>
     </div>
   </div>
 </div>

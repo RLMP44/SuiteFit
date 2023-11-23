@@ -1,11 +1,11 @@
 <div class="outer-container-agency-show">
   <div class="container-agency-show" >
     <div class="row d-flex align-items-center justify-content-center">
-      <%#Apartments name, address price %>
       <div class="col-md-8 agency-info">
-          <div class="card-agency-show">
+      <%#Apartments name and button back to my apartments list %>
+          <div class="d-flex justify-content-between">
             <h1><%= @apartment.name%></h1>
-            <p><%= @apartment.category %></p>
+            <%= link_to "Back to my apartments list", agency_apartments_path, class:"btn btn-primary" %>
           </div>
         <%#Apartments description, price, address, total floorspace, agency id %>
           <div class="card-agency-show">
@@ -13,6 +13,7 @@
             <p><%= @apartment.description %></p>
             <p>Price: <%= @apartment.price.to_i %>¥</p>
             <p>Address: <%= @apartment.address %></p>
+            <p>Category: <%= @apartment.category %></p>
             <p>Total floorspace: <%= @apartment.total_floorspace %>m2</p>
             <p>Agency name: <%= @apartment.agency_id %></p>
           </div>
