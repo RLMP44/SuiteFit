@@ -11,9 +11,15 @@
       <div class="row">
         <% current_user.items.all.each do |item| %>
           <%# create cards for each item %>
-          <div class="card col-4 my-3 mx-2" style="width: 200px; border-radius: 3px; drop-shadow: 2px 2px 4px darkgrey;">
+          <div
+            class="card col-4 my-3 mx-2"
+            data-controller="load-canvas"
+            data-load-canvas-length-value="<%= item.length %>"
+            data-load-canvas-width-value="<%= item.width %>"
+            style="width: 200px; border-radius: 3px; drop-shadow: 2px 2px 4px darkgrey;"
+          >
             <i class="<%= item.icon %>" style="height: 50px;"></i>
-            <i class="fa-solid fa-circle-plus fa-xl"></i>
+            <button data-action="click->load-canvas#add" class="fa-solid fa-circle-plus fa-xl"></button>
             <div class="card-body">
               <h5 class="card-title"><%= item.name %> x <%= item.quantity %></h5>
               <p class="card-text"><%= item.length %> cm² x <%= item.width %> cm²</p>
