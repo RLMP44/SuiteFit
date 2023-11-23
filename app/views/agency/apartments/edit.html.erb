@@ -1,0 +1,18 @@
+<h1>Edit</h1> <%= @apartment.name %>
+<%= form_with model: @apartment, url: agency_apartment_path(@apartment), method: :patch do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+  <%= f.label :total_floorspace %>
+  <%= f.text_field :total_floorspace %>
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.label :category %>
+  <%= f.text_field :category %>
+  <%= f.label :floor_plan %>
+  <%= f.text_field :floor_plan %>
+  <%= f.submit %>
+<% end %>
