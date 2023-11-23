@@ -8,29 +8,27 @@
           <div class="card-product col-5 my-2 mx-2">
             <div class="row justify-content-between">
               <%# Icon for item %>
-              <div class="col-4">
+              <div class="col-3">
                 <i class="<%= item.icon %>"></i>
               </div>
-              <div class="col-6 card-product-infos">
+              <div class="col-7 card-product-infos">
                 <h2><%= item.name %> X <%= item.quantity %></h2>
                 <p>Length: <%= item.length %></p>
                 <p>Width: <%= item.width %></p>
               </div>
               <div class="col-2">
                 <%= render "delete_item", item: item%>
-                <p>edit button</p>
+                <%= render "item_form", item: item, new: false %>
               </div>
             </div>
           </div>
-          <h3>Edit item</h3>
-          <%= render "item_form", item: item%>
         <% end %>
       </div>
     </div>
     <%# form for item %>
     <div class="col-4">
       <h3>New item</h3>
-      <%= render "item_form", item: @item%>
+      <%= render "item_form", item: @item, new: true %>
     </div>
   </div>
 </div>
