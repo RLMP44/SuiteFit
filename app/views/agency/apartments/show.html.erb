@@ -1,31 +1,27 @@
-<%#Apartments info %>
-<div class="outer-container-apt-show">
-  <div class="container-apt-show" >
+<div class="outer-container-agency-show">
+  <div class="container-agency-show" >
     <div class="row d-flex align-items-center justify-content-center">
-      <%#Apartments name, address price %>
-      <div class="col-md-8 apt-info">
-          <div class="card-apt-show">
+      <div class="col-md-8 agency-info">
+      <%#Apartments name and button back to my apartments list %>
+          <div class="d-flex justify-content-between">
             <h1><%= @apartment.name%></h1>
-            <p><%= @apartment.category %></p>
+            <%= link_to "Back to my apartments list", agency_apartments_path, class:"btn btn-primary" %>
           </div>
         <%#Apartments description, price, address, total floorspace, agency id %>
-          <div class="card-apt-show">
+          <div class="card-agency-show">
             <h3>Description</h3>
             <p><%= @apartment.description %></p>
             <p>Price: <%= @apartment.price.to_i %>¥</p>
             <p>Address: <%= @apartment.address %></p>
+            <p>Category: <%= @apartment.category %></p>
             <p>Total floorspace: <%= @apartment.total_floorspace %>m2</p>
             <p>Agency name: <%= @apartment.agency_id %></p>
           </div>
           <%# QR code %>
-          <div class="card-apt-show">
+          <div class="card-agency-show">
             <h4>QR Code</h4>
             <%= @apartment.qr_code %>
-             <%# Create a booking form %>
-            <div class="card-apt-show">
-                <%= simple_form_for [@apartment, @bookmark] do |f| %>
-                  <%= f.button :submit, 'Add to Bookmark' %>
-                <% end %>
+          <%# Update %>
             </div>
           </div>
       </div>

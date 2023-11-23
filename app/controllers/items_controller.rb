@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   # Inserted a authorization policy in front of each method as a reminder.
   # When writing the method, put it before saving to the database.
   def index
+    @bookmark = Bookmark.all
     @item = Item.new
     @items = policy_scope(Item)
   end
@@ -33,7 +34,10 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
     authorize @item
+    @item.destroy
+    redirect_to items_path, status: :see_other
   end
 
   private

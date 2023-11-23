@@ -1,5 +1,9 @@
 <div class="container">
-  <h1 class="my-2">My Saved Apartments</h1>
+    <div class="d-flex justify-content-between">
+      <h1 class="my-2">My Saved Apartments</h1>
+      <%# Button redirecting back to my items from my bookmarks%>
+      <%= link_to "My inventory", items_path, class:"btn btn-primary" %>
+    </div>
   <div class="row justify-content-around">
     <%# create individual cards here %>
     <% @bookmarks.each do |bookmark| %>

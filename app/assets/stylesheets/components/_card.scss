@@ -8,10 +8,10 @@
   align-items: center;
 }
 
-.card-product img {
-  height: 100%;
-  width: 120px;
+.card-product i {
+  font-size: 50px;
   object-fit: cover;
+  padding-top: 20px;
 }
 
 .card-product h2 {

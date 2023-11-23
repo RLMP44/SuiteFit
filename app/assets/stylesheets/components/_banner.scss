@@ -1,9 +1,11 @@
 // Homepage banner
 .banner {
-  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url("pexels-banner.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0,0,0,0.6)), asset-url("banner-img.jpg");
   background-size: cover;
   background-position: center;
   padding: 150px 0;
+  height: 40rem;
+  align-items: center;
 }
 
 .banner h1 {
@@ -18,6 +20,6 @@
   font-size: 20px;
   color: white;
   opacity: .7;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.511);
 }
 //

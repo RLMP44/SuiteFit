@@ -32,9 +32,14 @@ class Agency::ApartmentsController < ApplicationController
     authorize([:agency, @apartment])
   end
 
+  def edit
+    authorize([:agency, @apartment])
+  end
+
   def update
     @apartment.update(apartment_params)
     authorize([:agency, @apartment])
+    
     if @apartment.save
       redirect_to agency_apartment_path(@apartment)
     else
@@ -44,6 +49,10 @@ class Agency::ApartmentsController < ApplicationController
 
   def destroy
     authorize([:agency, @apartment])
+
+    Bookmark.where(apartment_id: @apartment.id).destroy_all
+    @apartment.destroy
+    redirect_to agency_apartments_path, status: :see_other
   end
 
   private
