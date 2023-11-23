@@ -9,7 +9,6 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log(this.jsonValue)
     // create empty canvas
     this.canvas = new fabric.Canvas("new-canvas", {
       height: 1000,
@@ -27,6 +26,7 @@ export default class extends Controller {
         obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 1);
       });
     }
+    // trigger onChange method in the following situations
     this.canvas.on({
       'object:moving': onChange,
       'object:scaling': onChange,
@@ -34,10 +34,8 @@ export default class extends Controller {
     });
   }
 
-  // function to add clicked item to canvas
+  // method to add clicked item to canvas
   add(event) {
-    console.log("hi")
-    console.log(event.currentTarget.dataset.length)
     const rect = new fabric.Rect({
         height: parseInt(event.currentTarget.dataset.length),
         width: parseInt(event.currentTarget.dataset.width),
@@ -49,6 +47,11 @@ export default class extends Controller {
         cornerSize: 5,
     })
     this.canvas.add(rect)
+  }
+
+  clear(event) {
+    console.log("Hi from clear")
+    this.canvas.clear()
   }
 
   // function to deserialize json and render apartment floor plan or bookmark arrangement
@@ -75,18 +78,3 @@ export default class extends Controller {
     //   });
     // canvas.add(imgInstance);
     // canvas.renderAll();
-
-// const rect = new fabric.Rect({
-//   height: 50,
-//   width: 50,
-//   fill: 'green',
-//   top: 100,
-//   left: 150,
-//   lockScalingX: true,
-//   lockScalingY: true,
-//   hasControls: false,
-//   lockMovementX: true,
-//   lockMovementY: true,
-//   selectable: false,
-// })
-// canvas.add(rect)
