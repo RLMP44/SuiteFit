@@ -11,7 +11,7 @@ export default class extends Controller {
     // const renderedCanvas = this.loadCanvas(canvas);
   }
 
-  loadCanvas = (canvas, json) => {
-    return canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
-  }
+  // loadCanvas(canvas, json) {
+  //   return canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
+  // }
 }
