@@ -9,16 +9,27 @@
     </div>
     <div class="offcanvas-body">
       <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+        <%# Button for Home for all users%>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <ul class="navbar-nav me-auto">
           <% if user_signed_in? %>
             <li class="nav-item active">
-              <%= link_to "Home", "#", class: "nav-link" %>
+              <%# Button for apartments for Admin and button for Items for User %>
+              <% if current_user && current_user.agency? %>
+                <%= link_to "My apartments", agency_apartments_path, class: "nav-link" %>
+              <% else %>
+                <%= link_to "My inventory", items_path, class: "nav-link" %>
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "Messages", "#", class: "nav-link" %>
+            <%# Button for Add an apartment for Admin and button for My bookmarks for User %>
+              <% if current_user && current_user.agency? %>
+                <%= link_to "Add apartment", new_agency_apartment_path, class: "nav-link" %>
+               <% else %>
+                <%= link_to "My bookmarks", bookmarks_path, class: "nav-link" %>
+              <% end %>
             </li>
             <li class="nav-item dropdown">
               <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
