@@ -31,6 +31,8 @@ rachel = User.create!(username: "Rachel", email: "rachel@rachel.com", password: 
 rina = User.create!(username: "Rina", email: "rina@rina.com", password: "rinaiscool" , agency: true)
 trouni = User.create!(username: "Trouni", email: "trouni@trouni.com", password: "trouniiscool" , agency: true)
 
+FABRIC_JSON = JSON.parse(File.read("db/sample_json.json")).to_json
+
 # Items
 puts "Creating items..."
 
@@ -205,7 +207,7 @@ puts "Creating bookmarks..."
 bookmark1 = Bookmark.create!(
   comment: "Small apartment",
   result: "Bad fit",
-  arrangement: "JSON",
+  arrangement: FABRIC_JSON,
   user: shinji,
   apartment: vizinho_tokyo
 )
@@ -213,7 +215,7 @@ bookmark1 = Bookmark.create!(
 bookmark2 = Bookmark.create!(
   comment: "Nice apartment",
   result: "Good fit",
-  arrangement: "JSON",
+  arrangement: FABRIC_JSON,
   user: shinji,
   apartment: shimouma_build
 )
@@ -221,7 +223,7 @@ bookmark2 = Bookmark.create!(
 bookmark3 = Bookmark.create!(
   comment: "Perfect size for me",
   result: "Good fit",
-  arrangement: "JSON",
+  arrangement: FABRIC_JSON,
   user: ryan,
   apartment: vizinho_tokyo
 )
@@ -229,7 +231,7 @@ bookmark3 = Bookmark.create!(
 bookmark4 = Bookmark.create!(
   comment: "Save for later",
   result: "Undetermined",
-  arrangement: "JSON",
+  arrangement: FABRIC_JSON,
   user: ryan,
   apartment: meguro_heights
 )

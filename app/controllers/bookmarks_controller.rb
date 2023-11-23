@@ -23,7 +23,7 @@ class BookmarksController < ApplicationController
   end
 
   def edit
-    @bookmark = Bookmark.find(1)
+    @bookmark = Bookmark.find(params[:id])
     authorize @bookmark
     @items = current_user.items
   end
@@ -35,5 +35,4 @@ class BookmarksController < ApplicationController
   def destroy
     authorize @bookmark
   end
-
 end
