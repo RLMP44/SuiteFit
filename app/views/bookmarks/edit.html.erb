@@ -1,6 +1,17 @@
 <div class="container">
-  <h1>Place your items!</h1>
-  <div class="row justify-content-between" data-controller="load-canvas" data-load-canvas-json-value="<%= @bookmark.arrangement %>">
+  <h1>Place your items in <%= @bookmark.apartment.name %>!</h1>
+  <%# check if arrangement already exists, and load either arrangement or floor_plan %>
+  <% if @bookmark.arrangement? %>
+    <% file_to_load = @bookmark.arrangement %>
+  <% else %>
+    <% file_to_load = @bookmark.apartment.floor_plan %>
+  <% end %>
+  <div class="row justify-content-between" data-controller="load-canvas" data-load-canvas-json-value="<%= file_to_load %>">
+    <%# buttons for canvas control %>
+    <div class="row">
+      <button class="btn btn-primary mx-2" style="width: 20%">Clear items</button>
+      <button class="btn btn-primary mx-2" style="width: 20%">Save</button>
+    </div>
     <%# canvas elements %>
     <canvas id="new-canvas"  class="col-7">
       <%# render canvas here %>
