@@ -23,7 +23,7 @@ export default class extends Controller {
       this.canvas.forEachObject(function(obj) {
         console.log(obj)
         if (obj === options.target) return;
-        obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 1);
+        options.target.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 1);
       });
     }
     // trigger onChange method in the following situations
@@ -53,8 +53,8 @@ export default class extends Controller {
         hasBorders: false,
         lockScalingX: true,
         lockScalingY: true,
-        transparentCorners: true,
-        cornerSize: 5,
+        transparentCorners: false,
+        cornerSize: 9,
         snapAngle: 45,
       })
       this.canvas.add(rect)
