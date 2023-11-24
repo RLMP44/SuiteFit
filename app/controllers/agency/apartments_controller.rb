@@ -1,3 +1,5 @@
+require "rqrcode"
+
 class Agency::ApartmentsController < ApplicationController
   # Inserted a authorization policy in front of each method as a reminder.
   # When writing the method, put it before saving to the database.
@@ -19,7 +21,14 @@ class Agency::ApartmentsController < ApplicationController
   def create
     @apartment = Apartment.new(apartment_params)
     @apartment.agency = current_user
-    # TODO attach a qr code!
+
+    # attaching a qr code
+    # url = '.../apartments/:id'
+
+    url = "https://suite-fit-rlmp44-5e8ff51180b0.herokuapp.com/apartments/#{@apartment.id}"
+    qr = RQRCode::QRCode.new(url)
+    @apartment.qr_code = qr
+
     authorize([:agency, @apartment])
     if @apartment.save
       redirect_to edit_agency_apartment_path(@apartment, creation: 'true')
@@ -35,7 +44,7 @@ class Agency::ApartmentsController < ApplicationController
   def update
     @apartment.update(apartment_params)
     authorize([:agency, @apartment])
-    
+
     if @apartment.save
       redirect_to agency_apartment_path(@apartment)
     else

@@ -1,14 +1,16 @@
 <nav class="navbar navbar-light navbar-lewagon">
   <div class="container-fluid row align-items-center">
     <%# Sidebar button %>
-    <div class="col-6 px-0 d-flex justify-content-start">
+    <div class="col-4 d-flex justify-content-start">
       <%= render "shared/sidebar" %>
     </div>
     <%# Logo in the middle %>
-    <div class="col-6 px-0 d-flex justify-content-start">
-      <%= link_to "#", class: "navbar-brand" do %>
+    <div class="col-4 d-flex justify-content-center">
+      <%= link_to "/", class: "navbar-brand" do %>
         <h1>Suite Fit</h1>
       <% end %>
     </div>
+    <%# Column to make even spaces in the navbar %>
+    <div class="col-4 d-flex"></div>
   </div>
 </nav>

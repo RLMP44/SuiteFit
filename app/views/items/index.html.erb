@@ -1,38 +1,35 @@
 <div class="container">
-  <h1 class="my-2">My Inventory</h1>
-  <%# Button to bookmarks %>
-  <%= link_to "My bookmarks", bookmarks_path, class:"btn btn-primary btn-sm" %>
-  <div class="row">
-    <%# create individual cards here %>
-    <div class="col-8">
-      <div class="row">
-        <% @items.each do |item| %>
-          <div class="card-product col-5 my-2 mx-2">
-            <div class="row justify-content-between">
-              <%# Icon for item %>
-              <div class="col-3">
-                <i class="<%= item.icon %>"></i>
-              </div>
-              <div class="col-7 card-product-infos">
-                <h2><%= item.name %> X <%= item.quantity %></h2>
-                <p>Length: <%= item.length %></p>
-                <p>Width: <%= item.width %></p>
-              </div>
-              <div class="col-2 align-self-center">
-                <div class="d-grid gap-2">
-                  <%= render "delete_item", item: item%>
-                  <%= render "item_form", item: item, new: false %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
+  <div class="row justify-content-between align-items-center">
+    <div class="col-6">
+      <h1 class="my-2">My Inventory</h1>
     </div>
     <%# form for item %>
-    <div class="col-4">
-      <h3>New item</h3>
+    <div class="col-6 d-flex justify-content-end">
       <%= render "item_form", item: @item, new: true %>
     </div>
+  </div>
+  <%# create individual cards here %>
+  <div class="row justify-content-between">
+    <% @items.each do |item| %>
+      <div class="card-product col-5 my-2 mx-2 row justify-content-between">
+        <div class="row justify-content-between">
+          <%# Icon for item %>
+          <div class="col-3">
+            <i class="<%= item.icon %>"></i>
+          </div>
+          <div class="col-7 card-product-infos">
+            <h2><%= item.name %> X <%= item.quantity %></h2>
+            <p>Length: <%= item.length %></p>
+            <p>Width: <%= item.width %></p>
+          </div>
+          <div class="col-2 align-self-center">
+            <div class="d-grid gap-2">
+              <%= render "delete_item", item: item %>
+              <%= render "item_form", item: item, new: false %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
