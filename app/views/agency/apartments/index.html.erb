@@ -14,9 +14,9 @@
         </div>
         <%# View, Edit and Delete Button here %>
         <div>
-          <%= link_to "View apartment", agency_apartment_path(apartment) %>
-          <%= link_to "Edit apartment", edit_agency_apartment_path(apartment) %>
-          <%= link_to "Delete apartment", agency_apartment_path(apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          <%= link_to "View apartment", agency_apartment_path(apartment), class:"btn btn-info btn-sm" %>
+          <%= link_to "Edit apartment", edit_agency_apartment_path(apartment), class:"btn btn-primary btn-sm" %>
+          <%= link_to "Delete apartment", agency_apartment_path(apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-danger btn-sm" %>
         </div>
       </div>
     <% end %>
