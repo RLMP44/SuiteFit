@@ -17,6 +17,18 @@ class Agency::ApartmentsController < ApplicationController
   end
 
   def create
+    @apartment = Apartment.new(apartment_params)
+    @apartment.agency = current_user
+    # TODO attach a qr code!
+    authorize([:agency, @apartment])
+    if @apartment.save
+      redirect_to edit_agency_apartment_path(@apartment, creation: 'true')
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
     authorize([:agency, @apartment])
   end
 
@@ -25,14 +37,13 @@ class Agency::ApartmentsController < ApplicationController
   end
 
   def update
+    @apartment.update(apartment_params)
     authorize([:agency, @apartment])
-
-    if @apartment.update(apartment_params)
-    redirect_to agency_apartments_path(@apartment)
-
+    
+    if @apartment.save
+      redirect_to agency_apartment_path(@apartment)
     else
-
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -44,13 +55,13 @@ class Agency::ApartmentsController < ApplicationController
     redirect_to agency_apartments_path, status: :see_other
   end
 
+  private
+
   def set_apartment
     @apartment = Apartment.find(params[:id])
   end
 
-  private
-
   def apartment_params
-    params.require(:apartment).permit(:name, :address, :total_floorspace, :price, :description, :category, :floor_plan)
+    params.require(:apartment).permit(:name, :description, :price, :photos, :total_floorspace, :address, :category, :floor_plan)
   end
 end

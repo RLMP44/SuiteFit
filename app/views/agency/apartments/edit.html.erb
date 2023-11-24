@@ -1,25 +1,55 @@
-<%# Header and button back to apartments list%>
+<% if params[:creation] == 'true' %>
+  <div class="container" data-controller="apartment-canvas" data-apartment-canvas-floorplan-url-value=<%= @apartment.photos.first.url %> data-apartment-canvas-id-value=<%= @apartment.id %>>
+    <h1 class="my-2">Add an apartment</h1>
+    <button class="btn btn-secondary" data-apartment-canvas-target="drawButton" data-action="click->apartment-canvas#startDrawing">Start Drawing</button>
+    <div class="d-none" data-apartment-canvas-target="saveButton">
+      <button class="btn btn-secondary" data-action="click->apartment-canvas#setDoor">Set Main Door</button>
+      <%= simple_form_for @apartment, url: agency_apartment_path(@apartment), html: {data: {'apartment-canvas-target': "saveFloorplan", action: 'turbo:submit-end->apartment-canvas#saveFloorplan'}} do |f| %>
+        <%= f.input :floor_plan, as: :hidden, input_html: { data: {'apartment-canvas-target': "input" }}%>
+        <%= f.submit "Save", class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+    <div class="canvas-container">
+      <canvas id="new-canvas" class="border" data-apartment-canvas-target="canvas"></canvas>
+    </div>
+  </div>
+<% else %>
+  <h1 class="my-2">Edit an apartment</h1>
+  <%= simple_form_for @apartment, url: agency_apartment_path(@apartment) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :price %>
+    <%= f.input :total_floorspace %>
+    <%= f.input :category %>
+    <%= f.input :address %>
+    <%= f.input :photos, as: :file, label: "Upload photos" %>
+    <%= f.input :creation, as: :hidden, input_html: { value: 'true'} %>
+    <%= f.button :submit, "Next", class:"btn btn-secondary" %>
+  <% end %>
+<% end %> 
+
+<!-- <#%# Header and button back to apartments list%>
 <div class="d-flex justify-content-between">
   <h1>Edit</h1>
-  <%= link_to "Back to my apartments list", agency_apartments_path, class:"btn btn-primary" %>
+  <#%= link_to "Back to my apartments list", agency_apartments_path, class:"btn btn-primary" %>
 </div>
-<%# Apartments name%>
-<strong><%= @apartment.name %></strong>
-<%# Edit form%>
-<%= form_with model: @apartment, url: agency_apartment_path(@apartment), method: :patch do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-  <%= f.label :total_floorspace %>
-  <%= f.text_field :total_floorspace %>
-  <%= f.label :price %>
-  <%= f.text_field :price %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.label :category %>
-  <%= f.text_field :category %>
-  <%= f.label :floor_plan %>
-  <%= f.text_field :floor_plan %>
-  <%= f.submit %>
-<% end %>
+<#%# Apartments name%>
+<strong><#%= @apartment.name %></strong>
+<#%# Edit form%>
+<#%= form_with model: @apartment, url: agency_apartment_path(@apartment), method: :patch do |f| %>
+  <#%= f.label :name %>
+  <#%= f.text_field :name %>
+  <#%= f.label :address %>
+  <#%= f.text_field :address %>
+  <#%= f.label :total_floorspace %>
+  <#%= f.text_field :total_floorspace %>
+  <#%= f.label :price %>
+  <#%= f.text_field :price %>
+  <#%= f.label :description %>
+  <#%= f.text_field :description %>
+  <#%= f.label :category %>
+  <#%= f.text_field :category %>
+  <#%= f.label :floor_plan %>
+  <#%= f.text_field :floor_plan %>
+  <#%= f.submit %>
+<#% end %> 
