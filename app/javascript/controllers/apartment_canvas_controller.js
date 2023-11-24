@@ -13,7 +13,7 @@ export default class extends Controller {
     // canvas should scale to the picture size?
     this.canvas = new fabric.Canvas('new-canvas', {
       width: 800,
-      height: 1000
+      height: 800
     })
 
 

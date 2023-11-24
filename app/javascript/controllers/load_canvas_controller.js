@@ -23,7 +23,8 @@ export default class extends Controller {
       this.canvas.forEachObject(function(obj) {
         console.log(obj)
         if (obj === options.target) return;
-        options.target.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 1);
+        obj.set('fill' ,options.target.intersectsWithObject(obj) ? "#f55" : "white");
+        obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 0);
       });
     }
     // trigger onChange method in the following situations
