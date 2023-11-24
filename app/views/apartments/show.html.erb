@@ -4,30 +4,31 @@
     <div class="row d-flex align-items-center justify-content-center">
       <%#Apartments name, address price %>
       <div class="col-md-8 apt-info">
-          <div class="card-apt-show">
-            <h1><%= @apartment.name%></h1>
-            <p><%= @apartment.category %></p>
-          </div>
+        <div class="card-apt-show">
+          <h1><%= @apartment.name%></h1>
+          <p><%= @apartment.category %></p>
+        </div>
         <%#Apartments description, price, address, total floorspace, agency id %>
-          <div class="card-apt-show">
-            <h3>Description</h3>
-            <p><%= @apartment.description %></p>
-            <p>Price: <%= @apartment.price.to_i %>¥</p>
-            <p>Address: <%= @apartment.address %></p>
-            <p>Total floorspace: <%= @apartment.total_floorspace %>m2</p>
-            <p>Agency name: <%= @apartment.agency_id %></p>
-          </div>
-          <%# QR code %>
-          <div class="card-apt-show">
-            <h4>QR Code</h4>
-            <%= @apartment.qr_code %>
-             <%# Create a booking form %>
-            <div class="card-apt-show">
-                <%= simple_form_for [@apartment, @bookmark] do |f| %>
-                  <%= f.button :submit, 'Add to Bookmark' %>
-                <% end %>
-            </div>
-          </div>
+        <div class="card-apt-show">
+          <h3>Description</h3>
+          <p><%= @apartment.description %></p>
+          <p>Price: <%= @apartment.price.to_i %>¥</p>
+          <p>Address: <%= @apartment.address %></p>
+          <p>Total floorspace: <%= @apartment.total_floorspace %>m2</p>
+          <p>Agency name: <%= @apartment.agency_id %></p>
+        </div>
+        <%# QR code %>
+        <div class="card-apt-show">
+          <%# displaying a qr code %>
+          <% @qr = RQRCode::QRCode.new("https://suite-fit-rlmp44-5e8ff51180b0.herokuapp.com/apartments/#{@apartment.id}") %>
+          <%== @qr.as_svg(module_size: 4) %>
+        </div>
+        <%# Create a booking form %>
+        <div class="card-apt-show">
+          <%= simple_form_for [@apartment, @bookmark] do |f| %>
+            <%= f.button :submit, 'Add to Bookmark' %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
