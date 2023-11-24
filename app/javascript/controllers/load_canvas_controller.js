@@ -11,7 +11,7 @@ export default class extends Controller {
   connect() {
     // create empty canvas
     this.canvas = new fabric.Canvas("new-canvas", {
-      height: 1000,
+      height: 800,
       width: 800,
     })
     // call function to load canvas from existing bookmark.arrangement or apartment.floor_plan json
