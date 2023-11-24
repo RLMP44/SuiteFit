@@ -9,65 +9,56 @@
     </div>
     <div class="offcanvas-body">
       <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
-        <%# Button for Home for all users%>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
         <ul class="navbar-nav me-auto">
           <% if user_signed_in? %>
-            <li class="nav-item active">
-              <%# Button for apartments for Admin and button for Items for User %>
-              <% if current_user && current_user.agency? %>
-                <%= link_to "My apartments", agency_apartments_path, class: "nav-link" %>
-              <% else %>
-                <%= link_to "My inventory", items_path, class: "nav-link" %>
-              <% end %>
-            </li>
-            <li class="nav-item">
-            <%# Button for Add an apartment for Admin and button for My bookmarks for User %>
-              <% if current_user && current_user.agency? %>
-                <%= link_to "Add apartment", new_agency_apartment_path, class: "nav-link" %>
-               <% else %>
-                <%= link_to "My bookmarks", bookmarks_path, class: "nav-link" %>
-              <% end %>
-            </li>
-            <li class="nav-item dropdown">
-              <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-              </a>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Action", "#", class: "dropdown-item" %>
-                <%= link_to "Another action", "#", class: "dropdown-item" %>
-                <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            <div class="container ps-0">
+              <div class="row">
+                <div class="col">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span>My account</span>
+                  </button>
+                </div>
+                <div class="col">
+                  <div>
+                    <div class="collapse" id="navbarToggleExternalContent">
+                      <a href="#" class="avatar" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+                      </a>
+                      <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" %>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </li>
+            </div>
+          </li>
+          <%# Button for Home for all users%>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item active">
+            <%# Button for apartments for Admin and button for Items for User %>
+            <% if current_user && current_user.agency? %>
+              <%= link_to "My apartments", agency_apartments_path, class: "nav-link" %>
+            <% else %>
+              <%= link_to "My inventory", items_path, class: "nav-link" %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%# Button for Add an apartment for Admin and button for My bookmarks for User %>
+            <% if current_user && current_user.agency? %>
+              <%= link_to "Add apartment", new_agency_apartment_path, class: "nav-link" %>
+            <% else %>
+              <%= link_to "My bookmarks", bookmarks_path, class: "nav-link" %>
+            <% end %>
+          </li>
+          <li class="nav-item dropdown">
           <% else %>
             <li class="nav-item">
               <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
             </li>
           <% end %>
         </ul>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </div>
