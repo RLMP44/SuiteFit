@@ -29,7 +29,10 @@ class BookmarksController < ApplicationController
   end
 
   def update
+    @bookmark = Bookmark.find(params[:id])
     authorize @bookmark
+    arrangement_json = request.body.read
+    @bookmark.update(arrangement: arrangement_json)
   end
 
   def destroy

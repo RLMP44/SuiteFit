@@ -6,11 +6,29 @@
   <% else %>
     <% file_to_load = @bookmark.apartment.floor_plan %>
   <% end %>
-  <div class="row justify-content-between" data-controller="load-canvas" data-load-canvas-json-value="<%= file_to_load %>">
+  <div
+    class="row justify-content-between"
+    data-controller="load-canvas"
+    data-load-canvas-json-value="<%= file_to_load %>"
+  >
     <%# buttons for canvas control %>
     <div class="row">
-      <button data-action="click->load-canvas#clear" class="btn btn-primary mx-2" style="width: 20%">Delete items</button>
-      <button data-action="click->load-canvas#save" data-arrangement="<%= @bookmark.arrangement %>" class="btn btn-primary mx-2" style="width: 20%">Save</button>
+      <button
+        data-action="click->load-canvas#clear"
+        class="btn btn-primary mx-2"
+        style="width: 20%"
+        >
+        Delete items
+      </button>
+      <button
+        data-action="click->load-canvas#save"
+        data-arrangement="<%= @bookmark.arrangement %>"
+        data-bookmark="<%= @bookmark.id %>"
+        class="btn btn-primary mx-2"
+        style="width: 20%"
+        >
+        Save
+      </button>
     </div>
     <%# canvas elements %>
     <canvas id="new-canvas"  class="col-8 border border-2 border-primary-subtle my-4" style="border-width: 2px;">
