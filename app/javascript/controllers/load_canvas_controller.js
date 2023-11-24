@@ -36,15 +36,14 @@ export default class extends Controller {
 
   // method to add clicked item to canvas
   add(event) {
-    //   // get image/icon element to add to canvas
-      //   const imgElement = this.dataTarget('my-image')
-      //   // find on-canvas length of selected door, scale to size using standard 80 cm door
-      //   const ratio = this.selectedObject.length / 80
-      //   // create instance of user item on canvas and scale with ratio
-      //   const imgInstance = new fabric.Image(imgElement, {
-        //     // pass in data, note that length doesn't exist in fabric so it becomes height
-        //     height: this.dataTarget.length * ratio,
-        //     width: this.dataTarget.width * ratio,
+    // door = canvas.getActiveObject().get('door')
+    // console.log(door)
+    // // find on-canvas length of selected door, scale to size using standard 80 cm door
+    // const ratio = door.length / 80
+    // create instance of user item on canvas and scale with ratio
+    // pass in data, note that length doesn't exist in fabric so it becomes height
+      // height: this.dataTarget.length * ratio,
+      // width: this.dataTarget.width * ratio,
     const rect = new fabric.Rect({
         height: parseInt(event.currentTarget.dataset.length),
         width: parseInt(event.currentTarget.dataset.width),
@@ -52,8 +51,11 @@ export default class extends Controller {
         originX: 'left',
         originY: 'top',
         hasBorders: false,
+        lockScalingX: true,
+        lockScalingY: true,
         transparentCorners: true,
         cornerSize: 5,
+        snapAngle: 45,
       })
       this.canvas.add(rect)
   }
@@ -87,6 +89,4 @@ export default class extends Controller {
   }
 }
 
-    //   });
-    // canvas.add(imgInstance);
     // canvas.renderAll();
