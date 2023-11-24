@@ -56,8 +56,17 @@ export default class extends Controller {
   }
 
   save(event) {
-    stringified_file = JSON.stringify(this.canvas)
-
+    // console.log(event.currentTarget.dataset.arrangement)
+    // stringified_file = JSON.stringify(this.canvas)
+    // console.log("stringified_file below")
+    // console.log(stringified_file)
+    console.log("dataset below")
+    console.log(event.currentTarget.dataset.arrangement)
+    console.log("current canvas below")
+    console.log(JSON.stringify(this.canvas))
+    event.currentTarget.dataset.arrangement = JSON.stringify(this.canvas)
+    console.log("saved?? dataset below")
+    console.log(event.currentTarget.dataset.arrangement)
   }
 
   // function to deserialize json and render apartment floor plan or bookmark arrangement
