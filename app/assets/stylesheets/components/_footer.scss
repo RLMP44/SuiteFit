@@ -1,30 +1,50 @@
 /* Create three unequal columns that floats next to each other */
-.row {
-  display: flex;
-}
-
-.column {
-  float: left;
-  padding: 10px;
+.footer {
+  flex-shrink: 0;
+  background-color: white;
+  width: 100%;
   height: 11rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+}
+
+.logo-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
   display: flex;
   flex-direction: column;
 }
-
-.left {
-  width: 20%;
-  align-items: center;
+.content {
+  flex: 1 0 auto;
 }
 
-.right {
-  width: 30%;
-  align-items: center;
- }
+.footer-text {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 20px;
+}
 
-.middle {
-  width: 50%;
+.footer-text p {
+ font-size: 15px;
+}
+
+.icon-container-homepage {
   display: flex;
-  align-items: center;
-  flex-direction: column;
   justify-content: center;
 }
+
+.icon-container-homepage i {
+  margin: 0 10px;
+  font-size: 24px;
+}
+
