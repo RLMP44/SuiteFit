@@ -1,33 +1,37 @@
 <%#Apartments info %>
-<div class="outer-container-apt-show">
+<div class="outer-container-apt-show container">
   <div class="container-apt-show" >
     <div class="row d-flex align-items-center justify-content-center">
       <%#Apartments name, address price %>
-      <div class="col-md-8 apt-info">
+      <div class="col-md-10 apt-info" style="position: relative">
         <div class="card-apt-show">
           <h1><%= @apartment.name%></h1>
+          <p><%= @apartment.address %></p>
           <p><%= @apartment.category %></p>
+          <%# Create a bookmark form %>
+          <%= simple_form_for [@apartment, @bookmark] do |f| %>
+            <%= f.button :submit, '⭐', class: "mb-4", id: "fav-btn" %>
+          <% end %>
         </div>
         <%#Apartments description, price, address, total floorspace, agency id %>
         <div class="card-apt-show">
           <h3>Description</h3>
           <p><%= @apartment.description %></p>
-          <p>Price: <%= @apartment.price.to_i %>¥</p>
-          <p>Address: <%= @apartment.address %></p>
-          <p>Total floorspace: <%= @apartment.total_floorspace %>m2</p>
-          <p>Agency name: <%= @apartment.agency_id %></p>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <div class="text-center">
+              <p><%= @apartment.price.to_i %>¥ per month</p>
+              <p><%= @apartment.total_floorspace %>m²</p>
+              <p>Managed by <%= @apartment.agency.username %></p>
+            </div>
+            <div id="qr">
+              <%# displaying the qr code %>
+              <% @qr = RQRCode::QRCode.new("https://suite-fit-rlmp44-5e8ff51180b0.herokuapp.com/apartments/#{@apartment.id}") %>
+              <%== @qr.as_svg(module_size: 4, viewbox: true) %>
+            </div>
+          </div>
         </div>
-        <%# QR code %>
         <div class="card-apt-show">
-          <%# displaying a qr code %>
-          <% @qr = RQRCode::QRCode.new("https://suite-fit-rlmp44-5e8ff51180b0.herokuapp.com/apartments/#{@apartment.id}") %>
-          <%== @qr.as_svg(module_size: 4) %>
-        </div>
-        <%# Create a booking form %>
-        <div class="card-apt-show">
-          <%= simple_form_for [@apartment, @bookmark] do |f| %>
-            <%= f.button :submit, 'Add to Bookmark' %>
-          <% end %>
+          <%= cl_image_tag @apartment.photos.first.key, width: 400, crop: :fill %>
         </div>
       </div>
     </div>
