@@ -1,5 +1,7 @@
 <div class="container">
   <h1 class="my-2">My Inventory</h1>
+  <%# Button to bookmarks %>
+  <%= link_to "My bookmarks", bookmarks_path, class:"btn btn-primary btn-sm" %>
   <div class="row">
     <%# create individual cards here %>
     <div class="col-8">
@@ -16,9 +18,11 @@
                 <p>Length: <%= item.length %></p>
                 <p>Width: <%= item.width %></p>
               </div>
-              <div class="col-2">
-                <%= render "delete_item", item: item%>
-                <%= render "item_form", item: item, new: false %>
+              <div class="col-2 align-self-center">
+                <div class="d-grid gap-2">
+                  <%= render "delete_item", item: item%>
+                  <%= render "item_form", item: item, new: false %>
+                </div>
               </div>
             </div>
           </div>
@@ -29,8 +33,6 @@
     <div class="col-4">
       <h3>New item</h3>
       <%= render "item_form", item: @item, new: true %>
-      <%# Button to bookmarks %>
-       <%= link_to "My bookmarks", bookmarks_path, class:"btn btn-primary" %>
     </div>
   </div>
 </div>
