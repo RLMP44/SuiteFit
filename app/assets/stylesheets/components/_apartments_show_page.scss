@@ -2,11 +2,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: auto;
+  padding: 24px 0 24px 0;
 }
 
 .card-apt-show {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adjust the values to your preference */
-  border-radius: 8px; /* Optional: Adds rounded corners */
-  margin-bottom: 20px; /* Optional: Adds some spacing between cards */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 16px 0 16px 0;
+  padding: 16px
+}
+
+#qr {
+  min-width: 150px;
+  margin: 8px;
+  padding: 8px
+}
+
+#fav-btn {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background-color: $gray;
+  position: absolute;
+  padding: 4px;
+  top: -8px;
+  right: 0px;
 }
