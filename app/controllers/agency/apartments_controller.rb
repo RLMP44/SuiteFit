@@ -32,10 +32,6 @@ class Agency::ApartmentsController < ApplicationController
     authorize([:agency, @apartment])
   end
 
-  def edit
-    authorize([:agency, @apartment])
-  end
-
   def update
     @apartment.update(apartment_params)
     authorize([:agency, @apartment])
