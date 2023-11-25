@@ -27,15 +27,27 @@
         >
         Remove item
       </button>
-      <button
-        data-action="click->load-canvas#save"
-        data-arrangement="<%= @bookmark.arrangement %>"
-        data-bookmark="<%= @bookmark.id %>"
-        class="btn btn-primary mx-1"
-        style="width: 15%"
-        >
-        Save
-      </button>
+      <div class="save-features">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            How's the fit?
+          </button>
+          <ul class="dropdown-menu dropdown=menu-sm-end">
+            <li><button class="dropdown-item" type="button">Good fit</button></li>
+            <li><button class="dropdown-item" type="button">Tight fit</button></li>
+            <li><button class="dropdown-item" type="button">Good fit</button></li>
+          </ul>
+        </div>
+        <button
+          data-action="click->load-canvas#save"
+          data-arrangement="<%= @bookmark.arrangement %>"
+          data-bookmark="<%= @bookmark.id %>"
+          class="btn btn-primary mx-1"
+          style="width: 15%"
+          >
+          Save
+        </button>
+      </div>
     </div>
     <%# canvas elements %>
     <canvas id="new-canvas"  class="col-8 border border-2 border-primary-subtle my-4" style="border-width: 2px;">
