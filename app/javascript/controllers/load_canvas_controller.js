@@ -15,22 +15,36 @@ export default class extends Controller {
       width: 800,
     })
     // call function to load canvas from existing bookmark.arrangement or apartment.floor_plan json
-    const renderedCanvas = this.loadCanvas(this.canvas, this.jsonValue)
+    this.loadCanvas(this.canvas, this.jsonValue)
+
+    // this.canvas.forEachObject((obj)=>{
+    //   console.log(obj)
+    //   obj.set('selectable', false)
+    // })
 
     // get ahold of all items to detect collisions
     const onChange=(options) => {
       options.target.setCoords();
       this.canvas.forEachObject(function(obj) {
-        let ogFill = obj.fill
         if (obj === options.target) return;
+        // change user items' color/opacity
+        if (obj.type !== "rect") {
+          obj.set('fill' ,options.target.intersectsWithObject(obj) ? "#f55" : '#aac');
+          obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 1);
+        }
+        // change floor plan borders' color/opacity (all are rectangles)
+        else {
+          obj.set('fill' ,options.target.intersectsWithObject(obj) ? "#f55" : 'white');
+          obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 0);
+        }
         // if (options.target.intersectsWithObject(obj)){
         //   obj.set('fill', "#f55")
         // }
-        obj.set('fill' ,options.target.intersectsWithObject(obj) ? "#f55" : ogFill);
+
         // if (options.target.intersectsWithObject(obj)){
         //   obj.set('opacity', 0.5)
         // }
-        obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 0);
+        // obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 0);
       });
     }
     // trigger onChange method in the following situations
@@ -43,6 +57,10 @@ export default class extends Controller {
 
   // method to add clicked item to canvas
   add(event) {
+    // console.log(this.canvas._objects)
+    this.canvas._objects.forEach((obj)=>{
+      console.log(obj.id)
+    })
     // door = canvas.getActiveObject().get('door')
     // console.log(door)
     // // find on-canvas length of selected door, scale to size using standard 80 cm door
@@ -51,7 +69,7 @@ export default class extends Controller {
     // pass in data, note that length doesn't exist in fabric so it becomes height
       // height: this.dataTarget.length * ratio,
       // width: this.dataTarget.width * ratio,
-    const rect = new fabric.Rect({
+    const triangle = new fabric.Triangle({
         height: parseInt(event.currentTarget.dataset.length),
         width: parseInt(event.currentTarget.dataset.width),
         fill: '#aac',
@@ -64,19 +82,21 @@ export default class extends Controller {
         cornerSize: 9,
         snapAngle: 45,
       })
-      this.canvas.add(rect)
+      this.canvas.add(triangle)
   }
 
   // method to clear the canvas
   clear(event) {
-    // TODO: need to make sure it doesn't erase floor plan
-    // this.canvas.clear()
-
     this.canvas.getObjects().forEach((obj)=>{
-      if(obj !== this.canvas.backgroundImage && obj.id !== "rect" && obj.id !== "door"){
+      if(obj !== this.canvas.backgroundImage && obj.type !== "rect"){
         this.canvas.remove(obj)
       }
     })
+  }
+
+  // method to delete one item
+  delete() {
+
   }
 
   // method to save arrangement

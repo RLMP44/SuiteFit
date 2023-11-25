@@ -132,7 +132,7 @@ export default class extends Controller {
     this.canvas.forEachObject( o => {
       o.set({
         selectable: false,
-        opacity: 0
+        opacity: 0,
       })
     })
 
