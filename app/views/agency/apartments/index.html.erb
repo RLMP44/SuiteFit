@@ -1,22 +1,24 @@
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-between">
     <%# create individual cards here %>
     <% @apartments.each do |apartment| %>
       <div class="col-5 my-3 mx-2 card-trip">
-        <img src="..." class="card-img-top" alt="...">
+        <div class="card-image-agency">
+          <%= image_tag("meguro_heights.jpg", class: "card-image-agency-index") %>
+        </div>
         <%# main display info %>
         <div class="card-trip-infos">
-          <h2 class=""><%= apartment.name %> - <%= apartment.category %></h2>
-          <p class=""><%= apartment.total_floorspace %> m²</p>
+          <h2><%= apartment.name %> - <%= apartment.category %></h2>
+          <p><strong>Total floorspace: <%= apartment.total_floorspace %> m²</strong></p>
           <%# subtitle info %>
-          <p class=""><i class="fa-solid fa-location-dot"></i> <%= apartment.address %></p>
-          <p class="">¥<%= apartment.price.to_i %></p>
+          <p><strong>Address: <i class="fa-solid fa-location-dot"></i> <%= apartment.address %></strong></p>
+          <p><strong>Price: ¥<%= apartment.price.to_i %></strong></p>
         </div>
         <%# View, Edit and Delete Button here %>
-        <div>
-          <%= link_to "View apartment", agency_apartment_path(apartment), class:"btn btn-info btn-sm" %>
-          <%= link_to "Edit apartment", edit_agency_apartment_path(apartment), class:"btn btn-primary btn-sm" %>
-          <%= link_to "Delete apartment", agency_apartment_path(apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-danger btn-sm" %>
+        <div class="button-agency">
+          <%= link_to "View apartment", agency_apartment_path(apartment), class: "btn btn-info btn-sm rounded-button"%>
+          <%= link_to "Edit apartment", edit_agency_apartment_path(apartment), class: "btn btn-primary btn-sm rounded-button" %>
+          <%= link_to "Delete apartment", agency_apartment_path(apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger btn-sm rounded-button" %>
         </div>
       </div>
     <% end %>
