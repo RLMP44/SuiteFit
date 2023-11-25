@@ -35,14 +35,6 @@ export default class extends Controller {
           obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 0);
           obj.set('selectable', false);
         }
-        // if (options.target.intersectsWithObject(obj)){
-        //   obj.set('fill', "#f55")
-        // }
-
-        // if (options.target.intersectsWithObject(obj)){
-        //   obj.set('opacity', 0.5)
-        // }
-        // obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 0);
       });
     }
     // trigger onChange method in the following situations
