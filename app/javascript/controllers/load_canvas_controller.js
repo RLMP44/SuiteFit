@@ -58,21 +58,26 @@ export default class extends Controller {
 
   // method to add clicked item to canvas
   add(event) {
-    // console.log(this.canvas._objects)
+    // find on-canvas length of main door, scale to size using standard 80 cm door
+    let doorWidth = 0
     this.canvas._objects.forEach((obj) => {
-      console.log(obj.id)
+      if (obj.fill === "#f00") {
+        const door = obj
+        doorWidth = door.width
+        // if main door is on sides instead of top and bottom?
+        // doorWidth = door.width > door.length ? door.width : door.length
+      }
+      return doorWidth
     })
-    // door = canvas.getActiveObject().get('door')
-    // console.log(door)
-    // // find on-canvas length of selected door, scale to size using standard 80 cm door
-    // const ratio = door.length / 80
+    console.log(doorWidth)
+
+    const ratio = doorWidth / 80.0
+    console.log(ratio)
     // create instance of user item on canvas and scale with ratio
     // pass in data, note that length doesn't exist in fabric so it becomes height
-      // height: this.dataTarget.length * ratio,
-      // width: this.dataTarget.width * ratio,
     const triangle = new fabric.Triangle({
-        height: parseInt(event.currentTarget.dataset.length),
-        width: parseInt(event.currentTarget.dataset.width),
+        height: parseInt(event.currentTarget.dataset.length) * ratio,
+        width: parseInt(event.currentTarget.dataset.width) * ratio,
         fill: '#aac',
         originX: 'left',
         originY: 'top',
@@ -113,9 +118,14 @@ export default class extends Controller {
   }
 
   // method to delete one item
-  delete() {
-
-  }
+  delete(event) {
+    console.log("hi")
+    this.canvas.on('selection:created', function(options) {
+      // console.log(options)
+        // objToDelete = object.target.setCoords();
+        // this.canvas.remove(objToDelete)
+      })
+    }
 
   // method to save arrangement
   save(event) {

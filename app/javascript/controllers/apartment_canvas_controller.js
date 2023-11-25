@@ -89,7 +89,7 @@ export default class extends Controller {
       this.rectangle = new fabric.Rect({
           left: this.origX,
           top: this.origY,
-          fill: '#f55',
+          fill: '#f00',
           strokeWidth: 0,
           hasRotatingPoint: false,
           hasBorders: false,
