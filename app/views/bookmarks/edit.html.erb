@@ -12,17 +12,17 @@
     data-load-canvas-json-value="<%= file_to_load %>"
   >
     <%# buttons for canvas control %>
-    <div class="row">
+    <div class="row justify-content-start">
       <button
         data-action="click->load-canvas#clear"
-        class="btn btn-outline-danger btn-sm mx-2"
+        class="btn btn-outline-danger btn-sm mx-1"
         style="width: 15%"
         >
         Start over
       </button>
       <button
         data-action="click->load-canvas#delete"
-        class="btn btn-outline-warning btn-sm mx-2"
+        class="btn btn-outline-warning btn-sm mx-1"
         style="width: 15%"
         >
         Remove item
@@ -31,7 +31,7 @@
         data-action="click->load-canvas#save"
         data-arrangement="<%= @bookmark.arrangement %>"
         data-bookmark="<%= @bookmark.id %>"
-        class="btn btn-primary mx-2"
+        class="btn btn-primary mx-1"
         style="width: 15%"
         >
         Save

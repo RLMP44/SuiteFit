@@ -16,11 +16,8 @@ export default class extends Controller {
     })
     // call function to load canvas from existing bookmark.arrangement or apartment.floor_plan json
     this.loadCanvas(this.canvas, this.jsonValue)
-
-    // this.canvas.forEachObject((obj)=>{
-    //   console.log(obj)
-    //   obj.set('selectable', false)
-    // })
+    // TODO: Not functioning??
+    this.setBoundaries(this.canvas)
 
     // get ahold of all items to detect collisions
     const onChange=(options) => {
@@ -30,12 +27,13 @@ export default class extends Controller {
         // change user items' color/opacity
         if (obj.type !== "rect") {
           obj.set('fill' ,options.target.intersectsWithObject(obj) ? "#f55" : '#aac');
-          obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 1);
+          obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 1)
         }
         // change floor plan borders' color/opacity (all are rectangles)
         else {
           obj.set('fill' ,options.target.intersectsWithObject(obj) ? "#f55" : 'white');
           obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 0);
+          obj.set('selectable', false);
         }
         // if (options.target.intersectsWithObject(obj)){
         //   obj.set('fill', "#f55")
@@ -53,12 +51,23 @@ export default class extends Controller {
       'object:scaling': onChange,
       'object:rotating': onChange,
     });
+
+    // TODO: Try to get objects to change opacity when hovered over?
+    // this.canvas.on('mouse:over', function(e) {
+    //   e.target.set('opacity', .5);
+    //   canvas.renderAll();
+    // });
+
+    // this.canvas.on('mouse:out', function(e) {
+    //   e.target.set('opacity', 1);
+    //   canvas.renderAll();
+    // });
   }
 
   // method to add clicked item to canvas
   add(event) {
     // console.log(this.canvas._objects)
-    this.canvas._objects.forEach((obj)=>{
+    this.canvas._objects.forEach((obj) => {
       console.log(obj.id)
     })
     // door = canvas.getActiveObject().get('door')
@@ -79,15 +88,32 @@ export default class extends Controller {
         lockScalingX: true,
         lockScalingY: true,
         transparentCorners: false,
-        cornerSize: 9,
+        cornerSize: 10,
+        cornerStrokeColor: "black",
+        cornerColor: "blue",
+        cornerStyle: "circle",
         snapAngle: 45,
+        hasRotatingPoint: true,
+        rotatingPointOffset: 20
       })
+
+      triangle.setControlsVisibility({
+        tl:false,
+        mt:false,
+        tr:false,
+        ml:false,
+        mr:false,
+        bl:false,
+        mb:false,
+        br:false
+       })
+
       this.canvas.add(triangle)
   }
 
   // method to clear the canvas
   clear(event) {
-    this.canvas.getObjects().forEach((obj)=>{
+    this.canvas.getObjects().forEach((obj) => {
       if(obj !== this.canvas.backgroundImage && obj.type !== "rect"){
         this.canvas.remove(obj)
       }
@@ -113,6 +139,13 @@ export default class extends Controller {
   // function to deserialize json and render apartment.floor_plan or bookmark.arrangement
   loadCanvas(canvas, json) {
     return canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
+  }
+
+  // supposed to make all boundaries unselectable but not working for some reason
+  setBoundaries(canvas) {
+    canvas.forEachObject((obj) => {
+      obj.set('selectable', false)
+    })
   }
 
   // method to be used in save function
