@@ -16,14 +16,20 @@ export default class extends Controller {
     })
     // call function to load canvas from existing bookmark.arrangement or apartment.floor_plan json
     const renderedCanvas = this.loadCanvas(this.canvas, this.jsonValue)
-    console.log(renderedCanvas)
+
     // get ahold of all items to detect collisions
     const onChange=(options) => {
       options.target.setCoords();
       this.canvas.forEachObject(function(obj) {
-        console.log(obj)
+        let ogFill = obj.fill
         if (obj === options.target) return;
-        obj.set('fill' ,options.target.intersectsWithObject(obj) ? "#f55" : "white");
+        // if (options.target.intersectsWithObject(obj)){
+        //   obj.set('fill', "#f55")
+        // }
+        obj.set('fill' ,options.target.intersectsWithObject(obj) ? "#f55" : ogFill);
+        // if (options.target.intersectsWithObject(obj)){
+        //   obj.set('opacity', 0.5)
+        // }
         obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 0);
       });
     }
@@ -64,7 +70,13 @@ export default class extends Controller {
   // method to clear the canvas
   clear(event) {
     // TODO: need to make sure it doesn't erase floor plan
-    this.canvas.clear()
+    // this.canvas.clear()
+
+    this.canvas.getObjects().forEach((obj)=>{
+      if(obj !== this.canvas.backgroundImage && obj.id !== "rect" && obj.id !== "door"){
+        this.canvas.remove(obj)
+      }
+    })
   }
 
   // method to save arrangement
@@ -78,7 +90,7 @@ export default class extends Controller {
     }).then(console.log("Success"))
   }
 
-  // function to deserialize json and render apartment floor plan or bookmark arrangement
+  // function to deserialize json and render apartment.floor_plan or bookmark.arrangement
   loadCanvas(canvas, json) {
     return canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
   }
