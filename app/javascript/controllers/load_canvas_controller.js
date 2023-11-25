@@ -15,14 +15,14 @@ export default class extends Controller {
       width: 800,
     })
     // call function to load canvas from existing bookmark.arrangement or apartment.floor_plan json
-    this.loadCanvas(this.canvas, this.jsonValue)
+    this.loadedCanvas = this.loadCanvas(this.canvas, this.jsonValue)
     // TODO: Not functioning??
-    this.setBoundaries(this.canvas)
+    this.setBoundaries(this.loadedCanvas)
 
     // get ahold of all items to detect collisions
     const onChange=(options) => {
       options.target.setCoords();
-      this.canvas.forEachObject(function(obj) {
+      this.loadedCanvas.forEachObject(function(obj) {
         if (obj === options.target) return;
         // change user items' color/opacity
         if (obj.type !== "rect") {
@@ -38,34 +38,35 @@ export default class extends Controller {
       });
     }
     // trigger onChange method in the following situations
-    this.canvas.on({
+    this.loadedCanvas.on({
       'object:moving': onChange,
       'object:scaling': onChange,
       'object:rotating': onChange,
     });
 
     // TODO: Try to get objects to change opacity when hovered over?
-    // this.canvas.on('mouse:over', function(e) {
+    // this.loadedCanvas.on('mouse:over', function(e) {
     //   e.target.set('opacity', .5);
-    //   canvas.renderAll();
+    //   loadedCanvas.renderAll();
     // });
 
-    // this.canvas.on('mouse:out', function(e) {
+    // this.loadedCanvas.on('mouse:out', function(e) {
     //   e.target.set('opacity', 1);
-    //   canvas.renderAll();
+    //   loadedCanvas.renderAll();
     // });
   }
 
   // method to add clicked item to canvas
   add(event) {
     // find on-canvas length of main door, scale to size using standard 80 cm door
-    let doorWidth = 0
-    this.canvas._objects.forEach((obj) => {
+    // let width = 0
+    let doorWidth = 80
+    this.loadedCanvas._objects.forEach((obj) => {
       if (obj.fill === "#f00") {
         const door = obj
         doorWidth = door.width
-        // if main door is on sides instead of top and bottom?
-        // doorWidth = door.width > door.length ? door.width : door.length
+        // account for main door being on sides instead of top and bottom
+        doorWidth = door.width > door.height ? door.width : door.height
       }
       return doorWidth
     })
@@ -110,9 +111,9 @@ export default class extends Controller {
 
   // method to clear the canvas
   clear(event) {
-    this.canvas.getObjects().forEach((obj) => {
-      if(obj !== this.canvas.backgroundImage && obj.type !== "rect"){
-        this.canvas.remove(obj)
+    this.loadedCanvas.getObjects().forEach((obj) => {
+      if(obj !== this.loadedCanvas.backgroundImage && obj.type !== "rect"){
+        this.loadedCanvas.remove(obj)
       }
     })
   }
@@ -120,10 +121,10 @@ export default class extends Controller {
   // method to delete one item
   delete(event) {
     console.log("hi")
-    this.canvas.on('selection:created', function(options) {
+    this.loadedCanvas.on('selection:created', function(options) {
       // console.log(options)
         // objToDelete = object.target.setCoords();
-        // this.canvas.remove(objToDelete)
+        // this.loadedCanvas.remove(objToDelete)
       })
     }
 
@@ -131,11 +132,29 @@ export default class extends Controller {
   save(event) {
     fetch(`/bookmarks/${event.currentTarget.dataset.bookmark}`, {
       method: "PATCH",
-      body: JSON.stringify(this.canvas),
+      body: JSON.stringify(this.loadedCanvas),
       headers: {
         "X-CSRF-Token": this.getMetaValue("csrf-token")
       }
     }).then(console.log("Success"))
+  }
+
+  // not being used bc JavaScript is stupid
+  calculateRatio(canvas) {
+    // find on-canvas length of main door, scale to size using standard 80 cm door
+    let doorWidth = 80
+    canvas._objects.forEach((obj) => {
+      if (obj.fill === "#f00") {
+        const door = obj
+        doorWidth = door.width
+        // account for main door being on sides instead of top and bottom
+        doorWidth = door.width > door.height ? door.width : door.height
+      }
+      console.log(canvas._objects)
+      return doorWidth
+    })
+    // console.log(doorWidth)
+    return doorWidth / 80.0
   }
 
   // function to deserialize json and render apartment.floor_plan or bookmark.arrangement
@@ -156,5 +175,3 @@ export default class extends Controller {
     return element.getAttribute("content")
   }
 }
-
-    // canvas.renderAll();
