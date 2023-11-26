@@ -1,29 +1,39 @@
-<div class="outer-container-agency-show">
-  <div class="container-agency-show" >
+<%#Apartments info %>
+<div class="outer-container-apt-show container">
+  <div class="container-apt-show">
     <div class="row d-flex align-items-center justify-content-center">
-      <div class="col-md-8 agency-info">
-      <%#Apartments name and button back to my apartments list %>
-          <div class="d-flex justify-content-between">
-            <h1><%= @apartment.name%></h1>
-            <%= link_to "Back to my apartments list", agency_apartments_path, class:"btn btn-primary" %>
-          </div>
+      <%#Apartments name, address price %>
+      <div class="col-md-10 apt-info">
+        <div class="card-apt-show">
+          <h1><%= @apartment.name%></h1>
+          <p><%= @apartment.address %></p>
+          <p><%= @apartment.category %></p>
+        </div>
+        <div class="card-apt-show text-center">
+          <%= link_to "Edit apartment", edit_agency_apartment_path(@apartment), class: "btn btn-primary" %>
+          <%= link_to "Delete apartment", agency_apartment_path(@apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
+          <%= link_to "Back to the list", agency_apartments_path, class:"btn btn-primary" %>
+        </div>
         <%#Apartments description, price, address, total floorspace, agency id %>
-          <div class="card-agency-show">
-            <h3>Description</h3>
-            <p><%= @apartment.description %></p>
-            <p>Price: <%= @apartment.price.to_i %>¥</p>
-            <p>Address: <%= @apartment.address %></p>
-            <p>Category: <%= @apartment.category %></p>
-            <p>Total floorspace: <%= @apartment.total_floorspace %>m2</p>
-            <p>Agency name: <%= @apartment.agency_id %></p>
-          </div>
-          <%# QR code %>
-          <div class="card-agency-show">
-            <h4>QR Code</h4>
-            <%= @apartment.qr_code %>
-          <%# Update %>
+        <div class="card-apt-show">
+          <h3>Description</h3>
+          <p><%= @apartment.description %></p>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <div class="text-center">
+              <p><%= @apartment.price.to_i %>¥ per month</p>
+              <p><%= @apartment.total_floorspace %>m²</p>
+              <p>Managed by <%= @apartment.agency.username %></p>
+            </div>
+            <div id="qr">
+              <%# displaying the qr code %>
+              <% @qr = RQRCode::QRCode.new("https://suite-fit-rlmp44-5e8ff51180b0.herokuapp.com/apartments/#{@apartment.id}") %>
+              <%== @qr.as_svg(module_size: 4, viewbox: true) %>
             </div>
           </div>
+        </div>
+        <div class="card-apt-show">
+          <%= cl_image_tag @apartment.photos.first.key, width: 400, crop: :fill %>
+        </div>
       </div>
     </div>
   </div>

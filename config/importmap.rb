@@ -73,3 +73,4 @@ pin "xmlchars/xml/1.0/ed5", to: "https://ga.jspm.io/npm:xmlchars@2.2.0/xml/1.0/e
 pin "xmlchars/xml/1.1/ed2", to: "https://ga.jspm.io/npm:xmlchars@2.2.0/xml/1.1/ed2.js"
 pin "xmlchars/xmlns/1.0/ed3", to: "https://ga.jspm.io/npm:xmlchars@2.2.0/xmlns/1.0/ed3.js"
 pin "zlib", to: "https://ga.jspm.io/npm:@jspm/core@2.0.1/nodelibs/browser/zlib.js"
+pin "@rails/actioncable", to: "https://cdn.jsdelivr.net/npm/@rails/actioncable@7.1.2/app/assets/javascripts/actioncable.esm.js"

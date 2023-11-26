@@ -23,7 +23,7 @@
           <div class="col d-flex flex-column">
             <%= link_to "Delete Bookmark", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-outline-danger btn-sm my-2" %>
             <%= link_to "Details", apartment_path(bookmark.apartment), class:"btn btn-outline-primary btn-sm my-2" %>
-            <%= link_to "Contact Agency", "#", class:"btn btn-info btn-sm my-2" %>
+            <%= link_to "Contact Agency", bookmark_path(bookmark), class:"btn btn-info btn-sm my-2" %>
             <%= link_to "Check Fit", fit_path(bookmark), class:"btn btn-primary btn-sm my-2" %>
           </div>
         </div>
