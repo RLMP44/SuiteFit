@@ -16,8 +16,9 @@ export default class extends Controller {
     })
     // call function to load canvas from existing bookmark.arrangement or apartment.floor_plan json
     this.loadedCanvas = this.loadCanvas(this.canvas, this.jsonValue)
+
     // TODO: Not functioning??
-    this.setBoundaries(this.loadedCanvas)
+    // this.setBoundaries(this.loadedCanvas)
 
     // get ahold of all items to detect collisions
     const onChange=(options) => {
@@ -93,14 +94,14 @@ export default class extends Controller {
 
   // TODO: get functional
   // method to delete one item
-  delete(event) {
-    console.log("hi")
-    this.loadedCanvas.on('selection:created', function(options) {
-      // console.log(options)
-        // objToDelete = object.target.setCoords();
-        // this.loadedCanvas.remove(objToDelete)
-      })
-    }
+  // delete(event) {
+  //   console.log("hi")
+  //   this.loadedCanvas.on('selection:created', function(options) {
+  //     console.log(options)
+  //       objToDelete = object.target.setCoords();
+  //       this.loadedCanvas.remove(objToDelete)
+  //     })
+  //   }
 
   // method to save arrangement
   save(event) {
