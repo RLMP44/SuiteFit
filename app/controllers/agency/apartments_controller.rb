@@ -1,9 +1,20 @@
 require "rqrcode"
+require 'chunky_png'
 
 class Agency::ApartmentsController < ApplicationController
   # Inserted a authorization policy in front of each method as a reminder.
   # When writing the method, put it before saving to the database.
-  before_action :set_apartment, only: [:show, :update, :destroy, :edit]
+  before_action :set_apartment, only: [:show, :update, :destroy, :edit, :save_qr_code]
+
+  def save_qr_code
+    authorize([:agency, @apartment])
+    url = "https://suite-fit-rlmp44-5e8ff51180b0.herokuapp.com/apartments/#{@apartment.id}"
+    png = RQRCode::QRCode.new(url).as_png(
+      module_px_size: 24,
+      size: 480
+    )
+    send_data png, filename: "#{@apartment.name}_qr_code.png", type: 'image/png'
+  end
 
   def index
     @apartments = policy_scope([:agency, Apartment])

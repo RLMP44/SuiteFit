@@ -10,7 +10,7 @@
           <p><%= @apartment.category %></p>
         </div>
         <div class="card-apt-show text-center">
-          <%= link_to "Save QR code", "#", class: "btn btn-primary" %>
+          <%= link_to "Save QR code", save_qr_code_path(@apartment), class: "btn btn-primary" %>
           <%= link_to "Edit apartment", edit_agency_apartment_path(@apartment), class: "btn btn-primary" %>
           <%= link_to "Delete apartment", agency_apartment_path(@apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
           <%= link_to "Back to the list", agency_apartments_path, class:"btn btn-primary" %>
