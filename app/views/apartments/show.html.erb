@@ -10,7 +10,9 @@
           <p><%= @apartment.category %></p>
           <%# Create a bookmark form %>
           <%= simple_form_for [@apartment, @bookmark] do |f| %>
-            <%= f.button :submit, '⭐', class: "mb-4", id: "fav-btn" %>
+            <%= button_tag( :submit, class: "mb-4", id: "fav-btn") do %>
+              <i class="fa-solid fa-star"></i>
+            <% end %>
           <% end %>
         </div>
         <%#Apartments description, price, address, total floorspace, agency id %>

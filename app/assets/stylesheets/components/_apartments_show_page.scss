@@ -20,11 +20,17 @@
 }
 
 #fav-btn {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  background-color: $gray;
+  border-radius: 4%;
+  background-color: rgb(225, 225, 99);
   position: absolute;
-  padding: 4px;
-  top: -8px;
-  right: 0px;
+  padding: 8px;
+  top: 8px;
+  right: 18px;
+  color: rgb(255, 255, 255);
+  border-width: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#fav-btn:hover {
+  color: rgb(0, 0, 0);
 }
