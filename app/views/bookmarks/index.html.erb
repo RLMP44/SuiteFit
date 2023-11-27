@@ -8,11 +8,12 @@
           <div class="col-4 card-bmk-img">
             <%= cl_image_tag bookmark.apartment.photos.first.key, height: 250, crop: :fill %>
           </div>
-          <div class="col-6 card-bmk-infos ms-2">
+          <%# Apartment info %>
+          <div class="col-5 card-bmk-infos ms-2">
             <h1><%= bookmark.apartment.name %></h1>
-            <h2><%= bookmark.apartment.address %></h2>
+            <h2><i class="fa-solid fa-location-dot"></i> <%= bookmark.apartment.address %></h2>
             <p><%= bookmark.apartment.category %></p>
-            <p><%= bookmark.apartment.price %> JPY per month</p>
+            <p>¥<%= bookmark.apartment.price.to_i %>/month</p>
             <p><%= bookmark.apartment.total_floorspace %> m²</p>
             <% if bookmark.comment.blank? %>
               <p>add comment(update)</p>
@@ -20,11 +21,42 @@
               <p><%= bookmark.comment %> | edit comment</p>
             <% end %>
           </div>
-          <div class="col d-flex flex-column">
-            <%= link_to "Delete Bookmark", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-outline-danger btn-sm my-2" %>
-            <%= link_to "Details", apartment_path(bookmark.apartment), class:"btn btn-outline-primary btn-sm my-2" %>
-            <%= link_to "Contact Agency", bookmark_path(bookmark), class:"btn btn-info btn-sm my-2" %>
-            <%= link_to "Check Fit", fit_path(bookmark), class:"btn btn-primary btn-sm my-2" %>
+          <div class="col-2 d-flex flex-column">
+            <%# set badge color depending on results and insert %>
+            <% if bookmark.result == "Good fit" %>
+              <p class="badge rounded-pill text-white" style="background: green;"><%= bookmark.result %></p>
+            <% elsif bookmark.result == "Tight fit" %>
+              <p class="badge rounded-pill text-white" style="background: orange;"><%= bookmark.result %></p>
+            <% elsif bookmark.result == "Poor fit" || bookmark.result == "Bad fit"%>
+              <p class="badge rounded-pill text-white" style="background: red;"><%= bookmark.result %></p>
+            <% else %>
+              <p class="badge rounded-pill text-black bg-info"><%= bookmark.result %></p>
+            <% end %>
+            <%# links %>
+            <ul id="side-menu">
+              <li>
+                <div class="side-menu__label">Delete</div>
+              </li>
+              <li><%= link_to "", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-outline-danger btn-sm my-2 fa-solid fa-trash-can" %></li>
+            </ul>
+            <ul id="side-menu">
+              <li>
+                <div class="side-menu__label">View details</div>
+              </li>
+              <li><%= link_to "", apartment_path(bookmark.apartment), class:"btn btn-outline-secondary btn-sm my-2 fa-solid fa-circle-info" %></li>
+            </ul>
+            <ul id="side-menu">
+              <li>
+                <div class="side-menu__label">Contact realtor</div>
+              </li>
+              <li><%= link_to "", bookmark_path(bookmark), class:"btn btn-outline-secondary btn-sm my-2 fa-solid fa-envelope" %></li>
+            </ul>
+            <ul id="side-menu">
+              <li>
+                <div class="side-menu__label">Check your fit!</div>
+              </li>
+              <li><%= link_to "", fit_path(bookmark), class:"btn btn-outline-success btn-sm my-2 fa-solid fa-people-carry-box" %></li>
+            </ul>
           </div>
         </div>
       </div>
