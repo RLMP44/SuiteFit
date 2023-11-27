@@ -14,7 +14,11 @@ class MessagesController < ApplicationController
         message: render_to_string(partial: "message", locals: { message: @message }),
         sender_id: @message.user.id
       )
-      RequestsChannel.broadcast_to(@bookmark.apartment.agency, data) if !current_user.agency
+      RequestsChannel.broadcast_to(
+        @bookmark.apartment.agency,
+        count: Bookmark.unread_count_for(@bookmark.agency),
+        user_message: render_to_string(partial: "bookmarks/user_message", locals: { bookmarks: @bookmark.agency.bookmarks_as_agency, user: @bookmark.agency})
+      ) if !current_user.agency
       head :ok
     else
       render "bookmarks/show", status: :unprocessable_entity
