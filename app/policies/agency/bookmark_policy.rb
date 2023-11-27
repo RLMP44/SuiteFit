@@ -1,4 +1,4 @@
-class Agency::MessagePolicy < ApplicationPolicy
+class Agency::BookmarkPolicy < ApplicationPolicy
   def initialize(user, record)
     @user = user
     @record = record
@@ -17,7 +17,7 @@ class Agency::MessagePolicy < ApplicationPolicy
       # Check if the user is an agency and redirect if they are not
       raise Pundit::NotAuthorizedError unless user.agency
       # scope to give all messages for an agent, should group messages by bookmark, sort them by latest message
-      user.messages_as_agency.order(created_at: :desc).group_by(&:bookmark)
+      user.bookmarks_as_agency
     end
 
     private

@@ -26,6 +26,6 @@ Rails.application.routes.draw do
   # Namespace for agency representative (show all or one apartment, create, update or destro an apartment)
   namespace :agency do
     resources :apartments, only: [:index, :new, :create, :edit, :update, :destroy, :show]
-    resources :messages, only: :index
+    resources :bookmarks, only: :index
   end
 end

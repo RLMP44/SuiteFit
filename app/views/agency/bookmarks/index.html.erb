@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>New Requests (<%= @bookmarks.joins(:messages).where.not(messages: {user: current_user}).where(messages: {status: "unread"}).distinct.count(:id) %>)</h1>
+  <% @bookmarks.uniq.each do |bookmark| %>
+    <% user_last_message = bookmark.messages.where.not(user: current_user).order(created_at: :desc).first %>
+    <% if user_last_message.unread? %>
+      <div class="agency-requests-msg">
+        <div>
+          <small>New request from <strong><%= bookmark.user.username %></strong> re: <strong><%= bookmark.apartment.name %></strong> | <i><%= user_last_message.created_at.strftime("%a %b %e at %l:%M %p") %></i></small>
+        </div>
+        <%= link_to bookmark_path(bookmark) do %>
+          <div>
+            <p class="agency-requests-msg-text"><%= user_last_message.content %> <i class="fa-solid fa-arrow-right"></i></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<%# count unread bookmarks (join with unread messages) -> use action cable to broadcast when a new message is created %>
