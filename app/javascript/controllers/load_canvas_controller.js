@@ -17,24 +17,23 @@ export default class extends Controller {
     // call function to load canvas from existing bookmark.arrangement or apartment.floor_plan json
     this.loadedCanvas = this.loadCanvas(this.canvas, this.jsonValue)
 
-    // TODO: Not functioning??
-    // this.setBoundaries(this.loadedCanvas)
-
     // get ahold of all items to detect collisions
     const onChange=(options) => {
       options.target.setCoords();
       this.loadedCanvas.forEachObject(function(obj) {
         if (obj === options.target) return;
         // change user items' color/opacity
-        if (obj.type !== "rect") {
-          obj.set('fill' ,options.target.intersectsWithObject(obj) ? "#f55" : '#aac');
+        if (obj.fill === "f00") {
+          console.log("Door found!")
+        }
+        else if (obj.type !== "rect") {
+          obj.set('fill' ,options.target.intersectsWithObject(obj) ? "#f54" : '#aac');
           obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 1)
         }
         // change floor plan borders' color/opacity (all are rectangles)
         else {
-          obj.set('fill' ,options.target.intersectsWithObject(obj) ? "#f55" : 'white');
+          obj.set('fill' ,options.target.intersectsWithObject(obj) ? "#f55" : '#5f5');
           obj.set('opacity' ,options.target.intersectsWithObject(obj) ? 0.5 : 0);
-          obj.set('selectable', false);
         }
       });
     }
@@ -48,6 +47,7 @@ export default class extends Controller {
 
   // method to add clicked item to canvas
   add(event) {
+    console.log(this.ratio)
     // create instance of user item on canvas and scale using ratio
     // pass in data, note that length doesn't exist in fabric so it becomes height
     const triangle = new fabric.Triangle({
@@ -125,20 +125,20 @@ export default class extends Controller {
 
   // function to deserialize json and render apartment.floor_plan or bookmark.arrangement
   loadCanvas(canvas, json) {
+    console.log(json)
     const newCanvas = canvas.loadFromJSON(json, canvas.renderAll.bind(canvas), (o, object) => {
       // use callback to isolate door and calculate ratio only once canvas is loaded
       if (object.fill === "#f00" && object.width > 0) {
+        console.log("made it!")
         this.calculateRatio(object)
       }
+      // make all boundaries unselectable
+      if (object.fill === "#5f5" || object.fill === "#f00" || object.fill === "#f55") {
+        object.set('selectable', false)
+      }
+      console.log(object)
     })
     return newCanvas
-  }
-
-  // supposed to make all boundaries unselectable but not working for some reason
-  setBoundaries(canvas) {
-    canvas.forEachObject((obj) => {
-      obj.set('selectable', false)
-    })
   }
 
   // method to be used in save function
