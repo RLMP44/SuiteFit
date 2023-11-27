@@ -9,7 +9,7 @@
     <%= javascript_importmap_tags %>
   </head>
   <body data-controller="requests-subscription"
-    <% if current_user.agency %>
+    <% if user_signed_in? && current_user.agency %>
       data-requests-subscription-agency-id-value=<%= current_user.id %>
     <% end %>>
     <%= render "shared/navbar" %>

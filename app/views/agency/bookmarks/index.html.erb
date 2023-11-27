@@ -1,3 +1,4 @@
 <div class="container">
-  <%= render "user_message", bookmarks: @bookmarks, user: current_user %>
+  <h1>New Requests <span data-requests-subsription-target="requestsIndex"><%= @bookmarks.unread_count_for(current_user) %></span></h1>
+  <%= render "user_message", bookmarks: @bookmarks %>
 </div>

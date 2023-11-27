@@ -1,17 +1,17 @@
- <%# count unread bookmarks (join with unread messages) -> use action cable to broadcast when a new message is created %>
-<h1>New Requests (<%= bookmarks.unread_count_for(user) %>)</h1>
-<div data-requests-subscription-target="userMessages"></div>
-<% bookmarks.uniq.each do |bookmark| %>
-  <% if bookmark.user_last_message.unread? %>
-    <div class="agency-requests-msg">
-      <div>
-        <small>New request from <strong><%= bookmark.user.username %></strong> re: <strong><%= bookmark.apartment.name %></strong> | <i><%= bookmark.user_last_message.created_at.strftime("%a %b %e at %l:%M %p") %></i></small>
-      </div>
-      <%= link_to bookmark_path(bookmark) do %>
+ <%# count unread bookmarks -> use action cable to broadcast when a new message is created %>
+<div data-requests-subscription-target="userRequests">
+  <% bookmarks.uniq.each do |bookmark| %>
+    <% if bookmark.user_last_message.present? && bookmark.user_last_message.unread? %>
+      <div class="agency-requests-msg">
         <div>
-          <p class="agency-requests-msg-text"><%=bookmark.user_last_message.content %> <i class="fa-solid fa-arrow-right"></i></p>
+          <small>New request from <strong><%= bookmark.user.username %></strong> re: <strong><%= bookmark.apartment.name %></strong> | <i><%= bookmark.user_last_message.created_at.strftime("%a %b %e at %l:%M %p") %></i></small>
         </div>
+        <%= link_to bookmark_path(bookmark) do %>
+          <div>
+            <p class="agency-requests-msg-text"><%=bookmark.user_last_message.content %> <i class="fa-solid fa-arrow-right"></i></p>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-<% end %>
+    </div>
+  <% end %>
+</div>
