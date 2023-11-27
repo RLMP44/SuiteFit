@@ -35,7 +35,7 @@ class BookmarksController < ApplicationController
   def update
     authorize @bookmark
     arrangement_json = request.body.read
-    @bookmark.update(arrangement: arrangement_json)
+    @bookmark.update(arrangement: arrangement_json, result: params[:result])
   end
 
   def destroy

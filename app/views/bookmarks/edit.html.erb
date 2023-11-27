@@ -27,17 +27,16 @@
         >
         Remove item
       </button>
+      <%# save results of fitting via dropdown %>
       <div class="save-features">
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            How's the fit?
-          </button>
-          <ul class="dropdown-menu dropdown=menu-sm-end">
-            <li><button class="dropdown-item" type="button">Good fit</button></li>
-            <li><button class="dropdown-item" type="button">Tight fit</button></li>
-            <li><button class="dropdown-item" type="button">Good fit</button></li>
-          </ul>
-        </div>
+        <%# label %>
+        <%= simple_form_for(@bookmark) do |f| %>
+          <%= f.input :result,
+          type: :select,
+          collection: ["Good fit", "Tight fit", "Poor fit"],
+          input_html: {data: {load_canvas_target: "result"}}
+          %>
+        <% end %>
         <button
           data-action="click->load-canvas#save"
           data-arrangement="<%= @bookmark.arrangement %>"
