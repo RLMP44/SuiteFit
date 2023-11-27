@@ -1,5 +1,6 @@
 <div class="container">
   <h1>New Requests (<%= @bookmarks.joins(:messages).where.not(messages: {user: current_user}).where(messages: {status: "unread"}).distinct.count(:id) %>)</h1>
+  <div data-requests-subscription-target="userMessages"></div>
   <% @bookmarks.uniq.each do |bookmark| %>
     <% user_last_message = bookmark.messages.where.not(user: current_user).order(created_at: :desc).first %>
     <% if user_last_message.unread? %>

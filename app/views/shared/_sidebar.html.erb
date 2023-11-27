@@ -35,7 +35,7 @@
               <%# Button for the agency to see requests from users %>
               <% if current_user && current_user.agency? %>
                 <%= link_to agency_bookmarks_path, class: "nav-link" do %>
-                  Requests <span class="rounded-pill bg-secondary text-white"></span>
+                  Requests <span class="rounded-pill bg-secondary text-white" data-requests-subscription-target="requests"></span>
                 <% end %>
               <% end %>
             </li>
