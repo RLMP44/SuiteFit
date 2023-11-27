@@ -3,7 +3,7 @@ import { fabric } from "fabric"
 
 // Connects to data-controller="load-canvas"
 export default class extends Controller {
-  static targets = ["canvas", "my-image"]
+  static targets = ["canvas", "result", "my-image"]
   static values = {
     json: Object,
   }
@@ -105,7 +105,7 @@ export default class extends Controller {
 
   // method to save arrangement
   save(event) {
-    fetch(`/bookmarks/${event.currentTarget.dataset.bookmark}`, {
+    fetch(`/bookmarks/${event.currentTarget.dataset.bookmark}?result=${this.resultTarget.value}`, {
       method: "PATCH",
       body: JSON.stringify(this.loadedCanvas),
       headers: {
