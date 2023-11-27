@@ -34,7 +34,12 @@
             <li class="nav-item">
               <%# Button for the agency to see requests from users %>
               <% if current_user && current_user.agency? %>
-                <%= link_to "Requests","#", class: "nav-link" %>
+                <%= link_to "Requests", agency_messages_path, class: "nav-link"%>
+                <%# <span class="translate-middle badge rounded-pill bg-danger">
+                    99+
+                    <span class="visually-hidden">unread messages</span>
+                  </span> %>
+                <%# end %>
               <% end %>
             </li>
             <li class="nav-item">
