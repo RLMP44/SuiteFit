@@ -43,6 +43,8 @@ class BookmarksController < ApplicationController
 
   def destroy
     authorize @bookmark
+    @bookmark.destroy
+    redirect_to bookmarks_path
   end
 
   private
