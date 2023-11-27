@@ -5,6 +5,9 @@ class BookmarksController < ApplicationController
 
   def index
     @bookmarks = policy_scope(Bookmark)
+    if params[:result].present?
+      @bookmarks = @bookmarks.where(result: params[:result])
+    end
   end
 
   def show
