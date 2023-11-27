@@ -43,42 +43,15 @@ export default class extends Controller {
       'object:scaling': onChange,
       'object:rotating': onChange,
     });
-
-    // TODO: Try to get objects to change opacity when hovered over?
-    // this.loadedCanvas.on('mouse:over', function(e) {
-    //   e.target.set('opacity', .5);
-    //   loadedCanvas.renderAll();
-    // });
-
-    // this.loadedCanvas.on('mouse:out', function(e) {
-    //   e.target.set('opacity', 1);
-    //   loadedCanvas.renderAll();
-    // });
   }
 
   // method to add clicked item to canvas
   add(event) {
-    // find on-canvas length of main door, scale to size using standard 80 cm door
-    // let width = 0
-    let doorWidth = 80
-    this.loadedCanvas._objects.forEach((obj) => {
-      if (obj.fill === "#f00") {
-        const door = obj
-        doorWidth = door.width
-        // account for main door being on sides instead of top and bottom
-        doorWidth = door.width > door.height ? door.width : door.height
-      }
-      return doorWidth
-    })
-    console.log(doorWidth)
-
-    const ratio = doorWidth / 80.0
-    console.log(ratio)
-    // create instance of user item on canvas and scale with ratio
+    // create instance of user item on canvas and scale using ratio
     // pass in data, note that length doesn't exist in fabric so it becomes height
     const triangle = new fabric.Triangle({
-        height: parseInt(event.currentTarget.dataset.length) * ratio,
-        width: parseInt(event.currentTarget.dataset.width) * ratio,
+        height: parseInt(event.currentTarget.dataset.length) * this.ratio,
+        width: parseInt(event.currentTarget.dataset.width) * this.ratio,
         fill: '#aac',
         originX: 'left',
         originY: 'top',
@@ -118,6 +91,7 @@ export default class extends Controller {
     })
   }
 
+  // TODO: get functional
   // method to delete one item
   delete(event) {
     console.log("hi")
@@ -139,27 +113,24 @@ export default class extends Controller {
     }).then(console.log("Success"))
   }
 
-  // not being used bc JavaScript is stupid
-  calculateRatio(canvas) {
-    // find on-canvas length of main door, scale to size using standard 80 cm door
-    let doorWidth = 80
-    canvas._objects.forEach((obj) => {
-      if (obj.fill === "#f00") {
-        const door = obj
-        doorWidth = door.width
-        // account for main door being on sides instead of top and bottom
-        doorWidth = door.width > door.height ? door.width : door.height
-      }
-      console.log(canvas._objects)
-      return doorWidth
-    })
-    // console.log(doorWidth)
-    return doorWidth / 80.0
+  // method to calculate the ratio for item scaling
+  calculateRatio(object) {
+    //  find on-canvas length of main door, scale to size using standard 80 cm door
+    const doorWidth = object.width > object.height ? object.width : object.height
+    const ratio = doorWidth / 80.0
+    console.log(ratio)
+    this.ratio = ratio
   }
 
   // function to deserialize json and render apartment.floor_plan or bookmark.arrangement
   loadCanvas(canvas, json) {
-    return canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
+    const newCanvas = canvas.loadFromJSON(json, canvas.renderAll.bind(canvas), (o, object) => {
+      // use callback to isolate door and calculate ratio only once canvas is loaded
+      if (object.fill === "#f00" && object.width > 0) {
+        this.calculateRatio(object)
+      }
+    })
+    return newCanvas
   }
 
   // supposed to make all boundaries unselectable but not working for some reason
