@@ -1,5 +1,13 @@
 <div class="container">
   <h1 class="my-2">My Saved Apartments</h1>
+  <%# filter via fitting result %>
+  <%= simple_form_for(@bookmarks) do |f| %>
+    <%= f.input :result,
+    type: :select,
+    collection: ["Good fit", "Tight fit", "Poor fit"],
+    input_html: {data: {load_canvas_target: "result"}}
+    %>
+  <% end %>
   <div class="row justify-content-around px-3">
     <%# create individual cards here %>
     <% @bookmarks.each do |bookmark| %>
@@ -35,7 +43,7 @@
             <%# links %>
             <ul id="side-menu">
               <li>
-                <div class="side-menu__label">Delete</div>
+                <div class="side-menu__label">Delete home</div>
               </li>
               <li><%= link_to "", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-outline-danger btn-sm my-2 fa-solid fa-trash-can" %></li>
             </ul>
