@@ -1,12 +1,15 @@
 class BookmarksController < ApplicationController
   # Inserted a authorization policy in front of each method as a reminder.
   # When writing the method, put it before saving to the database.
+  before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
+
   def index
     @bookmarks = policy_scope(Bookmark)
   end
 
   def show
     authorize @bookmark
+    @message = Message.new
   end
 
   def create
@@ -17,19 +20,19 @@ class BookmarksController < ApplicationController
     authorize @bookmark
     if @bookmark.save
       redirect_to bookmarks_path(@bookmarks)
+      # added a notice to notify the user that the bookmark saved
+      flash[:notice] = "Bookmark saved!"
     else
       render "apartments/show", status: :unprocessable_entity
     end
   end
 
   def edit
-    @bookmark = Bookmark.find(params[:id])
     authorize @bookmark
     @items = current_user.items
   end
 
   def update
-    @bookmark = Bookmark.find(params[:id])
     authorize @bookmark
     arrangement_json = request.body.read
     @bookmark.update(arrangement: arrangement_json)
@@ -37,5 +40,11 @@ class BookmarksController < ApplicationController
 
   def destroy
     authorize @bookmark
+  end
+
+  private
+
+  def set_bookmark
+    @bookmark = Bookmark.find(params[:id])
   end
 end
