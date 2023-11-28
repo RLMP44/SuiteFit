@@ -12,12 +12,15 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @items = policy_scope(Item)
+
     @item = Item.new(item_params)
-    authorize @item
     @item.user = current_user
+    authorize @item
     if @item.save
       redirect_to items_path
     else
+      @pop_up = true
       render :index, status: :unprocessable_entity
     end
   end
@@ -43,6 +46,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :length, :width, :icon, :quantity)
+    params.require(:item).permit(:name, :length, :width, :photo, :quantity)
   end
 end

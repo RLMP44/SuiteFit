@@ -28,4 +28,6 @@ Rails.application.routes.draw do
     resources :apartments, only: [:index, :new, :create, :edit, :update, :destroy, :show]
     resources :bookmarks, only: :index
   end
+
+  get 'agency/apartments/:id/save_qr_code', to: 'agency/apartments#save_qr_code', as: 'save_qr_code'
 end

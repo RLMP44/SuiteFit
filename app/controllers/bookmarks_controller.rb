@@ -5,6 +5,9 @@ class BookmarksController < ApplicationController
 
   def index
     @bookmarks = policy_scope(Bookmark)
+    if params[:result].present?
+      @bookmarks = @bookmarks.where(result: params[:result])
+    end
   end
 
   def show
@@ -36,11 +39,13 @@ class BookmarksController < ApplicationController
   def update
     authorize @bookmark
     arrangement_json = request.body.read
-    @bookmark.update(arrangement: arrangement_json)
+    @bookmark.update(arrangement: arrangement_json, result: params[:result])
   end
 
   def destroy
     authorize @bookmark
+    @bookmark.destroy
+    redirect_to bookmarks_path
   end
 
   private

@@ -1,7 +1,6 @@
 // Items Index cards
 .card-product {
   overflow: hidden;
-  height: 120px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
@@ -32,6 +31,13 @@
   padding: 16px;
 }
 
+// Items pictures on  index page (my inventory)
+.image-item {
+  object-fit: contain;
+  width: 200px;
+  height: 200px;
+  padding:16px
+}
 
 // Agency index page cards
 
@@ -97,4 +103,10 @@
 
 .card-image-agency:hover {
   transform: scale(1.1);
+}
+
+.button-agency {
+  margin-bottom: 5px;
+  margin-left:10px;
+  border-radius: 10px;
 }

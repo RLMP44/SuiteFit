@@ -1,0 +1,35 @@
+#side-menu {
+  background-color: white;
+  margin: 0px;
+  color: black;
+  width: 50px;
+  padding: 5px;
+  list-style: none;
+  transition: ease-in-out all .4s;
+  display: table;
+}
+
+#side-menu li {
+  width: 50%;
+  height: 50%;
+  display: table-cell;
+}
+
+.side-menu__label {
+  float: right;
+  font-size: 12px;
+  width: 100px;
+  opacity: 0;
+  position: relative;
+  right: -10px;
+  transition: ease-in-out all .6s;
+  top: 5px;
+}
+
+#side-menu:hover {
+  width: 100px;
+}
+
+#side-menu:hover .side-menu__label {
+  opacity: 1;
+}

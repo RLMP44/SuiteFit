@@ -46,6 +46,10 @@ class Agency::ApartmentPolicy < ApplicationPolicy
     record.agency == user
   end
 
+  def save_qr_code?
+    show?
+  end
+
   private
 
   attr_reader :user, :record
