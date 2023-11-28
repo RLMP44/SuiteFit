@@ -22,7 +22,7 @@
           <%= simple_form_for @apartment, url: agency_apartment_path(@apartment), method: :patch do |f| %>
             <%= f.input :name %>
             <%= f.input :description, as: :text %>
-            <%= f.input :price, label: "Rent (¥ per month)", %>
+            <%= f.input :price, label: "Rent (¥ per month)" %>
             <%= f.input :total_floorspace, label: "Total floorspace (m²)" %>
             <%= f.input :category %>
             <%= f.input :address %>

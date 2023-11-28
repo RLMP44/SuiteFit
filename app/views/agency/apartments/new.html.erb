@@ -3,10 +3,6 @@
     <div class="col-12 col-sm-4">
       <h1 class="form-title">List an apartment</h1>
       <div class="form-shared" data-controller="new-forms">
-        <%= simple_form_for [@apartment, @floor_plan_picture], url: agency_apartments_path, data: {"new-forms-target": "fpForm"} do |f| %>
-          <%= f.input :photo, as: :file, required: true, label: "Upload the floor plan of your apartment" %>
-          <%= f.button :submit, type: :hidden %>
-        <% end %>
         <%= simple_form_for @apartment, url: agency_apartments_path, data: {action: "turbo:submit-end->new-forms#submitBothForms"} do |f| %>
           <%= f.input :name, placeholder: "Meguro Heights" %>
           <%= f.input :description, as: :text, placeholder: "A quiet place in the middle of the big city." %>

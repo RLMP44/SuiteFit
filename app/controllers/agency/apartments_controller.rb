@@ -25,11 +25,11 @@ class Agency::ApartmentsController < ApplicationController
 
   def show
     authorize([:agency, @apartment])
+    @floor_plan_picture = FloorPlanPicture.new
   end
 
   def new
     @apartment = Apartment.new
-    @floor_plan_picture = FloorPlanPicture.new
     authorize([:agency, @apartment])
   end
 

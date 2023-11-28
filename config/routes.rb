@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # The user can see one apartment, coming from a QR code or otherwise
   resources :apartments, only: [:index, :show] do
    resources :bookmarks, only: [:create]
+   resources :floor_plan_pictures, only: :create
   end
   # The user can see all of their bookmarks, bookmark an apartment, update or destroy a bookmark.
   # The show page is the chat window
