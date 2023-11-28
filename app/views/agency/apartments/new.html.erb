@@ -10,9 +10,8 @@
           <%= f.input :total_floorspace, label: "Total floorspace (m²)", placeholder: "20" %>
           <%= f.input :category, placeholder: "1LDK" %>
           <%= f.input :address, placeholder: "Tokyo, Meguro, 1-2-3" %>
-          <%= f.input :photos, as: :file, required: true, label: "Upload your floorplan" %>
-          <%= f.input :creation, as: :hidden, input_html: { value: 'true'} %>
-          <%= f.button :submit, "Next", class:"btn btn-secondary" %>
+          <%= f.input :photos, as: :file, required: true, label: "Upload photos of your apartment" %>
+          <%= f.button :submit, "Save", class:"btn btn-secondary" %>
         <% end %>
       </div>
     </div>

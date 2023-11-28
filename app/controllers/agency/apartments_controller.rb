@@ -45,7 +45,8 @@ class Agency::ApartmentsController < ApplicationController
 
     authorize([:agency, @apartment])
     if @apartment.save
-      redirect_to edit_agency_apartment_path(@apartment, creation: 'true')
+      redirect_to agency_apartment_path(@apartment)
+      # redirect_to edit_agency_apartment_path(@apartment, creation: 'true')
     else
       render :new, status: :unprocessable_entity
     end
