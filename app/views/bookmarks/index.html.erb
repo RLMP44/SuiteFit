@@ -1,11 +1,12 @@
 <div class="container">
   <h1 class="my-2">My Saved Apartments</h1>
   <%# filter via fitting result %>
-  <div class="row justify-content-center">
+  <div class="row justify-content-start">
     <div class="col-sm-8 my-3">
-      <%= link_to "Good fit", bookmarks_path(result: "Good fit") %>
-      <%= link_to "Tight fit", bookmarks_path(result: "Tight fit") %>
-      <%= link_to "Poor fit", bookmarks_path(result: "Poor fit") %>
+      <%= link_to "All Apartments", bookmarks_path, class: "btn btn-secondary" %>
+      <%= link_to "Good fit", bookmarks_path(result: "Good fit"), class: "btn btn-secondary" %>
+      <%= link_to "Tight fit", bookmarks_path(result: "Tight fit"), class: "btn btn-secondary" %>
+      <%= link_to "Poor fit", bookmarks_path(result: "Poor fit"), class: "btn btn-secondary" %>
     </div>
   </div>
   <div class="row justify-content-around px-3">
