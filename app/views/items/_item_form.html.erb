@@ -3,25 +3,15 @@
   <%= new ? "Add Item" : "Edit" %>
 </button>
 <!-- Modal -->
-<div class="modal fade" id="<%= new ? "item_new" : "item_#{item.id}_update" %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="<%= item %>" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="<%= new ? "item_new" : "item_#{item.id}_update" %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="<%= item %>" aria-labelledby="staticBackdropLabel"data-create-item-popup-target="modal" data-popup="<%= popup == true %>" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel"><%= new ? "Add Item" : "Edit #{item.name}" %></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <%= simple_form_for item do |f| %>
-          <%= f.input :name %>
-          <%= f.input :length, label: "Length (cm)" %>
-          <%= f.input :width, label: "Width (cm)" %>
-          <%= f.input :icon %>
-          <%= f.input :quantity %>
-          <div class="modal-footer justify-content-between">
-            <%= f.button :submit, class:"btn btn-primary" %>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        <% end %>
+      <div class="modal-body" data-create-item-popup-target="form">
+        <%= render "fields", item: item %>
       </div>
     </div>
   </div>

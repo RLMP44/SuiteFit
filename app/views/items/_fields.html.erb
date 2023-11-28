@@ -1,0 +1,9 @@
+ <%= simple_form_for(item) do |f| %>
+  <%= f.input :name, type: :select, collection: Item::ITEMTYPES %>
+  <%= f.input :length, label: "Length (cm)" %>
+  <%= f.input :width, label: "Width (cm)" %>
+  <%= f.input :quantity %>
+  <div class="modal-footer justify-content-between">
+    <%= f.button :submit, class:"btn btn-primary" %>
+  </div>
+<% end %>
