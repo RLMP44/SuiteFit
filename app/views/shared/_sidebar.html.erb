@@ -16,6 +16,13 @@
           </li>
           <% if user_signed_in? %>
             <li class="nav-item active">
+              <% if current_user && current_user.agency? %>
+                <% link_to "My apartments", agency_apartments_path, class: "nav-link" %>
+              <% else %>
+                <%= link_to "All apartments", apartments_path, class: "nav-link" %>
+              <% end %>
+            </li>
+            <li class="nav-item active">
               <%# Button for apartments for Admin and button for Items for User %>
               <% if current_user && current_user.agency? %>
                 <%= link_to "My apartments", agency_apartments_path, class: "nav-link" %>

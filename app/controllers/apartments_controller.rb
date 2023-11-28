@@ -7,4 +7,9 @@ class ApartmentsController < ApplicationController
     @apartment = Apartment.find(params[:id])
     authorize @apartment
   end
+
+  def index
+    @apartments = Apartment.all
+    @apartments = policy_scope(Apartment)
+  end
 end

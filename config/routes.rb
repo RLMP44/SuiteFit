@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # The user can see one apartment, coming from a QR code or otherwise
-  resources :apartments, only: :show do
+  resources :apartments, only: [:index, :show] do
    resources :bookmarks, only: [:create]
   end
   # The user can see all of their bookmarks, bookmark an apartment, update or destroy a bookmark.
