@@ -60,10 +60,14 @@
         <% current_user.items.all.each do |item| %>
           <%# create cards for each item %>
           <div
-            class="card col-4 my-3 mx-2 p-2"
+            class="card col-4 my-3 mx-2 p-2 items-button"
             id="fit-item"
             style="width: 200px; border-radius: 3px; drop-shadow: 2px 2px 4px darkgrey;"
-          >
+            data-action="click->load-canvas#add"
+            data-name="image-<%= item.name %>"
+            data-length="<%= item.length %>"
+            data-width="<%= item.width %>"
+            >
             <img
               src="<%= image_path(item.image)%>"
               alt="<%= item.name %>"
@@ -71,14 +75,10 @@
               id="image-<%= item.name %>"
               data-load-canvas-target="image-<%= item.name %>"
             >
-              <button
-                data-action="click->load-canvas#add"
+              <%# <button
                 class="fa-solid fa-circle-plus fa-xl add-item border-0"
-                data-name="image-<%= item.name %>"
-                data-length="<%= item.length %>"
-                data-width="<%= item.width %>"
-                >
-              </button>
+                > %>
+              <%# </button> %>
               <div class="card-body">
                 <h4 class="card-title"><%= item.name %> x <%= item.quantity %></h4>
                 <p class="card-text"><%= item.length %> cm² x <%= item.width %> cm²</p>

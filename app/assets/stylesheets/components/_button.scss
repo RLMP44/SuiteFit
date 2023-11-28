@@ -11,3 +11,14 @@
   background: $blue-2;
   color: black;
 }
+
+// item button on fitting page
+.items-button {
+  opacity: .7;
+}
+
+.items-button:hover {
+  opacity: 1;
+  transition: .2;
+  cursor: pointer;
+}
