@@ -36,9 +36,6 @@ class Agency::ApartmentsController < ApplicationController
   def create
     @apartment = Apartment.new(apartment_params)
     @apartment.agency = current_user
-    @floor_plan_picture = FloorPlanPicture.new(floor_plan_picture_params)
-    @floor_plan_picture.save
-    @apartment.floor_plan_picture = @floor_plan_picture
 
     # attaching a qr code
     url = "https://suite-fit-rlmp44-5e8ff51180b0.herokuapp.com/apartments/#{@apartment.id}"
@@ -84,9 +81,5 @@ class Agency::ApartmentsController < ApplicationController
 
   def apartment_params
     params.require(:apartment).permit(:name, :description, :price, :photos, :total_floorspace, :address, :category, :floor_plan)
-  end
-
-  def floor_plan_picture_params
-    params.require(:floor_plan_picture).permit(:photo)
   end
 end
