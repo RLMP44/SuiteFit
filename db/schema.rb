@@ -86,6 +86,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_005338) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "unread"
     t.index ["bookmark_id"], name: "index_messages_on_bookmark_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
