@@ -53,7 +53,6 @@
     <%# canvas elements %>
     <canvas id="new-canvas"  class="col-8 border border-2 border-primary-subtle my-4" style="border-width: 2px;">
       <%# render canvas here %>
-      <%# <img src="my_image.png" id="my-image" data-load-json-target> %>
     </canvas>
     <%# items list menu %>
     <div class="col-4 container" style="border: black; background-color: lightgrey;">
@@ -65,10 +64,11 @@
             id="fit-item"
             style="width: 200px; border-radius: 3px; drop-shadow: 2px 2px 4px darkgrey;"
           >
-            <img src="<%= image_path(item.image)%>" alt="<%= item.name %>" class= "image-item" >
+            <img src="<%= image_path(item.image)%>" alt="<%= item.name %>" class= "image-item" id="image-<%= item.name %>" data-load-canvas-target="image-<%= item.name %>">
             <button
               data-action="click->load-canvas#add"
               class="fa-solid fa-circle-plus fa-xl add-item"
+              data-name="image-<%= item.name %>"
               data-length="<%= item.length %>"
               data-width="<%= item.width %>"
               >
