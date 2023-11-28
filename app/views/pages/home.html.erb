@@ -1,12 +1,34 @@
 <div class="banner d-flex">
   <div class="container">
-    <h1>Suite Fit</strong></h1>
-    <p>Fitting people with the confidence they need to change homes</p>
-    <%# Button for Admins and regular Users%>
+    <div class="d-flex">
+      <div class="col-2 text-center">
+        <h1 style="padding-right: 58px;">Suite Fit</strong></h1>
+    </div>
+  </div>
+  <div class="d-flex align-items-center">
+    <div class="col-2 text-end pe-3">
+      <p>Fitting people with</p>
+    </div>
+    <div class="home">
+      <span>
+        <div class="stage pt-3">
+          <div class="cubespinner">
+            <div class="face1">Homes</div>
+            <div class="face2 gradient-animation">Confidence</div>
+            <div class="face3">Security</div>
+            <div class="face4">Comfort</div>
+          </div>
+        </div>
+      </span>
+    </div>
+  </div>
+  <%# Button for Admins and regular Users%>
+  <div style="margin-left: 25px;">
     <% if current_user && current_user.agency? %>
-        <%= link_to "Check your fit now!", agency_apartments_path, class: "btn btn-primary" %>
+      <%= link_to "Check your fit now!", agency_apartments_path, class: "btn btn-primary" %>
     <% else %>
-        <%= link_to "Check your fit now!", items_path, class: "btn btn-primary" %>
+      <%= link_to "Check your fit now!", items_path, class: "btn btn-primary" %>
     <% end %>
   </div>
+</div>
 </div>
