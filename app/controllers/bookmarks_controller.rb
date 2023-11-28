@@ -5,10 +5,14 @@ class BookmarksController < ApplicationController
 
   def index
     @bookmarks = policy_scope(Bookmark)
+    if params[:result].present?
+      @bookmarks = @bookmarks.where(result: params[:result])
+    end
   end
 
   def show
     authorize @bookmark
+    @bookmark.messages.where.not(user: current_user).map(&:read!)
     @message = Message.new
   end
 
@@ -40,6 +44,8 @@ class BookmarksController < ApplicationController
 
   def destroy
     authorize @bookmark
+    @bookmark.destroy
+    redirect_to bookmarks_path
   end
 
   private

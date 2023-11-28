@@ -9,6 +9,7 @@ export default class extends Controller {
   }
 
   connect() {
+    console.log("hi")
     // create empty canvas
     this.canvas = new fabric.Canvas("new-canvas", {
       height: 800,
