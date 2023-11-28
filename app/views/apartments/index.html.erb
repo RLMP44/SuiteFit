@@ -14,6 +14,9 @@
           <p><strong>Address: <i class="fa-solid fa-location-dot"></i> <%= apartment.address %></strong></p>
           <p><strong>Price: ¥<%= apartment.price.to_i %></strong></p>
         </div>
+        <div class="button-user">
+          <%= link_to "View apartment", apartment_path(apartment), class: "btn btn-info btn-sm rounded-button"%>
+        </div>
       </div>
     <% end %>
   </div>
