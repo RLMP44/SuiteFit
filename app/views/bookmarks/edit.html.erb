@@ -33,6 +33,8 @@
         <%= simple_form_for(@bookmark) do |f| %>
           <%= f.input :result,
           type: :select,
+          label: "How's everything fit?",
+          label_html: {class: "my-2"},
           collection: ["Good fit", "Tight fit", "Poor fit"],
           input_html: {data: {load_canvas_target: "result"}}
           %>
@@ -51,7 +53,6 @@
     <%# canvas elements %>
     <canvas id="new-canvas"  class="col-8 border border-2 border-primary-subtle my-4" style="border-width: 2px;">
       <%# render canvas here %>
-      <%# <img src="my_image.png" id="my-image" data-load-json-target> %>
     </canvas>
     <%# items list menu %>
     <div class="col-4 container" style="border: black; background-color: lightgrey;">
@@ -60,12 +61,14 @@
           <%# create cards for each item %>
           <div
             class="card col-4 my-3 mx-2 p-2"
+            id="fit-item"
             style="width: 200px; border-radius: 3px; drop-shadow: 2px 2px 4px darkgrey;"
           >
-            <i class="<%= item.icon %>" style="font-size: 50px;"></i>
+            <img src="<%= image_path(item.image)%>" alt="<%= item.name %>" class= "image-item" id="image-<%= item.name %>" data-load-canvas-target="image-<%= item.name %>">
             <button
               data-action="click->load-canvas#add"
-              class="fa-solid fa-circle-plus fa-xl add-item"
+              class="fa-solid fa-circle-plus fa-xl add-item border-0"
+              data-name="image-<%= item.name %>"
               data-length="<%= item.length %>"
               data-width="<%= item.width %>"
               >

@@ -46,10 +46,6 @@ table = Item.create!(
   user: shinji
 )
 
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701047118/Circle-table_nuwog0.png")
-table.attach(io: file, filename: "Circle-table.png", content_type: "images/png")
-table.save
-
 chair = Item.create!(
   name: "Chair",
   length: 76,
@@ -57,10 +53,6 @@ chair = Item.create!(
   quantity: 1,
   user: shinji
 )
-
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701047679/Chair_x3lfdo.png")
-chair.attach(io: file, filename: "Chair.png", content_type: "images/png")
-chair.save
 
 armchair = Item.create!(
   name: "Armchair",
@@ -70,10 +62,6 @@ armchair = Item.create!(
   user: shinji
 )
 
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701047990/Armchair_qjtstk.png")
-armchair.attach(io: file, filename: "Armchair.png", content_type: "images/png")
-armchair.save
-
 couch = Item.create!(
   name: "Couch",
   length: 213,
@@ -81,10 +69,6 @@ couch = Item.create!(
   quantity: 1,
   user: shinji
 )
-
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701048173/Couch_jxtevp.png")
-couch.attach(io: file, filename: "Couch.png", content_type: "images/png")
-couch.save
 
 sofa = Item.create!(
   name: "Sofa",
@@ -94,10 +78,6 @@ sofa = Item.create!(
   user: shinji
 )
 
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701048367/Sofa_hcxq0k.png")
-sofa.attach(io: file, filename: "Sofa.png", content_type: "images/png")
-sofa.save
-
 single_bed = Item.create!(
   name: "Single bed",
   length: 188,
@@ -105,10 +85,6 @@ single_bed = Item.create!(
   quantity: 1,
   user: ryan
 )
-
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701048472/Single-bed_qemexc.png")
-single_bed.attach(io: file, filename: "Single-bed.png", content_type: "images/png")
-single_bed.save
 
 double_bed = Item.create!(
   name: "Double bed",
@@ -118,10 +94,6 @@ double_bed = Item.create!(
   user: shinji
 )
 
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701048598/Double-bed_ca649r.png")
-double_bed.attach(io: file, filename: "Double-bed.png", content_type: "images/png")
-double_bed.save
-
 fridge = Item.create!(
   name: "Fridge",
   length: 55,
@@ -129,10 +101,6 @@ fridge = Item.create!(
   quantity: 1,
   user: ryan
 )
-
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701051747/Fridge_rvscg9.png")
-fridge.attach(io: file, filename: "Fridge.png", content_type: "images/png")
-fridge.save
 
 washing_machine = Item.create!(
   name: "Washing machine",
@@ -142,10 +110,6 @@ washing_machine = Item.create!(
   user: shinji
 )
 
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701051935/Washing_machine_vpzvuf.png")
-washing_machine.attach(io: file, filename: "Washing machine.png", content_type: "images/png")
-washing_machine.save
-
 tv = Item.create!(
   name: "TV",
   length: 120,
@@ -153,10 +117,6 @@ tv = Item.create!(
   quantity: 1,
   user: shinji
 )
-
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701052062/Tv_rror5u.png")
-tv.attach(io: file, filename: "Tv.png", content_type: "images/png")
-tv.save
 
 wardrobe = Item.create!(
   name: "Wardrobe",
@@ -166,10 +126,6 @@ wardrobe = Item.create!(
   user: ryan
 )
 
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701052472/Wardrobe_h7bdat.png")
-wardrobe.attach(io: file, filename: "Wardrobe.png", content_type: "images/png")
-wardrobe.save
-
 microwave = Item.create!(
   name: "Microwave",
   length: 40,
@@ -177,10 +133,6 @@ microwave = Item.create!(
   quantity: 1,
   user: ryan
 )
-
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701052595/Microwave_oya6c0.png")
-microwave.attach(io: file, filename: "Microwave.png", content_type: "images/png")
-microwave.save
 
 trash_can = Item.create!(
   name: "Trash can",
@@ -190,10 +142,6 @@ trash_can = Item.create!(
   user: shinji
 )
 
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701052782/Trash_can_r6gz6y.png")
-trash_can.attach(io: file, filename: "Trash can.png", content_type: "images/png")
-trash_can.save
-
 basket = Item.create!(
   name: "Basket",
   length: 50,
@@ -202,10 +150,6 @@ basket = Item.create!(
   user: shinji
 )
 
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701053477/Basket_ugs5v5.png")
-basket.attach(io: file, filename: "Basket.png", content_type: "images/png")
-basket.save
-
 desk = Item.create!(
   name: "Desk",
   length: 80,
@@ -213,10 +157,6 @@ desk = Item.create!(
   quantity: 1,
   user: ryan
 )
-
-file = URI.open("https://res.cloudinary.com/daktzdqij/image/upload/v1701053652/Desk_n1zfvh.png")
-desk.attach(io: file, filename: "Desk.png", content_type: "images/png")
-desk.save
 
 # Apartments
 puts "Creating apartments..."

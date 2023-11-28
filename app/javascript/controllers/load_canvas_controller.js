@@ -3,9 +3,10 @@ import { fabric } from "fabric"
 
 // Connects to data-controller="load-canvas"
 export default class extends Controller {
-  static targets = ["canvas", "result", "my-image"]
+  static targets = ["canvas", "result", "my-"]
   static values = {
     json: Object,
+    image: String,
   }
 
   connect() {
@@ -24,7 +25,7 @@ export default class extends Controller {
       this.loadedCanvas.forEachObject(function(obj) {
         if (obj === options.target) return;
         // change user items' color/opacity
-        if (obj.fill === "f00") {
+        if (obj.fill === "#f00") {
           console.log("Door found!")
         }
         else if (obj.type !== "rect") {
@@ -51,10 +52,13 @@ export default class extends Controller {
     console.log(this.ratio)
     // create instance of user item on canvas and scale using ratio
     // pass in data, note that length doesn't exist in fabric so it becomes height
-    const triangle = new fabric.Triangle({
-        height: parseInt(event.currentTarget.dataset.length) * this.ratio,
-        width: parseInt(event.currentTarget.dataset.width) * this.ratio,
-        fill: '#aac',
+    console.log(event.currentTarget.dataset.image)
+    var imgElement = document.getElementById(event.currentTarget.dataset.name)
+
+    const image = new fabric.Image(imgElement, {
+        // height: parseInt(event.currentTarget.dataset.length) * this.ratio,
+        // width: parseInt(event.currentTarget.dataset.width) * this.ratio,
+        // fill: '#aac',
         originX: 'left',
         originY: 'top',
         hasBorders: false,
@@ -70,7 +74,7 @@ export default class extends Controller {
         rotatingPointOffset: 20
       })
 
-      triangle.setControlsVisibility({
+      image.setControlsVisibility({
         tl:false,
         mt:false,
         tr:false,
@@ -80,8 +84,11 @@ export default class extends Controller {
         mb:false,
         br:false
        })
-
-      this.canvas.add(triangle)
+       // scale image to proper height and width
+       image.scaleToHeight(parseInt(event.currentTarget.dataset.length) * this.ratio),
+       image.scaleToWidth(parseInt(event.currentTarget.dataset.width) * this.ratio),
+       console.log(image)
+      this.canvas.add(image)
   }
 
   // method to clear the canvas
@@ -126,12 +133,12 @@ export default class extends Controller {
 
   // function to deserialize json and render apartment.floor_plan or bookmark.arrangement
   loadCanvas(canvas, json) {
-    console.log(json)
     const newCanvas = canvas.loadFromJSON(json, canvas.renderAll.bind(canvas), (o, object) => {
       // use callback to isolate door and calculate ratio only once canvas is loaded
       if (object.fill === "#f00" && object.width > 0) {
         console.log("made it!")
         this.calculateRatio(object)
+        console.log(this.ratio)
       }
       // make all boundaries unselectable
       if (object.fill === "#5f5" || object.fill === "#f00" || object.fill === "#f55") {

@@ -5,17 +5,28 @@
       <%#Apartments name, address price %>
       <div class="col-md-10 apt-info">
         <div class="card-apt-show">
-          <h1><%= @apartment.name%></h1>
+          <h1><%= @apartment.name %></h1>
           <p><%= @apartment.address %></p>
           <p><%= @apartment.category %></p>
         </div>
+        <%# Agency actions %>
         <div class="card-apt-show text-center">
-          <%= link_to "Save QR code", save_qr_code_path(@apartment), class: "btn btn-primary" %>
-          <%= link_to "Edit apartment", edit_agency_apartment_path(@apartment), class: "btn btn-primary" %>
-          <%= link_to "Delete apartment", agency_apartment_path(@apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
-          <%= link_to "Back to the list", agency_apartments_path, class:"btn btn-primary" %>
+          <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Stats
+          </button>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              <h4>Stats for <%= @apartment.name %></h4>
+              <small>This apartment was bookmarked <strong><%= @apartment.bookmarks.count %></strong> times</small>
+              <small>This apartment was viewed <strong><%= @apartment.impression_counter %></strong> times</small>
+            </div>
+          </div>
+          <%= link_to "Save QR code", save_qr_code_path(@apartment), class: "btn btn-secondary" %>
+          <%= link_to "Edit apartment", edit_agency_apartment_path(@apartment), class: "btn btn-secondary" %>
+          <%= link_to "Delete apartment", agency_apartment_path(@apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-secondary" %>
+          <%= link_to "Back to the list", agency_apartments_path, class:"btn btn-secondary" %>
         </div>
-        <%#Apartments description, price, address, total floorspace, agency id %>
+        <%#Apartments description, price, address, total floorspace, agency %>
         <div class="card-apt-show">
           <h3>Description</h3>
           <p><%= @apartment.description %></p>

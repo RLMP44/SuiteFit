@@ -6,5 +6,20 @@ class ApartmentsController < ApplicationController
     @bookmark = Bookmark.new
     @apartment = Apartment.find(params[:id])
     authorize @apartment
+    increment_impression!(@apartment)
+  end
+
+  private
+
+  def increment_impression!(apartment)
+    unless current_user.agency
+      apartment.impression_counter += 1
+      apartment.save
+    end
+  end
+
+  def index
+    @apartments = Apartment.all
+    @apartments = policy_scope(Apartment)
   end
 end

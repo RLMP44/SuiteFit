@@ -1,10 +1,24 @@
 <div class="container">
   <div class="row justify-content-between">
+    <%# Stats %>
+    <div>
+      <button class="btn btn-secondary mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Stats
+      </button>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <h4>Your Stats</h4>
+          <small>You have <strong><%= @apartments.count %></strong> apartments listed</small>
+          <small>Your apartments were bookmarked <strong><%= @bookmarks_count %></strong> times</small>
+          <small>Your apartments were viewed <strong><%= @impressions_count %></strong> times</small>
+        </div>
+      </div>
+    </div>
     <%# create individual cards here %>
     <% @apartments.each do |apartment| %>
       <div class="col-5 my-3 mx-2 card-trip">
         <div class="card-image-agency">
-          <%= image_tag("meguro_heights.jpg", class: "card-image-agency-index") %>
+          <%= image_tag(apartment.photos[0], class: "card-image-agency-index") %>
         </div>
         <%# main display info %>
         <div class="card-trip-infos">

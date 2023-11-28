@@ -40,6 +40,7 @@ class BookmarksController < ApplicationController
     authorize @bookmark
     arrangement_json = request.body.read
     @bookmark.update(arrangement: arrangement_json, result: params[:result])
+    redirect_to bookmarks_path
   end
 
   def destroy
