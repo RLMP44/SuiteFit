@@ -4,7 +4,7 @@
     <%= image_tag(@apartment.photos[0], class: "img-flashy") %>
     <div>
       <h2><%= @apartment.name %> - <%= @apartment.category %></h2>
-      <h3>Address: <i class="fa-solid fa-location-dot"></i> <%= @apartment.address %></h3>
+      <h3><i class="fa-solid fa-location-dot"></i> <%= @apartment.address %></h3>
       <%# Create a bookmark form %>
       <%= simple_form_for [@apartment, @bookmark] do |f| %>
         <%= button_tag( :submit, class: "mb-4", id: "fav-btn") do %>
