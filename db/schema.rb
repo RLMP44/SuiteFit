@@ -71,11 +71,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_105445) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
-  create_table "floor_plan_pictires", force: :cascade do |t|
+  create_table "floor_plan_pictures", force: :cascade do |t|
     t.bigint "apartment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["apartment_id"], name: "index_floor_plan_pictires_on_apartment_id"
+    t.index ["apartment_id"], name: "index_floor_plan_pictures_on_apartment_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -119,7 +119,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_105445) do
   add_foreign_key "apartments", "users", column: "agency_id"
   add_foreign_key "bookmarks", "apartments"
   add_foreign_key "bookmarks", "users"
-  add_foreign_key "floor_plan_pictires", "apartments"
+  add_foreign_key "floor_plan_pictures", "apartments"
   add_foreign_key "items", "users"
   add_foreign_key "messages", "bookmarks"
   add_foreign_key "messages", "users"

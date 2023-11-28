@@ -21,7 +21,9 @@
               <small>This apartment was viewed <strong><%= @apartment.impression_counter %></strong> times</small>
             </div>
           </div>
-          <%= link_to "Floor Plan Editor", edit_agency_apartment_path(@apartment, floor_plan: "true"), class: "btn btn-secondary", input_html: { value: 'true'} %>
+          <%#= link_to "List apartment", edit_agency_apartment_path(@apartment), class: "btn btn-secondary" %>
+          <%#= link_to "Unlist apartment", edit_agency_apartment_path(@apartment), class: "btn btn-secondary" %>
+          <%= link_to "Floor Plan Editor", edit_agency_apartment_path(@apartment, floor_plan: "true"), class: "btn btn-secondary" %>
           <%= link_to "Save QR code", save_qr_code_path(@apartment), class: "btn btn-secondary" %>
           <%= link_to "Edit apartment", edit_agency_apartment_path(@apartment), class: "btn btn-secondary" %>
           <%= link_to "Delete apartment", agency_apartment_path(@apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-secondary" %>

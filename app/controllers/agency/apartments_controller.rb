@@ -18,7 +18,7 @@ class Agency::ApartmentsController < ApplicationController
 
   def index
     @apartments = policy_scope([:agency, Apartment])
-    # sending the total amount of bookmarks to the view for stats
+    # sending the total amount of bookmarks and impressions to the view for stats
     @bookmarks_count = @apartments.map { |apt| apt.bookmarks.count }.sum
     @impressions_count = @apartments.map(&:impression_counter).sum
   end
@@ -29,24 +29,25 @@ class Agency::ApartmentsController < ApplicationController
 
   def new
     @apartment = Apartment.new
+    @floor_plan_picture = FloorPlanPicture.new
     authorize([:agency, @apartment])
   end
 
   def create
     @apartment = Apartment.new(apartment_params)
     @apartment.agency = current_user
+    @floor_plan_picture = FloorPlanPicture.new(floor_plan_picture_params)
+    @floor_plan_picture.save
+    @apartment.floor_plan_picture = @floor_plan_picture
 
     # attaching a qr code
-    # url = '.../apartments/:id'
-
     url = "https://suite-fit-rlmp44-5e8ff51180b0.herokuapp.com/apartments/#{@apartment.id}"
-    qr = RQRCode::QRCode.new(url)
-    @apartment.qr_code = qr
+    qr_code = RQRCode::QRCode.new(url)
+    @apartment.qr_code = qr_code
 
     authorize([:agency, @apartment])
     if @apartment.save
       redirect_to agency_apartment_path(@apartment)
-      # redirect_to edit_agency_apartment_path(@apartment, creation: 'true')
     else
       render :new, status: :unprocessable_entity
     end
@@ -83,5 +84,9 @@ class Agency::ApartmentsController < ApplicationController
 
   def apartment_params
     params.require(:apartment).permit(:name, :description, :price, :photos, :total_floorspace, :address, :category, :floor_plan)
+  end
+
+  def floor_plan_picture_params
+    params.require(:floor_plan_picture).permit(:photo)
   end
 end

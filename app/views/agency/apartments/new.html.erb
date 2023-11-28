@@ -2,15 +2,19 @@
   <div class="row justify-content-center">
     <div class="col-12 col-sm-4">
       <h1 class="form-title">List an apartment</h1>
-      <div class="form-shared">
-        <%= simple_form_for @apartment, url: agency_apartments_path do |f| %>
+      <div class="form-shared" data-controller="new-forms">
+        <%= simple_form_for [@apartment, @floor_plan_picture], url: agency_apartments_path, data: {"new-forms-target": "fpForm"} do |f| %>
+          <%= f.input :photo, as: :file, required: true, label: "Upload the floor plan of your apartment" %>
+          <%= f.button :submit, type: :hidden %>
+        <% end %>
+        <%= simple_form_for @apartment, url: agency_apartments_path, data: {action: "turbo:submit-end->new-forms#submitBothForms"} do |f| %>
           <%= f.input :name, placeholder: "Meguro Heights" %>
           <%= f.input :description, as: :text, placeholder: "A quiet place in the middle of the big city." %>
           <%= f.input :price, label: "Rent (¥ per month)", placeholder: "70000" %>
           <%= f.input :total_floorspace, label: "Total floorspace (m²)", placeholder: "20" %>
           <%= f.input :category, placeholder: "1LDK" %>
           <%= f.input :address, placeholder: "Tokyo, Meguro, 1-2-3" %>
-          <%= f.input :photos, as: :file, required: true, label: "Upload photos of your apartment" %>
+          <%= f.input :photos, as: :file, input_html: { multiple: true }, required: true, label: "Upload photos of your apartment" %>
           <%= f.button :submit, "Save", class:"btn btn-secondary" %>
         <% end %>
       </div>
