@@ -1,12 +1,20 @@
-<h1 class="my-2">Add an apartment</h1>
-<%= simple_form_for @apartment, url: agency_apartments_path do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :price %>
-  <%= f.input :total_floorspace %>
-  <%= f.input :category %>
-  <%= f.input :address %>
-  <%= f.input :photos, as: :file, label: "Upload a floorplan" %>
-  <%= f.input :creation, as: :hidden, input_html: { value: 'true'} %>
-  <%= f.button :submit, "Next", class:"btn btn-secondary" %>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-4">
+      <h1 class="form-title">List an apartment</h1>
+      <div class="form-shared">
+        <%= simple_form_for @apartment, url: agency_apartments_path do |f| %>
+          <%= f.input :name, placeholder: "Meguro Heights" %>
+          <%= f.input :description, as: :text, placeholder: "A quiet place in the middle of the big city." %>
+          <%= f.input :price, label: "Rent (¥ per month)", placeholder: "70000" %>
+          <%= f.input :total_floorspace, label: "Total floorspace (m²)", placeholder: "20" %>
+          <%= f.input :category, placeholder: "1LDK" %>
+          <%= f.input :address, placeholder: "Tokyo, Meguro, 1-2-3" %>
+          <%= f.input :photos, as: :file, required: true, label: "Upload your floorplan" %>
+          <%= f.input :creation, as: :hidden, input_html: { value: 'true'} %>
+          <%= f.button :submit, "Next", class:"btn btn-secondary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
