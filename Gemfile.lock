@@ -327,6 +327,7 @@ DEPENDENCIES
   bootsnap
   bootstrap (~> 5.2)
   capybara
+  chunky_png
   cloudinary
   debug
   devise

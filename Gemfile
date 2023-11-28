@@ -58,6 +58,7 @@ gem "sassc-rails"
 # Our added gems
 gem "rqrcode", "~> 2.0"
 gem "pundit"
+gem 'chunky_png'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
