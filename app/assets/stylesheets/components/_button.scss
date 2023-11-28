@@ -14,11 +14,34 @@
 
 // item button on fitting page
 .items-button {
-  opacity: .7;
+  width: 200px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  backdrop-filter: blur(8px);
 }
 
+// gradient for hover effects
 .items-button:hover {
-  opacity: 1;
+  background: -webkit-linear-gradient(left, $gradient-color-1,$gradient-color-2 , $gradient-color-1);
+  background-size: 1600px 200px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation-duration: 2.375s;
+  animation-name: animationgradienttitle;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
   transition: .2;
   cursor: pointer;
+}
+
+@keyframes animationgradienttitle {
+  0% {
+      background-position: 0 1600px;
+  }
+  100% {
+      background-position: 1600px 0;
+  }
 }

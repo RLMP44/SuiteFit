@@ -55,14 +55,13 @@
       <%# render canvas here %>
     </canvas>
     <%# items list menu %>
-    <div class="col-4 container" style="border: black; background-color: lightgrey;">
+    <div class="col-4 container" style="border: black; background-color: #B1C7FF;">
       <div class="row">
         <% current_user.items.all.each do |item| %>
           <%# create cards for each item %>
           <div
             class="card col-4 my-3 mx-2 p-2 items-button"
             id="fit-item"
-            style="width: 200px; border-radius: 3px; drop-shadow: 2px 2px 4px darkgrey;"
             data-action="click->load-canvas#add"
             data-name="image-<%= item.name %>"
             data-length="<%= item.length %>"
