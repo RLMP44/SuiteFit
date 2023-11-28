@@ -9,6 +9,7 @@ export default class extends Controller {
   }
 
   connect() {
+    console.log("hi")
     // create empty canvas
     this.canvas = new fabric.Canvas("new-canvas", {
       height: 800,
@@ -23,7 +24,7 @@ export default class extends Controller {
       this.loadedCanvas.forEachObject(function(obj) {
         if (obj === options.target) return;
         // change user items' color/opacity
-        if (obj.fill === "f00") {
+        if (obj.fill === "#f00") {
           console.log("Door found!")
         }
         else if (obj.type !== "rect") {
@@ -125,12 +126,12 @@ export default class extends Controller {
 
   // function to deserialize json and render apartment.floor_plan or bookmark.arrangement
   loadCanvas(canvas, json) {
-    console.log(json)
     const newCanvas = canvas.loadFromJSON(json, canvas.renderAll.bind(canvas), (o, object) => {
       // use callback to isolate door and calculate ratio only once canvas is loaded
       if (object.fill === "#f00" && object.width > 0) {
         console.log("made it!")
         this.calculateRatio(object)
+        console.log(this.ratio)
       }
       // make all boundaries unselectable
       if (object.fill === "#5f5" || object.fill === "#f00" || object.fill === "#f55") {

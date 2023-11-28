@@ -34,7 +34,9 @@
             <li class="nav-item">
               <%# Button for the agency to see requests from users %>
               <% if current_user && current_user.agency? %>
-                <%= link_to "Requests","#", class: "nav-link" %>
+                <%= link_to agency_bookmarks_path, class: "nav-link" do %>
+                  Requests <span class="" data-requests-subscription-target="requestsSidebar"></span>
+                <% end %>
               <% end %>
             </li>
             <li class="nav-item">

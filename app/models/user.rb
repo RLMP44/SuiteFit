@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   has_one_attached :photo
   has_many :apartments_as_agency, class_name: "Apartment", foreign_key: :agency_id
+  has_many :bookmarks_as_agency, class_name: "Bookmark", through: :apartments_as_agency, source: :bookmarks
+  has_many :messages_as_agency, class_name: "Message", through: :bookmarks_as_agency, source: :messages
   has_many :bookmarks
   has_many :items
 
