@@ -14,14 +14,13 @@ export default class extends Controller {
   }
 
   #insertCountAndRequests(data) {
-    console.log(data)
     this.#insertCountIntoSidebar(data)
     this.#insertRequestsIntoIndex(data)
   }
 
   #insertCountIntoSidebar(data) {
-    console.log(data)
     this.requestsSidebarTarget.innerHTML = data.count
+    this.requestsSidebarTarget.classList.add("rounded-pill", "bg-secondary", "text-white", "px-2")
   }
 
   #insertRequestsIntoIndex(data) {
