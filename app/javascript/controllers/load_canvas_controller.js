@@ -49,9 +49,11 @@ export default class extends Controller {
 
   // method to add clicked item to canvas
   add(event) {
+    console.log("console logging ratio...")
     console.log(this.ratio)
     // create instance of user item on canvas and scale using ratio
     // pass in data, note that length doesn't exist in fabric so it becomes height
+    console.log("console logging image element...")
     console.log(event.currentTarget.dataset.image)
     var imgElement = document.getElementById(event.currentTarget.dataset.name)
 
@@ -87,6 +89,7 @@ export default class extends Controller {
        // scale image to proper height and width
        image.scaleToHeight(parseInt(event.currentTarget.dataset.length) * this.ratio),
        image.scaleToWidth(parseInt(event.currentTarget.dataset.width) * this.ratio),
+       console.log("console logging produced image object...")
        console.log(image)
       this.canvas.add(image)
   }

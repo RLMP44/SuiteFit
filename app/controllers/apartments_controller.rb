@@ -13,6 +13,11 @@ class ApartmentsController < ApplicationController
     increment_impression!(@apartment)
   end
 
+  def index
+    @apartments = Apartment.all
+    @apartments = policy_scope(Apartment)
+  end
+
   private
 
   def increment_impression!(apartment)

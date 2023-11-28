@@ -64,22 +64,28 @@
             id="fit-item"
             style="width: 200px; border-radius: 3px; drop-shadow: 2px 2px 4px darkgrey;"
           >
-            <img src="<%= image_path(item.image)%>" alt="<%= item.name %>" class= "image-item" id="image-<%= item.name %>" data-load-canvas-target="image-<%= item.name %>">
-            <button
-              data-action="click->load-canvas#add"
-              class="fa-solid fa-circle-plus fa-xl add-item border-0"
-              data-name="image-<%= item.name %>"
-              data-length="<%= item.length %>"
-              data-width="<%= item.width %>"
-              >
-            </button>
-            <div class="card-body">
-              <h4 class="card-title"><%= item.name %> x <%= item.quantity %></h4>
-              <p class="card-text"><%= item.length %> cm² x <%= item.width %> cm²</p>
+            <img
+              src="<%= image_path(item.image)%>"
+              alt="<%= item.name %>"
+              class= "image-item"
+              id="image-<%= item.name %>"
+              data-load-canvas-target="image-<%= item.name %>"
+            >
+              <button
+                data-action="click->load-canvas#add"
+                class="fa-solid fa-circle-plus fa-xl add-item border-0"
+                data-name="image-<%= item.name %>"
+                data-length="<%= item.length %>"
+                data-width="<%= item.width %>"
+                >
+              </button>
+              <div class="card-body">
+                <h4 class="card-title"><%= item.name %> x <%= item.quantity %></h4>
+                <p class="card-text"><%= item.length %> cm² x <%= item.width %> cm²</p>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
