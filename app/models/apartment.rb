@@ -8,4 +8,11 @@ class Apartment < ApplicationRecord
   validates :price, presence: true, numericality: true
   validates :description, presence: true, length: { minimum: 25 }
   validates :category, presence: true, format: { with: /\A\d{1}\w{1,3}\z/ }
+
+  def increment_impression!
+    unless current_user.agency
+      @apartment.impression_counter += 1
+      @apartment.save
+    end
+  end
 end

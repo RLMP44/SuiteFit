@@ -6,5 +6,6 @@ class ApartmentsController < ApplicationController
     @bookmark = Bookmark.new
     @apartment = Apartment.find(params[:id])
     authorize @apartment
+    @apartment.increment_impression!
   end
 end

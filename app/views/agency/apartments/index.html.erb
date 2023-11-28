@@ -5,7 +5,7 @@
       <h3>Stats</h3>
       <p>You have <%= @apartments.count %> apartments listed</p>
       <p>Your apartments were bookmarked <%= @bookmarks_count %> times</p>
-      <p>Your apartments were viewed <%=  %> times</p>
+      <p>Your apartments were viewed <%= @impressions_count %> times</p>
     </div>
     <%# create individual cards here %>
     <% @apartments.each do |apartment| %>
