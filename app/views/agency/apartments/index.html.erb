@@ -1,5 +1,11 @@
 <div class="container">
   <div class="row justify-content-between">
+    <%# Stats %>
+    <div>
+      <h3>Stats</h3>
+      <p>You have <%= @apartments.count %> apartments listed</p>
+      <p>Your apartments were Bookmarked <%= @bookmarks_count %> times</p>
+    </div>
     <%# create individual cards here %>
     <% @apartments.each do |apartment| %>
       <div class="col-5 my-3 mx-2 card-trip">
