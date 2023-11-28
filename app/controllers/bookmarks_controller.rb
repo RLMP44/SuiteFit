@@ -12,6 +12,7 @@ class BookmarksController < ApplicationController
 
   def show
     authorize @bookmark
+    @bookmark.messages.where.not(user: current_user).map(&:read!)
     @message = Message.new
   end
 

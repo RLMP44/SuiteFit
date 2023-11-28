@@ -1,0 +1,11 @@
+.agency-requests-msg {
+  border-left-style: solid;
+  border-left-width: .5rem;
+  border-left-color: dimgray;
+  padding-left: 8px;
+}
+
+.agency-requests-msg-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
