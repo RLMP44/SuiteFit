@@ -18,6 +18,9 @@ class Agency::ApartmentsController < ApplicationController
 
   def index
     @apartments = policy_scope([:agency, Apartment])
+    # sending the total amount of bookmarks to the view for stats
+    @bookmarks_count = @apartments.map { |apt| apt.bookmarks.count }.sum
+    @impressions_count = @apartments.map(&:impression_counter).sum
   end
 
   def show

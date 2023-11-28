@@ -31,12 +31,20 @@
   padding: 16px;
 }
 
-// Items pictures on  index page (my inventory)
+// Items pictures on index page (my inventory)
 .image-item {
   object-fit: contain;
-  width: 200px;
+  width: auto;
   height: 200px;
   padding:16px
+}
+
+// Items cards on fitting page
+#fit-item {
+  width: 150px;
+  height: 250px;
+  border-radius: 7px;
+  position: relative;
 }
 
 // Agency index page cards
