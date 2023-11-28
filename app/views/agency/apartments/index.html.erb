@@ -4,7 +4,7 @@
     <% @apartments.each do |apartment| %>
       <div class="col-5 my-3 mx-2 card-trip">
         <div class="card-image-agency">
-          <%= image_tag("meguro_heights.jpg", class: "card-image-agency-index") %>
+          <%= image_tag(apartment.photos[0], class: "card-image-agency-index") %>
         </div>
         <%# main display info %>
         <div class="card-trip-infos">
