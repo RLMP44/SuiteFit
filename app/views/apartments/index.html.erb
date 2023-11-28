@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row justify-content-between">
+    <%# create individual cards here %>
+    <% @apartments.each do |apartment| %>
+      <div class="col-5 my-3 mx-2 card-trip">
+        <div class="card-image-agency">
+          <%= image_tag(apartment.photos[0], class: "card-image-agency-index") %>
+        </div>
+        <%# main display info %>
+        <div class="card-trip-infos">
+          <h2><%= apartment.name %> - <%= apartment.category %></h2>
+          <p><strong>Total floorspace: <%= apartment.total_floorspace %> m²</strong></p>
+          <%# subtitle info %>
+          <p><strong>Address: <i class="fa-solid fa-location-dot"></i> <%= apartment.address %></strong></p>
+          <p><strong>Price: ¥<%= apartment.price.to_i %></strong></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

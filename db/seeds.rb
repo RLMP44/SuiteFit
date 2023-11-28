@@ -46,8 +46,6 @@ table = Item.create!(
   user: shinji
 )
 
-table.save
-
 chair = Item.create!(
   name: "Chair",
   length: 76,
@@ -55,8 +53,6 @@ chair = Item.create!(
   quantity: 1,
   user: shinji
 )
-
-chair.save
 
 armchair = Item.create!(
   name: "Armchair",
@@ -66,8 +62,6 @@ armchair = Item.create!(
   user: shinji
 )
 
-armchair.save
-
 couch = Item.create!(
   name: "Couch",
   length: 213,
@@ -75,8 +69,6 @@ couch = Item.create!(
   quantity: 1,
   user: shinji
 )
-
-couch.save
 
 sofa = Item.create!(
   name: "Sofa",
@@ -86,8 +78,6 @@ sofa = Item.create!(
   user: shinji
 )
 
-sofa.save
-
 single_bed = Item.create!(
   name: "Single bed",
   length: 188,
@@ -95,8 +85,6 @@ single_bed = Item.create!(
   quantity: 1,
   user: ryan
 )
-
-single_bed.save
 
 double_bed = Item.create!(
   name: "Double bed",
@@ -106,8 +94,6 @@ double_bed = Item.create!(
   user: shinji
 )
 
-double_bed.save
-
 fridge = Item.create!(
   name: "Fridge",
   length: 55,
@@ -115,8 +101,6 @@ fridge = Item.create!(
   quantity: 1,
   user: ryan
 )
-
-fridge.save
 
 washing_machine = Item.create!(
   name: "Washing machine",
@@ -126,8 +110,6 @@ washing_machine = Item.create!(
   user: shinji
 )
 
-washing_machine.save
-
 tv = Item.create!(
   name: "TV",
   length: 120,
@@ -135,8 +117,6 @@ tv = Item.create!(
   quantity: 1,
   user: shinji
 )
-
-tv.save
 
 wardrobe = Item.create!(
   name: "Wardrobe",
@@ -146,8 +126,6 @@ wardrobe = Item.create!(
   user: ryan
 )
 
-wardrobe.save
-
 microwave = Item.create!(
   name: "Microwave",
   length: 40,
@@ -155,8 +133,6 @@ microwave = Item.create!(
   quantity: 1,
   user: ryan
 )
-
-microwave.save
 
 trash_can = Item.create!(
   name: "Trash can",
@@ -166,8 +142,6 @@ trash_can = Item.create!(
   user: shinji
 )
 
-trash_can.save
-
 basket = Item.create!(
   name: "Basket",
   length: 50,
@@ -176,8 +150,6 @@ basket = Item.create!(
   user: shinji
 )
 
-basket.save
-
 desk = Item.create!(
   name: "Desk",
   length: 80,
@@ -185,8 +157,6 @@ desk = Item.create!(
   quantity: 1,
   user: ryan
 )
-
-desk.save
 
 # Apartments
 puts "Creating apartments..."

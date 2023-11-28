@@ -17,4 +17,9 @@ class ApartmentsController < ApplicationController
       apartment.save
     end
   end
+
+  def index
+    @apartments = Apartment.all
+    @apartments = policy_scope(Apartment)
+  end
 end
