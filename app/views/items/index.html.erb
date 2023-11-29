@@ -1,37 +1,39 @@
-<div class="container">
-  <div class="row justify-content-between align-items-center">
-    <div class="col-6">
-      <h1 class="my-2">My Stuff</h1>
-    </div>
-    <%# form for item %>
-    <div class="col-6 d-flex justify-content-end" data-controller="create-item-popup">
-      <%= render "item_form", item: @item, new: true, popup: @pop_up %>
-    </div>
-  </div>
-  <%# create individual cards here %>
-  <div class="row justify-content-between" style="border: black; background-color: #B1C7FF;border-radius:4px;">
-    <% @items.each do |item| %>
+<div>
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
       <div class="col-6">
-        <div class="card-product my-2 mx-2 row justify-content-between">
-          <div class="row justify-content-between">
-            <%# Photo for item %>
-            <div class="col-3">
-              <img src="<%= image_path(item.image)%>" alt="<%= item.name %>" class= "image-item" >
-            </div>
-            <div class="col-7 card-product-infos">
-              <h2><%= item.name %> X <%= item.quantity %></h2>
-              <p>Length: <%= item.length %></p>
-              <p>Width: <%= item.width %></p>
-            </div>
-            <div class="col-2 align-self-center">
-              <div class="d-grid gap-2">
-                <%= render "delete_item", item: item %>
-                <%= render "item_form", item: item, new: false, popup: false %>
+        <h1 class="my-2">My Stuff</h1>
+      </div>
+      <%# form for item %>
+      <div class="col-6 d-flex justify-content-end" data-controller="create-item-popup">
+        <%= render "item_form", item: @item, new: true, popup: @pop_up %>
+      </div>
+    </div>
+    <%# create individual cards here %>
+    <div class="row justify-content-between" style="border: black; background-color: #B1C7FF;border-radius:4px;">
+      <% @items.each do |item| %>
+        <div class="col-6">
+          <div class="card-product my-2 mx-2 row justify-content-between">
+            <div class="row justify-content-between">
+              <%# Photo for item %>
+              <div class="col-3">
+                <img src="<%= image_path(item.image)%>" alt="<%= item.name %>" class= "image-item" >
+              </div>
+              <div class="col-7 card-product-infos">
+                <h2><%= item.name %> X <%= item.quantity %></h2>
+                <p>Length: <%= item.length %></p>
+                <p>Width: <%= item.width %></p>
+              </div>
+              <div class="col-2 align-self-center">
+                <div class="d-grid gap-2">
+                  <%= render "delete_item", item: item %>
+                  <%= render "item_form", item: item, new: false, popup: false %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
