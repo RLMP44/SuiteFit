@@ -25,8 +25,8 @@
     <%# create individual cards here %>
     <div class="row justify-content-center">
       <% @apartments.each do |apartment| %>
-        <div class="card-flashy col-6">
-          <%= image_tag(apartment.photos[0], class: "img-flashy") %>
+        <div class="card-flashy card-flashy-agency col-6">
+          <%= image_tag(apartment.photos[0], class: "img-flashy img-flashy-agency") %>
           <div>
             <h2><%= apartment.name %> - <%= apartment.category %></h2>
             <h3>Address: <i class="fa-solid fa-location-dot"></i> <%= apartment.address %></h3>
