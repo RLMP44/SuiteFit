@@ -80,6 +80,6 @@ class Agency::ApartmentsController < ApplicationController
   end
 
   def apartment_params
-    params.require(:apartment).permit(:name, :description, :price, :photos, :total_floorspace, :address, :category, :floor_plan)
+    params.require(:apartment).permit(:name, :description, :price, :total_floorspace, :address, :category, :floor_plan, photos: [])
   end
 end
