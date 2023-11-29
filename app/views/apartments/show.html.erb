@@ -1,8 +1,12 @@
 <div class="container-fluid flashy-container-show">
   <%# create individual cards here %>
+  <%# <%= image_tag(@apartment.photos[0], class: "img-flashy") %>
+  <%# <% @apartment.photos.each do |photo| %>
+    <%# <% end %>
+  </div>
   <div class="row justify-content-center">
     <div class="card-flashy-show">
-      <%= image_tag(@apartment.photos[0], class: "img-flashy") %>
+      <%= render "caroussel", apartment: @apartment %>
       <div class="row">
         <div class="g-col-6 text-center" style="position: relative;">
           <h2><%= @apartment.name %></h2>
