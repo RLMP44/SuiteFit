@@ -158,18 +158,15 @@ meguro_heights = Apartment.create!(
   address: "Himonya 5-chome, Meguro-ku",
   total_floorspace: 20.64,
   price: 88_000,
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  description: "",
   category: "1LDK",
   agency: fable_agency,
   hidden: false
 )
 
-meguro_heights_p1 = URI.open("")
-meguro_heights.photos.attach(io: meguro_heights_p1, filename: "meguro_heights_p1.jpg", content_type: "image/jpg")
-meguro_heights_p2 = URI.open("")
-meguro_heights.photos.attach(io: meguro_heights_p2, filename: "meguro_heights_p2.jpg", content_type: "image/jpg")
-meguro_heights_p3 = URI.open("")
-meguro_heights.photos.attach(io: meguro_heights_p3, filename: "meguro_heights_p3.jpg", content_type: "image/jpg")
+meguro_heights.photos.attach(io: File.open("#{Rails.root}/app/assets/images/apts/meguro_heights_p1.jpg"), filename: "meguro_heights_p1.jpg", content_type: "image/jpg")
+meguro_heights.photos.attach(io: File.open("#{Rails.root}/app/assets/images/apts/meguro_heights_p2.jpg"), filename: "meguro_heights_p2.jpg", content_type: "image/jpg")
+meguro_heights.photos.attach(io: File.open("#{Rails.root}/app/assets/images/apts/meguro_heights_p3.jpg"), filename: "meguro_heights_p3.jpg", content_type: "image/jpg")
 
 url1 = "http://www.suitefit.tech/apartments/#{meguro_heights.id}"
 meguro_heights_qr_code = RQRCode::QRCode.new(url1)
@@ -182,18 +179,15 @@ shimouma_building = Apartment.create!(
   address: "Shimouma 6-chome, Setagaya-ku",
   total_floorspace: 29.10,
   price: 128_000,
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  description: "",
   category: "1LDK",
   agency: fable_agency,
   hidden: false
 )
 
-shimouma_building_p1 = URI.open("")
-shimouma_building.photos.attach(io: shimouma_building_p1, filename: "shimouma_building_p1.jpg", content_type: "image/jpg")
-shimouma_building_p2 = URI.open("")
-shimouma_building.photos.attach(io: shimouma_building_p2, filename: "shimouma_building_p2.jpg", content_type: "image/jpg")
-shimouma_building_p3 = URI.open("")
-shimouma_building.photos.attach(io: shimouma_building_p3, filename: "shimouma_building_p3.jpg", content_type: "image/jpg")
+shimouma_building.photos.attach(io: File.open("#{Rails.root}/app/assets/images/apts/shimouma_building_p1.jpg"), filename: "shimouma_building_p1.jpg", content_type: "image/jpg")
+shimouma_building.photos.attach(io: File.open("#{Rails.root}/app/assets/images/apts/shimouma_building_p2.jpg"), filename: "shimouma_building_p2.jpg", content_type: "image/jpg")
+shimouma_building.photos.attach(io: File.open("#{Rails.root}/app/assets/images/apts/shimouma_building_p3.jpg"), filename: "shimouma_building_p3.jpg", content_type: "image/jpg")
 
 url2 = "http://www.suitefit.tech/apartments/#{shimouma_building.id}"
 shimouma_building_qr_code = RQRCode::QRCode.new(url2)
@@ -206,18 +200,15 @@ vizinho_tokyo = Apartment.create!(
   address: "Shimouma 1-chome, Setagaya-ku",
   total_floorspace: 17,
   price: 60_000,
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  description: "",
   category: "1R",
   agency: fable_agency,
   hidden: false
 )
 
-vizinho_tokyo_p1 = URI.open("")
-vizinho_tokyo.photos.attach(io: vizinho_tokyo_p1, filename: "vizinho_tokyo_p1.jpg", content_type: "image/jpg")
-vizinho_tokyo_p2 = URI.open("")
-vizinho_tokyo.photos.attach(io: vizinho_tokyo_p2, filename: "vizinho_tokyo_p2.jpg", content_type: "image/jpg")
-vizinho_tokyo_p3 = URI.open("")
-vizinho_tokyo.photos.attach(io: vizinho_tokyo_p3, filename: "vizinho_tokyo_p3.jpg", content_type: "image/jpg")
+vizinho_tokyo.photos.attach(io: File.open("#{Rails.root}/app/assets/images/apts/vizinho_tokyo_p1.jpg"), filename: "vizinho_tokyo_p1.jpg", content_type: "image/jpg")
+vizinho_tokyo.photos.attach(io: File.open("#{Rails.root}/app/assets/images/apts/vizinho_tokyo_p2.jpg"), filename: "vizinho_tokyo_p2.jpg", content_type: "image/jpg")
+vizinho_tokyo.photos.attach(io: File.open("#{Rails.root}/app/assets/images/apts/vizinho_tokyo_p3.jpg"), filename: "vizinho_tokyo_p3.jpg", content_type: "image/jpg")
 
 url3 = "http://www.suitefit.tech/apartments/#{vizinho_tokyo.id}"
 vizinho_tokyo_qr_code = RQRCode::QRCode.new(url3)
@@ -228,31 +219,27 @@ vizinho_tokyo.save!
 # Floorplans
 puts "creating floor plan pictures"
 
-meguro_heights_floorplan_picture = URI.open("")
 meguro_heights_floorplan = FloorPlanPicture.new
 meguro_heights_floorplan.apartment = meguro_heights
-meguro_heights_floorplan.attach(io: meguro_heights_floorplan_picture, filename: "meguro_heights_floorplan_picture.jpg", content_type: "image/jpg")
+meguro_heights_floorplan.attach(io: File.open("#{Rails.root}/app/assets/images/fp/meguro_heights_floorplan.jpg"), filename: "meguro_heights_floorplan_picture.jpg", content_type: "image/jpg")
 meguro_heights_floorplan.save!
 
-shimouma_building_floorplan_picture = URI.open("")
 shimouma_building_floorplan = FloorPlanPicture.new
 shimouma_building_floorplan.apartment = shimouma_building
-shimouma_building_floorplan.attach(io: shimouma_building_floorplan_picture, filename: "shimouma_building_floorplan_picture.jpg", content_type: "image/jpg")
+shimouma_building_floorplan.attach(io: File.open("#{Rails.root}/app/assets/images/fp/shimouma_building_floorplan.jpg"), filename: "shimouma_building_floorplan_picture.jpg", content_type: "image/jpg")
 shimouma_building_floorplan.save!
 
-vizinho_tokyo_floorplan_picture = URI.open("")
 vizinho_tokyo_floorplan = FloorPlanPicture.new
 vizinho_tokyo_floorplan.apartment = vizinho_tokyo
-vizinho_tokyo_floorplan.attach(io: vizinho_tokyo_floorplan_picture, filename: "vizinho_tokyo_floorplan_picture.jpg", content_type: "image/jpg")
+vizinho_tokyo_floorplan.attach(io: File.open("#{Rails.root}/app/assets/images/fp/vizinho_tokyo_floorplan.jpg"), filename: "vizinho_tokyo_floorplan_picture.jpg", content_type: "image/jpg")
 vizinho_tokyo_floorplan.save!
 
-#Bookmarks
+# Bookmarks
 puts "creating bookmarks..."
 
 bookmark1 = Bookmark.create!(
   comment: "Small apartment",
   result: "Bad fit",
-  arrangement: FABRIC_JSON,
   user: shinji,
   apartment: vizinho_tokyo
 )
@@ -260,7 +247,6 @@ bookmark1 = Bookmark.create!(
 bookmark2 = Bookmark.create!(
   comment: "Nice apartment",
   result: "Good fit",
-  arrangement: FABRIC_JSON,
   user: shinji,
   apartment: shimouma_build
 )
@@ -268,17 +254,14 @@ bookmark2 = Bookmark.create!(
 bookmark3 = Bookmark.create!(
   comment: "Perfect size for me",
   result: "Good fit",
-  arrangement: FABRIC_JSON,
   user: ryan,
   apartment: vizinho_tokyo
 )
 
 bookmark4 = Bookmark.create!(
   comment: "Save for later",
-  result: "Undetermined",
-  arrangement: FABRIC_JSON,
   user: ryan,
   apartment: meguro_heights
 )
 
-puts "Finished"
+puts "done! :D"

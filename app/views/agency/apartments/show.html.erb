@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="card-apt-show">
-          <%= cl_image_tag @apartment.photos.first.key, width: 400, crop: :fill %>
+          <%= image_tag(@apartment.photos[0]) %>
         </div>
       </div>
     </div>
