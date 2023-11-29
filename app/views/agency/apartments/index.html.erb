@@ -1,10 +1,10 @@
 <div class="container-fluid flashy-container">
-  <h1 class="my-2">Listed Apartments</h1>
+  <h1 class="my-2 agency-index">Listed Apartments</h1>
   <% if @apartments.any? %>
     <%# Stats %>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      Stats
+    <button type="button" class="stats-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      View statistics
     </button>
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
