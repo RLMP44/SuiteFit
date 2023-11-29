@@ -1,8 +1,9 @@
-<div class="container flashy-container">
+<div class="container-fluid flashy-container">
+  <% if @apartments.any? %>
   <%# create individual cards here %>
-  <div class="row">
+  <div class="row justify-content-center">
     <% @apartments.each do |apartment| %>
-      <div class="card-flashy col-5">
+      <div class="card-flashy col-6">
         <%= image_tag(apartment.photos[0], class: "img-flashy") %>
         <div>
           <h2><%= apartment.name %> - <%= apartment.category %></h2>
@@ -17,7 +18,9 @@
             <%= link_to "View apartment", apartment_path(apartment)%>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="my-4">No apartments are currently listed!</p>
+  <% end %>
 </div>
