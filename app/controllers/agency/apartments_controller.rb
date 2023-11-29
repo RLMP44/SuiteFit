@@ -18,13 +18,14 @@ class Agency::ApartmentsController < ApplicationController
 
   def index
     @apartments = policy_scope([:agency, Apartment])
-    # sending the total amount of bookmarks to the view for stats
+    # sending the total amount of bookmarks and impressions to the view for stats
     @bookmarks_count = @apartments.map { |apt| apt.bookmarks.count }.sum
     @impressions_count = @apartments.map(&:impression_counter).sum
   end
 
   def show
     authorize([:agency, @apartment])
+    @floor_plan_picture = FloorPlanPicture.new
   end
 
   def new
@@ -37,15 +38,13 @@ class Agency::ApartmentsController < ApplicationController
     @apartment.agency = current_user
 
     # attaching a qr code
-    # url = '.../apartments/:id'
-
     url = "https://suite-fit-rlmp44-5e8ff51180b0.herokuapp.com/apartments/#{@apartment.id}"
-    qr = RQRCode::QRCode.new(url)
-    @apartment.qr_code = qr
+    qr_code = RQRCode::QRCode.new(url)
+    @apartment.qr_code = qr_code
 
     authorize([:agency, @apartment])
     if @apartment.save
-      redirect_to edit_agency_apartment_path(@apartment, creation: 'true')
+      redirect_to agency_apartment_path(@apartment)
     else
       render :new, status: :unprocessable_entity
     end

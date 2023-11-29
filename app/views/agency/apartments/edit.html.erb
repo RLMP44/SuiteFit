@@ -1,6 +1,6 @@
-<% if params[:creation] == 'true' %>
-  <div class="container" data-controller="apartment-canvas" data-apartment-canvas-floorplan-url-value=<%= @apartment.photos.first.url %> data-apartment-canvas-id-value=<%= @apartment.id %>>
-    <h1 class="my-2">Add an apartment</h1>
+<% if params[:floor_plan] == 'true' %>
+  <div class="container" data-controller="apartment-canvas" data-apartment-canvas-floorplan-url-value=<%= @apartment.floor_plan_picture.photo.url %> data-apartment-canvas-id-value=<%= @apartment.id %>>
+    <h1 class="my-2">Floor Plan Editor</h1>
     <button class="btn btn-secondary" data-apartment-canvas-target="drawButton" data-action="click->apartment-canvas#startDrawing">Start Drawing</button>
     <div class="d-none" data-apartment-canvas-target="saveButton">
       <button class="btn btn-secondary" data-action="click->apartment-canvas#setDoor">Set Main Door</button>
@@ -19,14 +19,14 @@
       <div class="col-12 col-sm-4">
         <h1 class="form-title">Edit an apartment</h1>
         <div class="form-shared">
-          <%= simple_form_for @apartment, url: agency_apartment_path(@apartment) do |f| %>
+          <%= simple_form_for @apartment, url: agency_apartment_path(@apartment), method: :patch do |f| %>
             <%= f.input :name %>
-            <%= f.input :description %>
-            <%= f.input :price %>
-            <%= f.input :total_floorspace %>
+            <%= f.input :description, as: :text %>
+            <%= f.input :price, label: "Rent (¥ per month)" %>
+            <%= f.input :total_floorspace, label: "Total floorspace (m²)" %>
             <%= f.input :category %>
             <%= f.input :address %>
-            <%= f.input :photos, as: :file, label: "Upload photos" %>
+            <%= f.input :photos, as: :file, label: "Upload photos of your apartment" %>
             <%= f.input :creation, as: :hidden, input_html: { value: 'true'} %>
             <%= f.button :submit, "Save", class:"btn btn-secondary" %>
           <% end %>

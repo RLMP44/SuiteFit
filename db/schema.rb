@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_28_032444) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_28_105445) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,6 +55,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_032444) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "impression_counter", default: 0
+    t.boolean "hidden", default: true
     t.index ["agency_id"], name: "index_apartments_on_agency_id"
   end
 
@@ -68,6 +69,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_032444) do
     t.datetime "updated_at", null: false
     t.index ["apartment_id"], name: "index_bookmarks_on_apartment_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "floor_plan_pictures", force: :cascade do |t|
+    t.bigint "apartment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apartment_id"], name: "index_floor_plan_pictures_on_apartment_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -111,6 +119,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_032444) do
   add_foreign_key "apartments", "users", column: "agency_id"
   add_foreign_key "bookmarks", "apartments"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "floor_plan_pictures", "apartments"
   add_foreign_key "items", "users"
   add_foreign_key "messages", "bookmarks"
   add_foreign_key "messages", "users"

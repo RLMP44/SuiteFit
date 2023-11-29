@@ -16,3 +16,9 @@
   margin-top: 16px;
   text-align: center;
 }
+
+input::placeholder {
+  color: lightgrey;
+  opacity: .5;
+  font-style: italic;
+}
