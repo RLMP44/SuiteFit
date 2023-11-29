@@ -1,16 +1,8 @@
 require "open-uri"
 
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
 puts "cleaning the db..."
+Floor_Plan_Picture.destroy_all
+Message.desroy_all
 Item.destroy_all
 Bookmark.destroy_all
 Apartment.destroy_all
@@ -25,18 +17,18 @@ doug = User.create!(username: "Doug", email: "doug@doug.com", password: "dougisc
 ryan = User.create!(username: "Ryan", email: "ryan@ryan.com", password: "ryaniscool")
 jonatan = User.create!(username: "Jonatan", email: "jonatan@jonatan.com", password: "jonataniscool")
 
-# Rep hosts
+# Agency
 
-yann = User.create!(username: "Yann", email: "yann@yann.com", password: "yanniscool" , agency: true)
-celso = User.create!(username: "Celso", email: "celso@celso.com", password: "celsoiscool" , agency: true)
-rachael = User.create!(username: "Rachael", email: "rachael@rachael.com", password: "rachaeliscool" , agency: true)
-rina = User.create!(username: "Rina", email: "rina@rina.com", password: "rinaiscool" , agency: true)
-trouni = User.create!(username: "Trouni", email: "trouni@trouni.com", password: "trouniiscool" , agency: true)
+# yann = User.create!(username: "Yann", email: "yann@yann.com", password: "yanniscool" , agency: true)
+# celso = User.create!(username: "Celso", email: "celso@celso.com", password: "celsoiscool" , agency: true)
+# rina = User.create!(username: "Rina", email: "rina@rina.com", password: "rinaiscool" , agency: true)
+# trouni = User.create!(username: "Trouni", email: "trouni@trouni.com", password: "trouniiscool" , agency: true)
+fable_agency = User.create!(username: "Fable", email: "fable@fable.com", password: "fableiscool", agency: true)
 
-FABRIC_JSON = JSON.parse(File.read("db/sample_json.json")).to_json
+# FABRIC_JSON = JSON.parse(File.read("db/sample_json.json")).to_json
 
 # Items
-puts "Creating items..."
+puts "creating items..."
 
 table = Item.create!(
   name: "Table",
@@ -161,7 +153,6 @@ desk = Item.create!(
 # Apartments
 puts "Creating apartments..."
 
-meguro_heights_file = URI.open("https://minimini.jp/bookimg_spr/00010014/4018577_op_1.jpg")
 meguro_heights = Apartment.create!(
   name: "Meguro Heights",
   address: "Himonya 5-chome, Meguro-ku",
@@ -169,29 +160,47 @@ meguro_heights = Apartment.create!(
   price: 88_000,
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   category: "1LDK",
-  floor_plan: "JSON",
-  qr_code: "QR code",
-  agency: rachael
+  agency: fable_agency,
+  hidden: false
 )
-meguro_heights.photos.attach(io: meguro_heights_file, filename: "meguro_heights.jpg", content_type: "image/jpg")
-meguro_heights.save
 
-shimouma_build_file = URI.open("https://minimini.jp/bookimg_spr/00010014/4032358_op_1.jpg")
-shimouma_build = Apartment.create!(
-  name: "Shimouma build",
+meguro_heights_p1 = URI.open("")
+meguro_heights.photos.attach(io: meguro_heights_p1, filename: "meguro_heights_p1.jpg", content_type: "image/jpg")
+meguro_heights_p2 = URI.open("")
+meguro_heights.photos.attach(io: meguro_heights_p2, filename: "meguro_heights_p2.jpg", content_type: "image/jpg")
+meguro_heights_p3 = URI.open("")
+meguro_heights.photos.attach(io: meguro_heights_p3, filename: "meguro_heights_p3.jpg", content_type: "image/jpg")
+
+url1 = "http://www.suitefit.tech/apartments/#{meguro_heights.id}"
+meguro_heights_qr_code = RQRCode::QRCode.new(url1)
+meguro_heights.qr_code = meguro_heights_qr_code
+
+meguro_heights.save!
+
+shimouma_building = Apartment.create!(
+  name: "Shimouma building",
   address: "Shimouma 6-chome, Setagaya-ku",
   total_floorspace: 29.10,
   price: 128_000,
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   category: "1LDK",
-  floor_plan: "JSON",
-  qr_code: "QR code",
-  agency: rachael
+  agency: fable_agency,
+  hidden: false
 )
-shimouma_build.photos.attach(io: shimouma_build_file, filename: "shimouma_build.jpg", content_type: "image/jpg")
-shimouma_build.save
 
-vizinho_tokyo_file = URI.open("https://minimini.jp/bookimg_spr/00010014/4032223_op_1.jpg")
+shimouma_building_p1 = URI.open("")
+shimouma_building.photos.attach(io: shimouma_building_p1, filename: "shimouma_building_p1.jpg", content_type: "image/jpg")
+shimouma_building_p2 = URI.open("")
+shimouma_building.photos.attach(io: shimouma_building_p2, filename: "shimouma_building_p2.jpg", content_type: "image/jpg")
+shimouma_building_p3 = URI.open("")
+shimouma_building.photos.attach(io: shimouma_building_p3, filename: "shimouma_building_p3.jpg", content_type: "image/jpg")
+
+url2 = "http://www.suitefit.tech/apartments/#{shimouma_building.id}"
+shimouma_building_qr_code = RQRCode::QRCode.new(url2)
+shimouma_building.qr_code = shimouma_building_qr_code
+
+shimouma_building.save!
+
 vizinho_tokyo = Apartment.create!(
   name: "Vizinho Tokyo",
   address: "Shimouma 1-chome, Setagaya-ku",
@@ -199,15 +208,46 @@ vizinho_tokyo = Apartment.create!(
   price: 60_000,
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   category: "1R",
-  floor_plan: "JSON",
-  qr_code: "QR code",
-  agency: rachael
+  agency: fable_agency,
+  hidden: false
 )
-vizinho_tokyo.photos.attach(io: vizinho_tokyo_file, filename: "vizinho_tokyo.jpg", content_type: "image/jpg")
-vizinho_tokyo.save
+
+vizinho_tokyo_p1 = URI.open("")
+vizinho_tokyo.photos.attach(io: vizinho_tokyo_p1, filename: "vizinho_tokyo_p1.jpg", content_type: "image/jpg")
+vizinho_tokyo_p2 = URI.open("")
+vizinho_tokyo.photos.attach(io: vizinho_tokyo_p2, filename: "vizinho_tokyo_p2.jpg", content_type: "image/jpg")
+vizinho_tokyo_p3 = URI.open("")
+vizinho_tokyo.photos.attach(io: vizinho_tokyo_p3, filename: "vizinho_tokyo_p3.jpg", content_type: "image/jpg")
+
+url3 = "http://www.suitefit.tech/apartments/#{vizinho_tokyo.id}"
+vizinho_tokyo_qr_code = RQRCode::QRCode.new(url3)
+vizinho_tokyo.qr_code = vizinho_tokyo_qr_code
+
+vizinho_tokyo.save!
+
+# Floorplans
+puts "creating floor plan pictures"
+
+meguro_heights_floorplan_picture = URI.open("")
+meguro_heights_floorplan = FloorPlanPicture.new
+meguro_heights_floorplan.apartment = meguro_heights
+meguro_heights_floorplan.attach(io: meguro_heights_floorplan_picture, filename: "meguro_heights_floorplan_picture.jpg", content_type: "image/jpg")
+meguro_heights_floorplan.save!
+
+shimouma_building_floorplan_picture = URI.open("")
+shimouma_building_floorplan = FloorPlanPicture.new
+shimouma_building_floorplan.apartment = shimouma_building
+shimouma_building_floorplan.attach(io: shimouma_building_floorplan_picture, filename: "shimouma_building_floorplan_picture.jpg", content_type: "image/jpg")
+shimouma_building_floorplan.save!
+
+vizinho_tokyo_floorplan_picture = URI.open("")
+vizinho_tokyo_floorplan = FloorPlanPicture.new
+vizinho_tokyo_floorplan.apartment = vizinho_tokyo
+vizinho_tokyo_floorplan.attach(io: vizinho_tokyo_floorplan_picture, filename: "vizinho_tokyo_floorplan_picture.jpg", content_type: "image/jpg")
+vizinho_tokyo_floorplan.save!
 
 #Bookmarks
-puts "Creating bookmarks..."
+puts "creating bookmarks..."
 
 bookmark1 = Bookmark.create!(
   comment: "Small apartment",
