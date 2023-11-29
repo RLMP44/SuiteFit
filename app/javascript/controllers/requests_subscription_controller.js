@@ -4,11 +4,10 @@ import { createConsumer } from "@rails/actioncable"
 // Connects to data-controller="requests-subscription"
 export default class extends Controller {
   static targets = ["userRequests", "requestsSidebar", "requestsIndex"]
-  static values = {agencyId:Number}
 
   connect() {
     this.channel = createConsumer().subscriptions.create(
-      {channel: "RequestsChannel", user_id: this.agencyIdValue},
+      {channel: "RequestsChannel"},
       {received: data => this.#insertCountAndRequests(data)}
     )
   }

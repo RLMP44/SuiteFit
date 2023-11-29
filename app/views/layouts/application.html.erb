@@ -6,13 +6,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
     <%= javascript_importmap_tags %>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   </head>
-  <body data-controller="requests-subscription"
-    <% if user_signed_in? && current_user.agency %>
-      data-requests-subscription-agency-id-value=<%= current_user.id %>
-    <% end %>>
+  <body data-controller="requests-subscription">
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
     <%= yield %>

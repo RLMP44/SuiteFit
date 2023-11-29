@@ -205,7 +205,7 @@ vizinho_tokyo = Apartment.create!(
   address: "Shimouma 1-chome, Setagaya-ku",
   total_floorspace: 17,
   price: 60_000,
-  description: "Newly renovated design apartment situated in one of Tokyo's most popular and coolest neighborhood. Apartment was built as modern open space where the fully equipped kitchen is a part of living zone, with fully equipped kitchen, modern bathroom and toilet.",
+  description: "Newly renovated design apartment situated in one of Tokyo's most popular and coolest neighborhood. Apartment was built as modern open space where the fully equipped kitchen is a part of living zone.",
   category: "1R",
   agency: fable_agency,
   hidden: false,
