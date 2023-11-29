@@ -1,25 +1,12 @@
 <div class="container-fluid flashy-container-show">
   <%# create individual cards here %>
   <%# <%= image_tag(@apartment.photos[0], class: "img-flashy") %>
-  <div class="options">
-    <% @apartment.photos.each do |photo| %>
-      <div class="option" style="--optionBackground: url(<%= image_path(photo.url) %>);">
-        <div class="label">
-          <div class="icon">
-            <i class="fas fa-snowflake"></i>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <%# <% @apartment.photos.each do |photo| %>
+    <%# <% end %>
   </div>
-  <script>
-    $(".option").click(function () {
-        $(".option").removeClass("active");
-        $(this).addClass("active");
-    });
-  </script>
   <div class="row justify-content-center">
     <div class="card-flashy-show">
+      <%= render "caroussel", apartment: @apartment %>
       <div class="row">
         <div class="g-col-6 text-center" style="position: relative;">
           <h2><%= @apartment.name %></h2>
