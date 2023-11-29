@@ -2,29 +2,43 @@
 <div class="outer-container-apt-show container">
   <div class="container-apt-show">
     <div class="row d-flex align-items-center justify-content-center">
-      <%#Apartments name, address price %>
       <div class="col-md-10 apt-info">
-        <div class="card-apt-show">
-          <h1><%= @apartment.name %></h1>
-          <p><%= @apartment.address %></p>
-          <p><%= @apartment.category %></p>
-        </div>
         <%# Agency actions %>
         <div class="card-apt-show text-center">
-          <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStats" aria-expanded="false" aria-controls="collapseStats">
             Stats
           </button>
-          <div class="collapse" id="collapseExample">
+          <div class="collapse" id="collapseStats">
             <div class="card card-body">
               <h4>Stats for <%= @apartment.name %></h4>
               <small>This apartment was bookmarked <strong><%= @apartment.bookmarks.count %></strong> times</small>
               <small>This apartment was viewed <strong><%= @apartment.impression_counter %></strong> times</small>
             </div>
           </div>
+          <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFP" aria-expanded="false" aria-controls="collapseFP">
+            Upload Floor Plan
+          </button>
+          <div class="collapse" id="collapseFP">
+            <div class="card card-body">
+              <%= simple_form_for [@apartment, @floor_plan_picture], url: apartment_floor_plan_pictures_path(@apartment) do |f| %>
+                <%= f.input :photo, as: :file, label: "Upload the floor plan of your apartment" %>
+                <%= f.button :submit, "Save", class:"btn btn-secondary" %>
+              <% end %>
+            </div>
+          </div>
+          <%#= link_to "List apartment", edit_agency_apartment_path(@apartment), class: "btn btn-secondary" %>
+          <%#= link_to "Unlist apartment", edit_agency_apartment_path(@apartment), class: "btn btn-secondary" %>
+          <%= link_to "Floor Plan Editor", edit_agency_apartment_path(@apartment, floor_plan: "true"), class: "btn btn-secondary" %>
           <%= link_to "Save QR code", save_qr_code_path(@apartment), class: "btn btn-secondary" %>
           <%= link_to "Edit apartment", edit_agency_apartment_path(@apartment), class: "btn btn-secondary" %>
           <%= link_to "Delete apartment", agency_apartment_path(@apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-secondary" %>
           <%= link_to "Back to the list", agency_apartments_path, class:"btn btn-secondary" %>
+        </div>
+      <%#Apartments name, address price %>
+        <div class="card-apt-show">
+          <h1><%= @apartment.name %></h1>
+          <p><%= @apartment.address %></p>
+          <p><%= @apartment.category %></p>
         </div>
         <%#Apartments description, price, address, total floorspace, agency %>
         <div class="card-apt-show">
@@ -50,3 +64,6 @@
     </div>
   </div>
 </div>
+
+
+<%#= f.input :edit_floorplan, as: :hidden, input_html: { value: 'true'} %>
