@@ -40,7 +40,16 @@ class BookmarksController < ApplicationController
     authorize @bookmark
     arrangement_json = request.body.read
     @bookmark.update(arrangement: arrangement_json, result: params[:result])
-    redirect_to bookmarks_path
+    if @bookmark.save
+      # @bookmarks = policy_scope(Bookmark)
+      # respond_to do |format|
+      #   format.js { render :index }
+      # end
+      redirect_to bookmarks_path
+      flash[:notice] = "Saved!"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

@@ -123,7 +123,9 @@ export default class extends Controller {
       headers: {
         "X-CSRF-Token": this.getMetaValue("csrf-token")
       }
-    }).then(console.log("Success"))
+    }).then(
+      window.location.href = `${location.origin}/bookmarks`
+      )
   }
 
   // method to calculate the ratio for item scaling
