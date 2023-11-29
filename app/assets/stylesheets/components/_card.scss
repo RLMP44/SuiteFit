@@ -1,13 +1,10 @@
 // Items Index cards
 .card-product {
   overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
-  position: relative;
-  background: rgb(255, 255, 255);
-  border: 1px solid rgba(255, 255, 255, 0.413);
-  box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.238);
-  border-radius: 4px;
 }
 
 .card-product i {
@@ -37,7 +34,7 @@
 // Items pictures on index page (my inventory)
 .image-item {
   object-fit: contain;
-  width: 9rem;
+  width: auto;
   height: 9rem;
   padding:16px
 }
