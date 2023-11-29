@@ -1,45 +1,49 @@
-<div class="container">
+<div class="container-fluid flashy-container">
   <h1 class="my-2">Listed Apartments</h1>
   <% if @apartments.any? %>
-    <div class="row justify-content-between">
-      <%# Stats %>
-      <div>
-        <button class="btn btn-secondary mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          Stats
-        </button>
-        <div class="collapse" id="collapseExample">
-          <div class="card card-body">
-            <h4>Your Stats</h4>
-            <small>You have <strong><%= @apartments.count %></strong> apartments listed</small>
-            <small>Your apartments were bookmarked <strong><%= @bookmarks_count %></strong> times</small>
-            <small>Your apartments were viewed <strong><%= @impressions_count %></strong> times</small>
+    <%# Stats %>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Stats
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title fs-5" id="staticBackdropLabel">Global Stats</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div>You have <strong><%= @apartments.count %></strong> apartments listed</div>
+            <div>Your apartments were bookmarked <strong><%= @bookmarks_count %></strong> times</div>
+            <div>Your apartments were viewed <strong><%= @impressions_count %></strong> times</div>
           </div>
         </div>
       </div>
-      <%# create individual cards here %>
+    </div>
+    <%# create individual cards here %>
+    <div class="row justify-content-center">
       <% @apartments.each do |apartment| %>
-        <div class="col-5 my-3 mx-2 card-trip">
-          <div class="card-image-agency">
-            <%= image_tag(apartment.photos[0], class: "card-image-agency-index") %>
-          </div>
-          <%# main display info %>
-          <div class="card-trip-infos">
+        <div class="card-flashy-agency col-6">
+          <%= image_tag(apartment.photos[0], class: "img-flashy-agency") %>
+          <div>
             <h2><%= apartment.name %> - <%= apartment.category %></h2>
-            <p><strong>Total floorspace: <%= apartment.total_floorspace %> m²</strong></p>
-            <%# subtitle info %>
-            <p><strong>Address: <i class="fa-solid fa-location-dot"></i> <%= apartment.address %></strong></p>
-            <p><strong>Price: ¥<%= apartment.price.to_i %></strong></p>
-          </div>
-          <%# View, Edit and Delete Button here %>
-          <div class="button-agency">
-            <%= link_to "View apartment", agency_apartment_path(apartment), class: "btn btn-info btn-sm rounded-button"%>
-            <%= link_to "Edit apartment", edit_agency_apartment_path(apartment), class: "btn btn-primary btn-sm rounded-button" %>
-            <%= link_to "Delete apartment", agency_apartment_path(apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger btn-sm rounded-button" %>
+            <h3><i class="fa-solid fa-location-dot"></i> <%= apartment.address %></h3>
+            <p>
+              Total floorspace: <%= apartment.total_floorspace %> m²
+            </p>
+            <p>
+              <strong>¥<%= apartment.price.to_i %>/month</strong>
+            </p>
+            <div class="button-flashy-agency">
+              <%= link_to "View apartment", apartment_path(apartment)%>
+            </div>
           </div>
         </div>
       <% end %>
     </div>
   <% else %>
-    <p class="my-4">No apartments currently listed</p>
+    <p class="my-4">No apartments are currently listed!</p>
   <% end %>
 </div>

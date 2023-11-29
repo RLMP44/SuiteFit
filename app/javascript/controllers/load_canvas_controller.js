@@ -13,7 +13,7 @@ export default class extends Controller {
     console.log("hi")
     // create empty canvas
     this.canvas = new fabric.Canvas("new-canvas", {
-      height: 800,
+      height: 900,
       width: 800,
     })
     // call function to load canvas from existing bookmark.arrangement or apartment.floor_plan json

@@ -1,6 +1,8 @@
 // Items Index cards
 .card-product {
   overflow: hidden;
+  // background: white;
+  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
   position: relative;
@@ -44,8 +46,8 @@
 
 // Items cards on fitting page
 #fit-item {
-  width: 202px;
-  height: 272px;
+  width: 214px;
+  height: 245px;
   border-radius: 7px;
   position: relative;
 }
