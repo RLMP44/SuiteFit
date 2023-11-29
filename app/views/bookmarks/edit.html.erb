@@ -55,35 +55,37 @@
       <%# render canvas here %>
     </canvas>
     <%# items list menu %>
-    <div class="col-4 container" style="border: black; background-color: #B1C7FF;">
-      <div class="row">
-        <% current_user.items.all.each do |item| %>
-          <%# create cards for each item %>
-          <div
+    <div class="col-4 container" style="border: black; background-color: #B1C7FF; overflow-y: scroll; height:98vh; border-radius:4px;">
+      <div class="scroll-down-card">
+        <div class="row">
+          <% current_user.items.all.each do |item| %>
+            <%# create cards for each item %>
+            <div
             class="card col-4 my-3 mx-2 p-2 items-button"
             id="fit-item"
             data-action="click->load-canvas#add"
-            data-name="image-<%= item.name %>"
-            data-length="<%= item.length %>"
-            data-width="<%= item.width %>"
-            >
-            <img
+              data-name="image-<%= item.name %>"
+              data-length="<%= item.length %>"
+              data-width="<%= item.width %>"
+              >
+              <img
               src="<%= image_path(item.image)%>"
               alt="<%= item.name %>"
               class= "image-item"
               id="image-<%= item.name %>"
               data-load-canvas-target="image-<%= item.name %>"
             >
-              <%# <button
+                <%# <button
                 class="fa-solid fa-circle-plus fa-xl add-item border-0"
                 > %>
-              <%# </button> %>
-              <div class="card-body">
-                <h4 class="card-title"><%= item.name %> x <%= item.quantity %></h4>
-                <p class="card-text"><%= item.length %> cm² x <%= item.width %> cm²</p>
+                <%# </button> %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= item.name %> x <%= item.quantity %></h4>
+                  <p class="card-text"><%= item.length %> cm² x <%= item.width %> cm²</p>
+                </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

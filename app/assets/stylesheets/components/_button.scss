@@ -16,11 +16,10 @@
 .items-button {
   width: 200px;
   position: relative;
-  background: rgba(255, 255, 255, 0.45);
+  background: rgb(255, 255, 255);
   border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  backdrop-filter: blur(8px);
 }
 
 // gradient for hover effects

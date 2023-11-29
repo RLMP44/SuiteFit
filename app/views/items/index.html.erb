@@ -1,17 +1,18 @@
 <div class="container">
   <div class="row justify-content-between align-items-center">
     <div class="col-6">
-      <h1 class="my-2">My Inventory</h1>
+      <h1 class="my-2">My Stuff</h1>
     </div>
     <%# form for item %>
     <div class="col-6 d-flex justify-content-end" data-controller="create-item-popup">
       <%= render "item_form", item: @item, new: true, popup: @pop_up %>
     </div>
   </div>
+
   <% if @items.any? %>
-    <%# create individual cards here %>
-    <div class="row justify-content-between">
-      <% @items.each do |item| %>
+  <%# create individual cards here %>
+  <div class="row justify-content-between" style="border: black; background-color: #B1C7FF;border-radius:4px;">
+    <% @items.each do |item| %>
         <div class="card-product my-2 mx-2 row justify-content-between">
           <div class="row justify-content-between">
             <%# Photo for item %>

@@ -1,22 +1,21 @@
-<div class="container flashy-container">
+<div class="container-fluid flashy-container">
   <% if @apartments.any? %>
-    <%# create individual cards here %>
-    <div class="row">
-      <% @apartments.each do |apartment| %>
-        <div class="card-flashy col-5">
-          <%= image_tag(apartment.photos[0], class: "img-flashy") %>
-          <div>
-            <h2><%= apartment.name %> - <%= apartment.category %></h2>
-            <h3>Address: <i class="fa-solid fa-location-dot"></i> <%= apartment.address %></h3>
-            <p>
-              Total floorspace: <%= apartment.total_floorspace %> m²
-            </p>
-            <p>
-              <strong>Price: ¥<%= apartment.price.to_i %></strong>
-            </p>
-            <div class="button-flashy">
-              <%= link_to "View apartment", apartment_path(apartment)%>
-            </div>
+  <%# create individual cards here %>
+  <div class="row justify-content-center">
+    <% @apartments.each do |apartment| %>
+      <div class="card-flashy col-6">
+        <%= image_tag(apartment.photos[0], class: "img-flashy") %>
+        <div>
+          <h2><%= apartment.name %> - <%= apartment.category %></h2>
+          <h3>Address: <i class="fa-solid fa-location-dot"></i> <%= apartment.address %></h3>
+          <p>
+            Total floorspace: <%= apartment.total_floorspace %> m²
+          </p>
+          <p>
+            <strong>Price: ¥<%= apartment.price.to_i %></strong>
+          </p>
+          <div class="button-flashy">
+            <%= link_to "View apartment", apartment_path(apartment)%>
           </div>
         </div>
       <% end %>
