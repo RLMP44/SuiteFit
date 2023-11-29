@@ -23,6 +23,7 @@ html {
 }
 
 .card-flashy-agency {
+  position: relative;
   display: flex;
   align-items: center;
   margin: 70px 50px 20px 50px;
@@ -75,6 +76,21 @@ html {
   border: solid #48b6de;
   border-width: 2px;
   text-align: center;
+  &:hover {
+    background: #48b6de;
+    transition: 1s;
+  }
+}
+
+.flashy-edit-button {
+  position: absolute;
+  background: white;
+  top: 14px;
+  right: 14px;
+  padding: 7px 7px;
+  border: solid #48b6de;
+  border-width: 2px;
+  border-radius: 50%;
   &:hover {
     background: #48b6de;
     transition: 1s;
