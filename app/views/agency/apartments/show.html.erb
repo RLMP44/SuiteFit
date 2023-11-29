@@ -4,17 +4,28 @@
     <div class="row d-flex align-items-center justify-content-center">
       <div class="col-md-10 apt-info">
         <%# Agency actions %>
+        <%# Stats %>
+        <!-- Button trigger modal -->
         <div class="card-apt-show text-center">
-          <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStats" aria-expanded="false" aria-controls="collapseStats">
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Stats
           </button>
-          <div class="collapse" id="collapseStats">
-            <div class="card card-body">
-              <h4>Stats for <%= @apartment.name %></h4>
-              <small>This apartment was bookmarked <strong><%= @apartment.bookmarks.count %></strong> times</small>
-              <small>This apartment was viewed <strong><%= @apartment.impression_counter %></strong> times</small>
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title fs-5" id="staticBackdropLabel">Stats for <%= @apartment.name %></h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div>This apartment was bookmarked <strong><%= @apartment.bookmarks.count %></strong> times</div>
+                  <div>This apartment was viewed <strong><%= @apartment.impression_counter %></strong> times</div>
+                </div>
+              </div>
             </div>
           </div>
+          <%# Upload Floorplan %>
           <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFP" aria-expanded="false" aria-controls="collapseFP">
             Upload Floor Plan
           </button>
