@@ -1,21 +1,21 @@
-<div class="container">
-  <div class="row justify-content-between">
-    <%# create individual cards here %>
+<div class="container flashy-container">
+  <%# create individual cards here %>
+  <div class="row">
     <% @apartments.each do |apartment| %>
-      <div class="col-5 my-3 mx-2 card-trip">
-        <div class="card-image-agency">
-          <%= image_tag(apartment.photos[0], class: "card-image-agency-index") %>
-        </div>
-        <%# main display info %>
-        <div class="card-trip-infos">
+      <div class="card-flashy col-5">
+        <%= image_tag(apartment.photos[0], class: "img-flashy") %>
+        <div>
           <h2><%= apartment.name %> - <%= apartment.category %></h2>
-          <p><strong>Total floorspace: <%= apartment.total_floorspace %> m²</strong></p>
-          <%# subtitle info %>
-          <p><strong>Address: <i class="fa-solid fa-location-dot"></i> <%= apartment.address %></strong></p>
-          <p><strong>Price: ¥<%= apartment.price.to_i %></strong></p>
-        </div>
-        <div class="button-user">
-          <%= link_to "View apartment", apartment_path(apartment), class: "btn btn-info btn-sm rounded-button"%>
+          <h3>Address: <i class="fa-solid fa-location-dot"></i> <%= apartment.address %></h3>
+          <p>
+            Total floorspace: <%= apartment.total_floorspace %> m²
+          </p>
+          <p>
+            <strong>Price: ¥<%= apartment.price.to_i %></strong>
+          </p>
+          <div class="button-flashy">
+            <%= link_to "View apartment", apartment_path(apartment)%>
+          </div>
         </div>
       </div>
     <% end %>
