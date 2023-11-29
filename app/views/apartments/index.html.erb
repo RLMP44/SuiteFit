@@ -1,4 +1,5 @@
 <div class="container-fluid flashy-container">
+  <% if @apartments.any? %>
   <%# create individual cards here %>
   <div class="row justify-content-center">
     <% @apartments.each do |apartment| %>
@@ -17,7 +18,9 @@
             <%= link_to "View apartment", apartment_path(apartment)%>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="my-4">No apartments are currently listed!</p>
+  <% end %>
 </div>

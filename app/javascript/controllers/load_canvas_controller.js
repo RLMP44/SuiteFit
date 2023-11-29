@@ -53,14 +53,9 @@ export default class extends Controller {
     console.log(this.ratio)
     // create instance of user item on canvas and scale using ratio
     // pass in data, note that length doesn't exist in fabric so it becomes height
-    console.log("console logging image element...")
-    console.log(event.currentTarget.dataset.image)
     var imgElement = document.getElementById(event.currentTarget.dataset.name)
 
     const image = new fabric.Image(imgElement, {
-        // height: parseInt(event.currentTarget.dataset.length) * this.ratio,
-        // width: parseInt(event.currentTarget.dataset.width) * this.ratio,
-        // fill: '#aac',
         originX: 'left',
         originY: 'top',
         hasBorders: false,
@@ -85,13 +80,19 @@ export default class extends Controller {
         bl:false,
         mb:false,
         br:false
-       })
-       // scale image to proper height and width
-       image.scaleToHeight(parseInt(event.currentTarget.dataset.length) * this.ratio),
-       image.scaleToWidth(parseInt(event.currentTarget.dataset.width) * this.ratio),
-       console.log("console logging produced image object...")
-       console.log(image)
-      this.canvas.add(image)
+      })
+
+    // scale image to proper height and width
+    console.log("Console logging imgElement")
+    console.log(imgElement.id)
+    if (imgElement.id === "image-Sofa" || imgElement.id === "image-Couch") {
+      image.scaleToHeight(parseInt(event.currentTarget.dataset.width) * this.ratio)
+      image.scaleToWidth(parseInt(event.currentTarget.dataset.length) * this.ratio)
+    } else {
+      image.scaleToHeight(parseInt(event.currentTarget.dataset.length) * this.ratio)
+      image.scaleToWidth(parseInt(event.currentTarget.dataset.width) * this.ratio)
+    }
+    this.canvas.add(image)
   }
 
   // method to clear the canvas
@@ -122,7 +123,9 @@ export default class extends Controller {
       headers: {
         "X-CSRF-Token": this.getMetaValue("csrf-token")
       }
-    }).then(console.log("Success"))
+    }).then(
+      window.location.href = `${location.origin}/bookmarks`
+      )
   }
 
   // method to calculate the ratio for item scaling
@@ -130,7 +133,6 @@ export default class extends Controller {
     //  find on-canvas length of main door, scale to size using standard 80 cm door
     const doorWidth = object.width > object.height ? object.width : object.height
     const ratio = doorWidth / 80.0
-    console.log(ratio)
     this.ratio = ratio
   }
 
@@ -141,13 +143,11 @@ export default class extends Controller {
       if (object.fill === "#f00" && object.width > 0) {
         console.log("made it!")
         this.calculateRatio(object)
-        console.log(this.ratio)
       }
       // make all boundaries unselectable
       if (object.fill === "#5f5" || object.fill === "#f00" || object.fill === "#f55") {
         object.set('selectable', false)
       }
-      console.log(object)
     })
     return newCanvas
   }

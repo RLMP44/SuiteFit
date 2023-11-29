@@ -8,10 +8,11 @@
       <%= render "item_form", item: @item, new: true, popup: @pop_up %>
     </div>
   </div>
+
+  <% if @items.any? %>
   <%# create individual cards here %>
   <div class="row justify-content-between" style="border: black; background-color: #B1C7FF;border-radius:4px;">
     <% @items.each do |item| %>
-      <div class="col-6">
         <div class="card-product my-2 mx-2 row justify-content-between">
           <div class="row justify-content-between">
             <%# Photo for item %>
@@ -31,7 +32,9 @@
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="my-4">Upload some of your items!</p>
+  <% end %>
 </div>
