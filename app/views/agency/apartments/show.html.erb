@@ -34,7 +34,7 @@
           <%= link_to "Delete apartment", agency_apartment_path(@apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-secondary" %>
           <%= link_to "Back to the list", agency_apartments_path, class:"btn btn-secondary" %>
         </div>
-      <%#Apartments name, address price %>
+        <%#Apartments name, address price %>
         <div class="card-apt-show">
           <h1><%= @apartment.name %></h1>
           <p><%= @apartment.address %></p>
@@ -52,18 +52,15 @@
             </div>
             <div id="qr">
               <%# displaying the qr code %>
-              <% @qr = RQRCode::QRCode.new("https://suite-fit-rlmp44-5e8ff51180b0.herokuapp.com/apartments/#{@apartment.id}") %>
+              <% @qr = RQRCode::QRCode.new("http://www.suitefit.tech/apartments/#{@apartment.id}") %>
               <%== @qr.as_svg(module_size: 4, viewbox: true) %>
             </div>
           </div>
         </div>
         <div class="card-apt-show">
-          <%= cl_image_tag @apartment.photos.first.key, width: 400, crop: :fill %>
+          <%= image_tag(@apartment.photos[0]) %>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-<%#= f.input :edit_floorplan, as: :hidden, input_html: { value: 'true'} %>
