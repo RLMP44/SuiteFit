@@ -34,6 +34,8 @@ class BookmarksController < ApplicationController
   def edit
     authorize @bookmark
     @items = current_user.items
+    flash[:notice] = "Saved!"
+    redirect_to bookmarks_path
   end
 
   def update
