@@ -4,7 +4,9 @@
   </button>
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Hi <%= current_user.username %>!</h5>
+      <% if user_signed_in? %>
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Hi <%= current_user.username %>!</h5>
+      <% end %>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -42,7 +44,7 @@
               <%# Button for the agency to see requests from users %>
               <% if current_user && current_user.agency? %>
                 <%= link_to agency_bookmarks_path, class: "nav-link" do %>
-                  Requests <span class="" data-requests-subscription-target="requestsSidebar"></span>
+                  Requests <span class="rounded-pill bg-secondary text-white px-2" data-requests-subscription-target="requestsSidebar"><%= Bookmark.unread_count_for(current_user) %></span>
                 <% end %>
               <% end %>
             </li>

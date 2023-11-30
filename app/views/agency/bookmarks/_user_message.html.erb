@@ -1,17 +1,15 @@
  <%# count unread bookmarks -> use action cable to broadcast when a new message is created %>
-<div data-requests-subscription-target="userRequests">
-  <% bookmarks.uniq.each do |bookmark| %>
-    <% if bookmark.user_last_message.present? && bookmark.user_last_message.unread? %>
-      <div class="agency-requests-msg">
-        <div>
-          <small>New request from <strong><%= bookmark.user.username %></strong> re: <strong><%= bookmark.apartment.name %></strong> | <i><%= bookmark.user_last_message.created_at.strftime("%a %b %e at %l:%M %p") %></i></small>
-        </div>
-        <%= link_to bookmark_path(bookmark) do %>
-          <div>
-            <p class="agency-requests-msg-text"><%=bookmark.user_last_message.content %> <i class="fa-solid fa-arrow-right"></i></p>
-          </div>
-        <% end %>
+<div class="d-flex" id=<%= bookmark.id %>>
+  <div class="agency-requests-img" style="background-image: url('<%= bookmark.apartment.photos.first.url %>')"></div>
+  <div class="card-flashy-request-text">
+    <div>
+      <div>Request from <strong><%= bookmark.user.username %></strong> | <small><i><%= bookmark.user_last_message.created_at.strftime("%a %b %e at %l:%M %p") %></i></small></div>
+      <div>re: <strong><%= bookmark.apartment.name %></strong></div>
+    </div>
+    <%= link_to bookmark_path(bookmark) do %>
+      <div>
+        <p class="agency-requests-msg-text"><%= bookmark.user_last_message.content %> <i class="fa-solid fa-arrow-right"></i></p>
       </div>
     <% end %>
-  <% end %>
+  </div>
 </div>

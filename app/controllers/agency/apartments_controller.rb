@@ -8,7 +8,7 @@ class Agency::ApartmentsController < ApplicationController
 
   def save_qr_code
     authorize([:agency, @apartment])
-    url = "http://www.suitefit.tech/apartments/#{@apartment.id}"
+    url = "https://www.suitefit.tech/apartments/#{@apartment.id}"
     png = RQRCode::QRCode.new(url).as_png(
       module_px_size: 24,
       size: 480
@@ -38,7 +38,7 @@ class Agency::ApartmentsController < ApplicationController
     @apartment.agency = current_user
 
     # attaching a qr code
-    url = "http://www.suitefit.tech/apartments/#{@apartment.id}"
+    url = "https://www.suitefit.tech/apartments/#{@apartment.id}"
     qr_code = RQRCode::QRCode.new(url)
     @apartment.qr_code = qr_code
 
