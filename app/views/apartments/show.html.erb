@@ -9,8 +9,8 @@
       <%= render "caroussel", apartment: @apartment %>
       <div class="row">
         <div class="g-col-6 text-center" style="position: relative;">
-          <h2><%= @apartment.name %></h2>
-          <h3><i class="fa-solid fa-location-dot"></i> <%= @apartment.address %></h3>
+          <h2><%= @apartment.name %> - <%= @apartment.category %></h2>
+          <h3 style="opacity:0.6"><i class="fa-solid fa-location-dot"></i> <%= @apartment.address %></h3>
           <%# Create a bookmark form %>
           <%= simple_form_for [@apartment, @bookmark] do |f| %>
             <%= button_tag( :submit, class: "mb-4", id: "fav-btn") do %>
@@ -18,18 +18,16 @@
             <% end %>
           <% end %>
           <%# Apartments description %>
-          <p class="text-dark" style="font-weight: bold;"><%= @apartment.description %></p>
+          <p class="text-muted text-start"><%= @apartment.description %></p>
         </div>
-        <div class="row justify-content-between">
-          <div class="col-5 text-start mt-4">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-6 text-end mt-4">
             <%# Apartments info %>
             <p><strong> Total floorspace: <%= @apartment.total_floorspace %> m²</strong> </p>
-            <p><strong> Price: ¥<%= @apartment.price.to_i %>/per month</strong></p>
-            <p><strong>Apartment type: <%= @apartment.category %></strong></p>
+            <p><strong> ¥<%= @apartment.price.to_i %>/per month</strong></p>
             <p><strong>Managed by <%= @apartment.agency.username %></strong></p>
           </div>
-          <div class="col-2"></div>
-          <div class="col-4">
+          <div class="col-6">
             <div id="qr">
               <%# displaying the qr code %>
               <% @qr = RQRCode::QRCode.new("https://suite-fit-rlmp44-5e8ff51180b0.herokuapp.com/apartments/#{@apartment.id}") %>

@@ -1,10 +1,10 @@
 <div class="container-fluid flashy-container">
-  <h1 class="my-2">Listed Apartments</h1>
+  <h1 class="my-2 agency-index">Listed Apartments</h1>
   <% if @apartments.any? %>
     <%# Stats %>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      Stats
+    <button type="button" class="stats-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      View statistics
     </button>
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -26,6 +26,7 @@
     <div class="row justify-content-center">
       <% @apartments.each do |apartment| %>
         <div class="card-flashy-agency col-6">
+          <%= link_to "", edit_agency_apartment_path(apartment), class: "fa-solid fa-pen flashy-edit-button" %>
           <%= image_tag(apartment.photos[0], class: "img-flashy-agency") %>
           <div>
             <h2><%= apartment.name %> - <%= apartment.category %></h2>
@@ -36,9 +37,9 @@
             <p>
               <strong>¥<%= apartment.price.to_i %>/month</strong>
             </p>
-            <div class="button-flashy-agency">
+            <button class="button-flashy-agency">
               <%= link_to "View apartment", apartment_path(apartment)%>
-            </div>
+            </button>
           </div>
         </div>
       <% end %>
