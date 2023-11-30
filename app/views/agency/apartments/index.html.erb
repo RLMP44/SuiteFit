@@ -1,27 +1,6 @@
 <div class="container-fluid flashy-container">
-  <h1 class="my-2 agency-index">Listed Apartments</h1>
+  <h1 class="agency-index">Listed Apartments (<%= @apartments.count %>)</h1>
   <% if @apartments.any? %>
-    <%# Stats %>
-    <!-- Button trigger modal -->
-    <button type="button" class="stats-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      View statistics
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title fs-5" id="staticBackdropLabel">Global Stats</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div>You have <strong><%= @apartments.count %></strong> apartments listed</div>
-            <div>Your apartments were bookmarked <strong><%= @bookmarks_count %></strong> times</div>
-            <div>Your apartments were viewed <strong><%= @impressions_count %></strong> times</div>
-          </div>
-        </div>
-      </div>
-    </div>
     <%# create individual cards here %>
     <div class="row justify-content-center">
       <% @apartments.each do |apartment| %>
@@ -37,8 +16,25 @@
             <p>
               <strong>¥<%= apartment.price.to_i %>/month</strong>
             </p>
+            <%# display individual stats %>
+            <div class="row stats-number">
+              <div class="col">
+                <h5><strong><%= apartment.impression_counter %></strong></h5>
+              </div>
+              <div class="col">
+                <h5><strong><%= apartment.bookmarks.count %></strong></h5>
+              </div>
+            </div>
+            <div class="row stats-title">
+              <div class="col">
+                <p>Views</p>
+              </div>
+              <div class="col">
+                <p>Bookmarks</p>
+              </div>
+            </div>
             <button class="button-flashy-agency">
-              <%= link_to "View apartment", apartment_path(apartment)%>
+              <%= link_to "View apartment", agency_apartment_path(apartment)%>
             </button>
           </div>
         </div>

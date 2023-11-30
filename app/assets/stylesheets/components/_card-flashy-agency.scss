@@ -6,9 +6,11 @@ html {
 
 .agency-index {
   padding-left: 80px;
+  margin-top: 20px;
+  margin-bottom: -20px;
 }
 
-.stats-button {
+.global-stats {
   margin-left: 80px;
   border: 0;
   background: #48b6de;
@@ -21,10 +23,6 @@ html {
   border: solid white;
   border-width: 2px;
   text-align: center;
-  &:hover {
-    background: rgb(142, 215, 242);
-    transition: 1s;
-  }
 }
 
 .flashy-container {
@@ -49,7 +47,7 @@ html {
   position: relative;
   display: flex;
   align-items: center;
-  margin: 70px 50px 20px 50px;
+  margin: 50px 40px 20px 50px;
   width: 75vw;
   max-width: 600px;
   padding: 50px 30px 50px 20px;
@@ -118,4 +116,8 @@ html {
     background: #48b6de;
     transition: 1s;
   }
+}
+
+.stats-title {
+  font-size: 24;
 }
