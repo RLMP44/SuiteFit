@@ -1,0 +1,103 @@
+.card-flashy-book body,
+html {
+  height: 100%;
+}
+
+.flashy-container {
+  background-color: rgb(236, 236, 236);
+}
+
+.card-flashy-book * {
+  box-sizing: border-box;
+}
+
+.card-flashy-book body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  background: #efecff;
+  background-size: 16px 16px;
+  font-family: "Euclid Circular A", "Poppins";
+}
+
+.card-flashy-book {
+  display: flex;
+  align-items: center;
+  margin: 70px 50px 20px 50px;
+  max-width: 600px;
+  padding: 50px 30px 50px 20px;
+  background: linear-gradient(180deg, rgb(142, 215, 242), #48b6de);
+  border-radius: 24px;
+  position: relative;
+}
+
+.img-flashy-book {
+  max-width: 280px;
+  width: 28vw;
+  height: 300px;
+  object-fit: cover;
+  margin-left: -60px;
+  margin-right: 30px;
+  border-radius: inherit;
+  box-shadow: 0px 60px 40px rgba(0, 0, 0, 0.08);
+}
+
+.card-flashy-book h2 {
+  margin-right: 0;
+  font-size: 26px;
+}
+
+.card-flashy-book h3 {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.card-flashy-book p {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 24px;
+}
+
+.button-flashy-book {
+  border: 0;
+  background: rgb(142, 215, 242);
+  color: #f8f8f8;
+  font-family: inherit;
+  padding: 16px 26px;
+  font-size: 16px;
+  border-radius: 40px;
+  border: solid white;
+  border-width: 2px;
+  text-align: center;
+  &:hover {
+    background: #48b6de;
+    transition: 1s;
+  }
+}
+
+
+.button-flashy-book-small {
+  border: 0;
+  background: rgb(142, 215, 242);
+  color: #f8f8f8;
+  font-family: inherit;
+  padding: 3px 9px;
+  font-size: 16px;
+  border-radius: 50px;
+  border: solid white;
+  border-width: 2px;
+  text-align: center;
+  &:hover {
+    background: #48b6de;
+    transition: 1s;
+  }
+}
+
+.button-three-book {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
