@@ -4,6 +4,9 @@ class Apartment < ApplicationRecord
   has_many :bookmarks
   has_many_attached :photos
 
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
   validates :name, presence: true, length: { maximum: 50 }
   validates :address, presence: true
   validates :total_floorspace, presence: true, numericality: true
