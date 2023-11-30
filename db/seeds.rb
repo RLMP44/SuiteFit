@@ -54,16 +54,16 @@ armchair = Item.create!(
 
 couch = Item.create!(
   name: "Couch",
-  length: 213,
-  width: 89,
+  length: 120,
+  width: 70,
   quantity: 1,
   user: shinji
 )
 
 sofa = Item.create!(
   name: "Sofa",
-  length: 250,
-  width: 120,
+  length: 150,
+  width: 80,
   quantity: 1,
   user: shinji
 )
