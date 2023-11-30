@@ -23,7 +23,8 @@
           <% else %>
             <div class="d-flex flex-column justify-content-center align-items-center">
               <span style="font-size: 15px">You haven't uploaded a floor plan yet!</span>
-              <button class="button-flashy w-75 my-2" style="color: black; display: inline;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFP" aria-expanded="false" aria-controls="collapseFP">
+              <!-- Button trigger modal -->
+              <button class="button-flashy w-75 my-2" style="color: black; display: inline;" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Upload Floor Plan
               </button>
             </div>
@@ -43,14 +44,27 @@
               <%= link_to "Floor Plan Editor", edit_agency_apartment_path(@apartment, floor_plan: "true"), class: "button-flashy", style: "color: black;" %>
             </div>
           <% else %>
-            <div class="collapse" id="collapseFP">
-              <div class="card card-body">
-                <%= simple_form_for [@apartment, @floor_plan_picture], url: apartment_floor_plan_pictures_path(@apartment) do |f| %>
-                  <%= f.input :photo, as: :file, label: "Upload the floor plan of your apartment" %>
-                  <%= f.button :submit, "Save", class:"button-flashy", style: "color: black;" %>
-                <% end %>
+            <%# modal start %>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Upload floor plan</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <%= simple_form_for [@apartment, @floor_plan_picture], url: apartment_floor_plan_pictures_path(@apartment) do |f| %>
+                      <%= f.input :photo, as: :file, label: "Upload the floor plan of your apartment" %>
+                    </div>
+                    <div class="modal-footer">
+                      <%= f.button :submit, "Save", class:"button-flashy", style: "color: black;" %>
+                    <% end %>
+                  </div>
+                </div>
               </div>
             </div>
+            <%# modal end %>
           <% end %>
           <div class="col">
             <%= link_to save_qr_code_path(@apartment), class: "button-flashy", style: "color: black;" do %>
