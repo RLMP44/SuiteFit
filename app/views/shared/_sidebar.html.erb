@@ -11,7 +11,6 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
           <ul class="navbar-nav me-auto">
-            <%# Button for Home for all users%>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
@@ -27,7 +26,7 @@
               <% if current_user && current_user.agency? %>
                 <%= link_to "My Apartments", agency_apartments_path, class: "nav-link" %>
               <% else %>
-                <%= link_to "My Stuff", items_path, class: "nav-link" %>
+                <%= link_to "My Items", items_path, class: "nav-link" %>
               <% end %>
             </li>
             <li class="nav-item">

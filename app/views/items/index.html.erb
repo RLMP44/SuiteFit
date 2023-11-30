@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-between align-items-center">
       <div class="col-6">
-        <h1 class="my-2">My Stuff</h1>
+        <h1 class="my-2">My Items</h1>
       </div>
       <%# form for item %>
       <div class="col-6 d-flex justify-content-end" data-controller="create-item-popup">
@@ -17,7 +17,7 @@
             <div class="row justify-content-between">
               <%# Photo for item %>
               <div class="col-3">
-                <img src="<%= image_path(item.image)%>" alt="<%= item.name %>" class= "image-item" >
+                <img src="<%= image_path(item.image)%>" alt="<%= item.name %>" class= "image-item">
               </div>
               <div class="col-7 card-product-infos">
                 <h2><%= item.name %> X <%= item.quantity %></h2>
