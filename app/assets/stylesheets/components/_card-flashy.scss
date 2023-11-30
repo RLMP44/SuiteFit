@@ -100,9 +100,7 @@ html {
   }
 }
 
-
 // User apartment showpage
-
 .card-flashy-show body,
 html {
   height: 100%;
@@ -127,6 +125,7 @@ html {
 }
 
 .card-flashy-show {
+  position: relative;
   display: flex;
   align-items: center;
   margin: 70px 20px 20px 20px;

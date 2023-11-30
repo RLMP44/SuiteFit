@@ -118,6 +118,36 @@ html {
   }
 }
 
+.flashy-edit-button-agency-show {
+  position: absolute;
+  background: rgb(142, 215, 242);
+  top: 7px;
+  right: 7px;
+  padding: 9px 9px;
+  border: solid white;
+  border-width: 2px;
+  border-radius: 50%;
+  &:hover {
+    background: #48b6de;
+    transition: 1s;
+  }
+}
+
+.flashy-delete-button-agency-show {
+  position: absolute;
+  background: rgb(142, 215, 242);
+  top: 50px;
+  right: 7px;
+  padding: 9px 9px;
+  border: solid white;
+  border-width: 2px;
+  border-radius: 50%;
+  &:hover {
+    background: #48b6de;
+    transition: 1s;
+  }
+}
+
 .stats-title {
   font-size: 24;
 }
