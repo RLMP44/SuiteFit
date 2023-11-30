@@ -16,25 +16,14 @@
           <p><strong> ¥<%= @apartment.price.to_i %>/month</strong></p>
           <p><strong>Managed by <%= @apartment.agency.username %></strong></p>
         </div>
-        <div class="row justify-content-between align-items-center">
+        <div class="justify-content-between align-items-center d-flex">
           <%# floor plan display %>
           <% if @apartment.floor_plan_picture.photo.present? %>
-            <%= image_tag(@apartment.floor_plan_picture.photo, class: "show-floor-plan col-6 text-end mt-4") %>
-            <div>
-              <%= link_to "Floor Plan Editor", edit_agency_apartment_path(@apartment, floor_plan: "true"), class: "button-flashy" %>
-            </div>
+            <%= image_tag(@apartment.floor_plan_picture.photo, class: "show-floor-plan col-6 text-end my-2") %>
           <% else %>
             <button class="button-flashy" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFP" aria-expanded="false" aria-controls="collapseFP">
               Upload Floor Plan
             </button>
-            <div class="collapse" id="collapseFP">
-              <div class="card card-body">
-                <%= simple_form_for [@apartment, @floor_plan_picture], url: apartment_floor_plan_pictures_path(@apartment) do |f| %>
-                  <%= f.input :photo, as: :file, label: "Upload the floor plan of your apartment" %>
-                  <%= f.button :submit, "Save", class:"btn btn-secondary" %>
-                <% end %>
-              </div>
-            </div>
           <% end %>
           <div class="col-6">
             <div id="qr" class="my-2">
@@ -42,6 +31,25 @@
               <% @qr = RQRCode::QRCode.new("https://suite-fit-rlmp44-5e8ff51180b0.herokuapp.com/apartments/#{@apartment.id}") %>
               <%== @qr.as_svg(module_size: 4, viewbox: true) %>
             </div>
+          </div>
+        </div>
+        <%# buttons row %>
+        <div class="my-4 d-flex justify-content-around">
+          <% if @apartment.floor_plan_picture.photo.present? %>
+            <div class="col">
+              <%= link_to "Floor Plan Editor", edit_agency_apartment_path(@apartment, floor_plan: "true"), class: "button-flashy", style: "color: black;" %>
+            </div>
+          <% else %>
+            <div class="collapse" id="collapseFP">
+              <div class="card card-body">
+                <%= simple_form_for [@apartment, @floor_plan_picture], url: apartment_floor_plan_pictures_path(@apartment) do |f| %>
+                  <%= f.input :photo, as: :file, label: "Upload the floor plan of your apartment" %>
+                  <%= f.button :submit, "Save", class:"button-flashy", style: "color: black;" %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+          <div class="col">
             <%= link_to save_qr_code_path(@apartment), class: "button-flashy", style: "color: black;" do %>
               <i class="fa-solid fa-download"></i>Save QR code
             <% end %>
