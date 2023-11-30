@@ -80,61 +80,61 @@
     <h1 class="my-2">My Saved Apartments</h1>
     <% if @bookmarks.any? %>
       <%# filter via fitting result %>
-      <div class="row justify-content-start">
-        <div class="col-sm-8 my-3">
-          <%= link_to "All Apartments", bookmarks_path, class: "btn btn-secondary" %>
-          <%= link_to "Good fit", bookmarks_path(result: "Good fit"), class: "btn btn-secondary" %>
-          <%= link_to "Tight fit", bookmarks_path(result: "Tight fit"), class: "btn btn-secondary" %>
-          <%= link_to "Poor fit", bookmarks_path(result: "Poor fit"), class: "btn btn-secondary" %>
-        </div>
-      </div>
-      <%# create individual cards here %>
-      <div class="row justify-content-center">
-        <% @bookmarks.each do |bookmark| %>
-          <div class="card-flashy-book col-6">
-            <%=cl_image_tag bookmark.apartment.photos.first.key, class: "img-flashy-book" %>
-            <div>
-              <h2><%= bookmark.apartment.name %> - <%= bookmark.apartment.category %></h2>
-              <h3>Address: <i class="fa-solid fa-location-dot"></i> <%= bookmark.apartment.address %></h3>
-              <p>
-                Total floorspace: <%= bookmark.apartment.total_floorspace %> m²
-              </p>
-              <p>
-                <strong>Price: ¥<%= bookmark.apartment.price.to_i %></strong>
-              </p>
-              <% if bookmark.comment.blank? %>
-                <p>add comment(update)</p>
-              <% else %>
-                <p><%= bookmark.comment %> | edit comment</p>
-              <% end %>
-              <% if bookmark.result == "Good fit" %>
-                <p class="badge rounded-pill text-white" style="background: green;"><%= bookmark.result %></p>
-              <% elsif bookmark.result == "Tight fit" %>
-                <p class="badge rounded-pill text-white" style="background: orange;"><%= bookmark.result %></p>
-              <% elsif bookmark.result == "Poor fit" || bookmark.result == "Bad fit"%>
-                <p class="badge rounded-pill text-white" style="background: red;"><%= bookmark.result %></p>
-              <% else %>
-                <p class="badge rounded-pill text-black bg-info"><%= bookmark.result %></p>
-              <% end %>
-              <button class="button-flashy-book">
-                <%= link_to "Check your fit", fit_path(bookmark) %>
+      <%# <div class="row justify-content-start"> %>
+      <%# <div class="col-sm-8 my-3"> %>
+      <%# <%= link_to "All Apartments", bookmarks_path, class: "btn btn-secondary" %>
+      <%# <%= link_to "Good fit", bookmarks_path(result: "Good fit"), class: "btn btn-secondary" %>
+      <%# <%= link_to "Tight fit", bookmarks_path(result: "Tight fit"), class: "btn btn-secondary" %>
+      <%# <%= link_to "Poor fit", bookmarks_path(result: "Poor fit"), class: "btn btn-secondary" %>
+      <%# </div> %>
+    </div>
+    <%# create individual cards here %>
+    <div class="row justify-content-center">
+      <% @bookmarks.each do |bookmark| %>
+        <div class="card-flashy-book col-6">
+          <%=cl_image_tag bookmark.apartment.photos.first.key, class: "img-flashy-book" %>
+          <div>
+            <h2><%= bookmark.apartment.name %> - <%= bookmark.apartment.category %></h2>
+            <h3>Address: <i class="fa-solid fa-location-dot"></i> <%= bookmark.apartment.address %></h3>
+            <p>
+              Total floorspace: <%= bookmark.apartment.total_floorspace %> m²
+            </p>
+            <p>
+              <strong>Price: ¥<%= bookmark.apartment.price.to_i %></strong>
+            </p>
+            <% if bookmark.comment.blank? %>
+              <%# <p>add comment(update)</p> %>
+            <% else %>
+              <p><%= bookmark.comment %> | edit comment</p>
+            <% end %>
+            <% if bookmark.result == "Good fit" %>
+              <p class="badge rounded-pill text-white" style="background: green;"><%= bookmark.result %></p>
+            <% elsif bookmark.result == "Tight fit" %>
+              <p class="badge rounded-pill text-white" style="background: orange;"><%= bookmark.result %></p>
+            <% elsif bookmark.result == "Poor fit" || bookmark.result == "Bad fit"%>
+              <p class="badge rounded-pill text-white" style="background: red;"><%= bookmark.result %></p>
+            <% else %>
+              <p class="badge rounded-pill text-black bg-info"><%= bookmark.result %></p>
+            <% end %>
+            <button class="button-flashy-book">
+              <%= link_to "Check your fit", fit_path(bookmark) %>
+            </button>
+            <div class="button-three-book">
+              <button class="button-flashy-book-small">
+                <%= link_to "", apartment_path(bookmark.apartment), class:"btn-sm my-2 fa-solid fa-circle-info" %>
               </button>
-              <div class="button-three-book">
-                <button class="button-flashy-book-small">
-                  <%= link_to "", apartment_path(bookmark.apartment), class:"btn btn-outline-secondary btn-sm my-2 fa-solid fa-circle-info" %>
-                </button>
-                <button class="button-flashy-book-small">
-                  <%= link_to "", bookmark_path(bookmark), class:"btn btn-outline-secondary btn-sm my-2 fa-solid fa-envelope" %>
-                </button>
-                <button class="button-flashy-book-small">
-                  <%= link_to "", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-outline-secondary btn-sm my-2 fa-solid fa-trash-can" %>
-                </button>
-              </div>
+              <button class="button-flashy-book-small">
+                <%= link_to "", bookmark_path(bookmark), class:"btn-sm my-2 fa-solid fa-envelope" %>
+              </button>
+              <button class="button-flashy-book-small">
+                <%= link_to "", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn-sm my-2 fa-solid fa-trash-can" %>
+              </button>
             </div>
           </div>
-        <% end %>
-      </div>
-    <% else %>
-      <p class="my-5">You don't have any apartments saved yet!</p>
-    <% end %>
-  </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="my-5">You don't have any apartments saved yet!</p>
+  <% end %>
+</div>
