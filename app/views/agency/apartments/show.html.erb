@@ -1,3 +1,6 @@
+<% content_for :meta_title, "#{@apartment.name} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @apartment.description %>
+<% content_for :meta_image, cl_image_path(@apartment.photos[0].path) %>
 <%#Apartments info %>
 <div class="outer-container-apt-show container">
   <div class="container-apt-show">
