@@ -17,7 +17,8 @@ class MessagesController < ApplicationController
       RequestsChannel.broadcast_to(
         @bookmark.apartment.agency,
         count: Bookmark.unread_count_for(@bookmark.apartment.agency),
-        user_message: render_to_string(partial: "agency/bookmarks/user_message", locals: { bookmarks: @bookmark.apartment.agency.bookmarks_as_agency })
+        bookmark_id: @bookmark.id.to_s,
+        user_message: render_to_string(partial: "agency/bookmarks/user_message", locals: { bookmark: @bookmark })
       ) if !current_user.agency
       head :ok
     else

@@ -63,7 +63,7 @@
             </div>
             <div id="qr">
               <%# displaying the qr code %>
-              <% @qr = RQRCode::QRCode.new("http://www.suitefit.tech/apartments/#{@apartment.id}") %>
+              <% @qr = RQRCode::QRCode.new("https://www.suitefit.tech/apartments/#{@apartment.id}") %>
               <%== @qr.as_svg(module_size: 4, viewbox: true) %>
             </div>
           </div>

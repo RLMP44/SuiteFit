@@ -3,7 +3,7 @@
     <div class="col-12 col-sm-4">
       <h1 class="form-title">List an apartment</h1>
       <div class="form-shared" data-controller="new-forms">
-        <%= simple_form_for @apartment, url: agency_apartments_path, data: {action: "turbo:submit-end->new-forms#submitBothForms"} do |f| %>
+        <%= simple_form_for @apartment, url: agency_apartments_path do |f| %>
           <%= f.input :name, placeholder: "Meguro Heights" %>
           <%= f.input :description, as: :text, placeholder: "A quiet place in the middle of the big city." %>
           <%= f.input :price, label: "Rent (¥ per month)", placeholder: "70000" %>
