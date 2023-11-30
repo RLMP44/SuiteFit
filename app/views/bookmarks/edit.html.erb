@@ -35,7 +35,7 @@
           data-action="click->load-canvas#save"
             data-arrangement="<%= @bookmark.arrangement %>"
             data-bookmark="<%= @bookmark.id %>"
-            class="btn btn-primary mx-1"
+            class="button-52"
             style="width: 15%"
             >
             Book Now!
@@ -47,7 +47,7 @@
         <%# render canvas here %>
       </canvas>
       <%# items list menu %>
-      <div class="col-4 container my-4" style="border: black; background-color: #B1C7FF; overflow-y: scroll; height:98vh; border-radius:4px; width: 30rem;">
+      <div class="col-4 container my-4" style="border: black; background: linear-gradient(180deg, #8ed7f2, #48b6de); overflow-y: scroll; height:98vh; border-radius:4px; width: 30rem;">
         <div class="row justify-content-around align-items-center">
           <div class="col-6 text-center">
             <h3 class="mt-3">Click to add</h3>
@@ -55,43 +55,41 @@
           <div class="col-6 text-center">
             <button
               data-action="click->load-canvas#clear"
-              class="btn btn-outline-danger btn-sm mt-3"
+              class="btn btn-outline-success btn-sm mt-3"
               style="width: 50%"
               >
               Start over
             </button>
           </div>
         </div>
-        <div class="scroll-down-card">
-          <div class="row justify-content-center">
-            <% current_user.items.all.each do |item| %>
-              <%# create cards for each item %>
-              <div
+        <div class="row justify-content-center">
+          <% current_user.items.all.each do |item| %>
+            <%# create cards for each item %>
+            <div
             class="card col-4 my-3 mx-2 p-2 items-button align-items-center"
             id="fit-item"
             data-action="click->load-canvas#add"
-                data-name="image-<%= item.name %>"
-                data-length="<%= item.length %>"
-                data-width="<%= item.width %>"
-                >
-                <img
+              data-name="image-<%= item.name %>"
+              data-length="<%= item.length %>"
+              data-width="<%= item.width %>"
+              >
+              <img
               src="<%= image_path(item.image)%>"
               alt="<%= item.name %>"
               class= "image-item"
               id="image-<%= item.name %>"
               data-load-canvas-target="image-<%= item.name %>"
             >
-                  <%# <button
+                <%# <button
                 class="fa-solid fa-circle-plus fa-xl add-item border-0"
                 > %>
-                  <%# </button> %>
-                  <div class="card-body">
-                    <h4 class="card-title text-center"><%= item.name %></h4>
-                    <p class="card-text"><%= item.length %> cm² x <%= item.width %> cm²</p>
-                  </div>
+                <%# </button> %>
+                <div class="card-body">
+                  <h4 class="card-title text-center"><%= item.name %></h4>
+                  <p class="card-text"><%= item.length %> cm² x <%= item.width %> cm²</p>
                 </div>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 // Gradient animation in the text
 
 .gradient-animation {
-  background: -webkit-linear-gradient(left, $gradient-color-1,$gradient-color-2 , $gradient-color-1);
+  background: -webkit-linear-gradient(left, $blue-2, $blue-1, $blue-2);
   background-size: 1600px 200px;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

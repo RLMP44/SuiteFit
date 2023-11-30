@@ -7,12 +7,12 @@
           <%= image_tag(apartment.photos[0], class: "img-flashy") %>
           <div>
             <h2><%= apartment.name %> - <%= apartment.category %></h2>
-            <h3>Address: <i class="fa-solid fa-location-dot"></i> <%= apartment.address %></h3>
+            <h3 style="opacity:0.6"><i class="fa-solid fa-location-dot"></i> <%= apartment.address %></h3>
             <p>
               Total floorspace: <%= apartment.total_floorspace %> m²
             </p>
             <p>
-              <strong>Price: ¥<%= apartment.price.to_i %>/month</strong>
+              <strong>¥<%= apartment.price.to_i %>/month</strong>
             </p>
             <div class="button-flashy">
               <%= link_to "View apartment", apartment_path(apartment)%>

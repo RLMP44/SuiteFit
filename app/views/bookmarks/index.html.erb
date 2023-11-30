@@ -95,27 +95,27 @@
           <%=cl_image_tag bookmark.apartment.photos.first.key, class: "img-flashy-book" %>
           <div>
             <h2><%= bookmark.apartment.name %> - <%= bookmark.apartment.category %></h2>
-            <h3>Address: <i class="fa-solid fa-location-dot"></i> <%= bookmark.apartment.address %></h3>
+            <h3 style="opacity:0.6;"><i class="fa-solid fa-location-dot"></i> <%= bookmark.apartment.address %></h3>
             <p>
               Total floorspace: <%= bookmark.apartment.total_floorspace %> m²
             </p>
             <p>
-              <strong>Price: ¥<%= bookmark.apartment.price.to_i %>/month</strong>
+              <strong>¥<%= bookmark.apartment.price.to_i %>/month</strong>
             </p>
-            <% if bookmark.comment.blank? %>
-              <%# <p>add comment(update)</p> %>
-            <% else %>
-              <p><%= bookmark.comment %> | edit comment</p>
-            <% end %>
-            <% if bookmark.result == "Good fit" %>
-              <p class="badge rounded-pill text-white" style="background: green;"><%= bookmark.result %></p>
-            <% elsif bookmark.result == "Tight fit" %>
-              <p class="badge rounded-pill text-white" style="background: orange;"><%= bookmark.result %></p>
-            <% elsif bookmark.result == "Poor fit" || bookmark.result == "Bad fit"%>
-              <p class="badge rounded-pill text-white" style="background: red;"><%= bookmark.result %></p>
-            <% else %>
-              <p class="badge rounded-pill text-black bg-info"><%= bookmark.result %></p>
-            <% end %>
+            <%# <% if bookmark.comment.blank? %>
+            <%# <p>add comment(update)</p> %>
+            <%# <% else %>
+            <%# <p><%= bookmark.comment | edit comment</p>  %>
+            <%# <% end %>
+            <%# <% if bookmark.result == "Good fit" %>
+            <%# <p class="badge rounded-pill text-white" style="background: green;"><%= bookmark.result</p> %>
+            <%# <% elsif bookmark.result == "Tight fit" %>
+            <%# <p class="badge rounded-pill text-white" style="background: orange;"><%= bookmark.result</p> %>
+            <%# <% elsif bookmark.result == "Poor fit" || bookmark.result == "Bad fit"%>
+            <%# <p class="badge rounded-pill text-white" style="background: red;"><%= bookmark.result</p> %>
+            <%# <% else %>
+            <%# <p class="badge rounded-pill text-black bg-info"><%= bookmark.result</p> %>
+            <%# <% end %>
             <button class="button-flashy-book">
               <%= link_to "Check your fit", fit_path(bookmark) %>
             </button>

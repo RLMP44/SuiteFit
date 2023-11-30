@@ -25,11 +25,11 @@
     </div>
   </div>
   <%# Button for Admins and regular Users%>
-  <div style="margin-left: 25px;">
+  <div style="margin-left: 25px; margin-top:20px;">
     <% if current_user && current_user.agency? %>
-      <%= link_to "Check your fit now!", agency_apartments_path, class: "btn homepage-btn" %>
+      <%= link_to "List your apartment!", agency_apartments_path, class: "button-52" %>
     <% else %>
-      <%= link_to "Check your fit now!", items_path, class: "btn homepage-btn" %>
+      <%= link_to "Check your fit now!", items_path, class: "button-52" %>
     <% end %>
   </div>
 </div>
