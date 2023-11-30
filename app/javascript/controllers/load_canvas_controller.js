@@ -117,7 +117,7 @@ export default class extends Controller {
 
   // method to save arrangement
   save(event) {
-    fetch(`/bookmarks/${event.currentTarget.dataset.bookmark}?result=${this.resultTarget.value}`, {
+    fetch(`/bookmarks/${event.currentTarget.dataset.bookmark}?`, {
       method: "PATCH",
       body: JSON.stringify(this.loadedCanvas),
       headers: {

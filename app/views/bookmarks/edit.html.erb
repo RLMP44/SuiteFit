@@ -31,15 +31,18 @@
           collection: ["Good fit", "Tight fit", "Poor fit"],
           input_html: {data: {load_canvas_target: "result"}} %>
           <%# <% end %>
-          <button
-          data-action="click->load-canvas#save"
-            data-arrangement="<%= @bookmark.arrangement %>"
-            data-bookmark="<%= @bookmark.id %>"
-            class="button-52"
-            style="width: 15%"
-            >
-            Book Now!
-          </button>
+          <div class="d-flex justify-content-between">
+            <button
+              data-action="click->load-canvas#save"
+              data-arrangement="<%= @bookmark.arrangement%>"
+              data-bookmark="<%= @bookmark.id %>"
+              class="button-52"
+              style="width: 15%; height: 91%;"
+              >
+              Save
+            </button>
+            <%= link_to "Book Now!", bookmarks_path, class:"button-52 mb-3", style:"width: 15%; height: 91%;" %>
+          </div>
         </div>
       </div>
       <%# canvas elements %>
