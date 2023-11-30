@@ -44,7 +44,7 @@
               <%# Button for the agency to see requests from users %>
               <% if current_user && current_user.agency? %>
                 <%= link_to agency_bookmarks_path, class: "nav-link" do %>
-                  Requests <span class="rounded-pill bg-secondary text-white px-2" data-requests-subscription-target="requestsSidebar"><%= Bookmark.unread_count_for(current_user) %></span>
+                  Requests <span class="request-counter" data-requests-subscription-target="requestsSidebar"><%= Bookmark.unread_count_for(current_user) %></span>
                 <% end %>
               <% end %>
             </li>

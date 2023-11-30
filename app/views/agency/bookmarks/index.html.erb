@@ -1,10 +1,9 @@
 <div class="container">
-  <h1>Your Requests</h1>
+  <h1 class="mt-3">Requests</h1>
   <div data-requests-subscription-target="requestList">
     <% @bookmarks.uniq.each do |bookmark| %>
-      <div class="card-flashy-request">
-        <%= render "user_message", bookmark: bookmark %>
-      </div>
-    <% end %>
-  </div>
+      <%= render "user_message", bookmark: bookmark %>
+    </div>
+  <% end %>
+</div>
 </div>
