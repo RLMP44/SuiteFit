@@ -1,6 +1,8 @@
 class ApartmentsController < ApplicationController
   # Inserted a authorization policy in front of each method as a reminder.
   # When writing the method, put it before saving to the database.
+  skip_before_action :authenticate_user!, only: :show
+
   def index
     @apartments = policy_scope(Apartment)
   end
@@ -24,7 +26,7 @@ class ApartmentsController < ApplicationController
 
   # counting page views
   def increment_impression!(apartment)
-    unless current_user.agency
+    if user_signed_in? == false || !current_user.agency
       apartment.impression_counter += 1
       apartment.save
     end
