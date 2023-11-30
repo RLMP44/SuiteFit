@@ -5,10 +5,10 @@
   letter-spacing: 1px;
   padding: 13px 20px 13px;
   outline: 0;
-  border: 1px solid white;
+  border: 1px solid gray;
   cursor: pointer;
   position: relative;
-  background-color: rgba(0, 0, 0, 0);
+  background: transparent;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -16,7 +16,7 @@
 
 .button-52:after {
   content: "";
-  background: $blue-2;
+  background: $blue-1;
   width: 100%;
   z-index: -1;
   position: absolute;
@@ -29,6 +29,13 @@
 .button-52:hover:after {
   top: 0px;
   left: 0px;
+  opacity: 1 !important;
+}
+
+.button-52:hover {
+  top: 0px;
+  left: 0px;
+  opacity: 1 !important;
 }
 
 @media (min-width: 768px) {
