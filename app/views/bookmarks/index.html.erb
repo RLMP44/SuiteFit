@@ -107,15 +107,15 @@
             <% else %>
               <p><%= bookmark.comment %> | edit comment</p>
             <% end %>
-            <% if bookmark.result == "Good fit" %>
-              <p class="badge rounded-pill text-white" style="background: green;"><%= bookmark.result %></p>
-            <% elsif bookmark.result == "Tight fit" %>
-              <p class="badge rounded-pill text-white" style="background: orange;"><%= bookmark.result %></p>
-            <% elsif bookmark.result == "Poor fit" || bookmark.result == "Bad fit"%>
-              <p class="badge rounded-pill text-white" style="background: red;"><%= bookmark.result %></p>
-            <% else %>
-              <p class="badge rounded-pill text-black bg-info"><%= bookmark.result %></p>
-            <% end %>
+            <%# <% if bookmark.result == "Good fit" %>
+            <%# <p class="badge rounded-pill text-white" style="background: green;"><%= bookmark.result</p> %>
+            <%# <% elsif bookmark.result == "Tight fit" %>
+            <%# <p class="badge rounded-pill text-white" style="background: orange;"><%= bookmark.result</p> %>
+            <%# <% elsif bookmark.result == "Poor fit" || bookmark.result == "Bad fit"%>
+            <%# <p class="badge rounded-pill text-white" style="background: red;"><%= bookmark.result</p> %>
+            <%# <% else %>
+            <%# <p class="badge rounded-pill text-black bg-info"><%= bookmark.result</p> %>
+            <%# <% end %>
             <button class="button-flashy-book">
               <%= link_to "Check your fit", fit_path(bookmark) %>
             </button>

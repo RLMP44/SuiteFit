@@ -29,18 +29,19 @@ body {
 
 .footer-text {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 16px;
   font-size: 20px;
 }
 
 .footer-text p {
  font-size: 15px;
+ margin-bottom: 0;
 }
 
-.icon-container-homepage {
-  display: flex;
-  justify-content: center;
-}
+// .icon-container-homepage {
+//   display: flex;
+//   justify-content: center;
+// }
 
 .icon-container-homepage i {
   margin: 0 10px;
