@@ -76,24 +76,24 @@
   <%# </div> %>
   <%# comment %>
   <%# comment %>
-  <div class="container">
+  <div class="container-fluid flashy-container">
     <h1 class="my-2">My Saved Apartments</h1>
-    <div class="container-fluid flashy-container">
-      <% if @bookmarks.any? %>
-        <%# filter via fitting result %>
-        <div class="row justify-content-start">
-          <div class="col-sm-8 my-3">
-            <%= link_to "All Apartments", bookmarks_path, class: "btn btn-secondary" %>
-            <%= link_to "Good fit", bookmarks_path(result: "Good fit"), class: "btn btn-secondary" %>
-            <%= link_to "Tight fit", bookmarks_path(result: "Tight fit"), class: "btn btn-secondary" %>
-            <%= link_to "Poor fit", bookmarks_path(result: "Poor fit"), class: "btn btn-secondary" %>
-          </div>
+    <% if @bookmarks.any? %>
+      <%# filter via fitting result %>
+      <div class="row justify-content-start">
+        <div class="col-sm-8 my-3">
+          <%= link_to "All Apartments", bookmarks_path, class: "btn btn-secondary" %>
+          <%= link_to "Good fit", bookmarks_path(result: "Good fit"), class: "btn btn-secondary" %>
+          <%= link_to "Tight fit", bookmarks_path(result: "Tight fit"), class: "btn btn-secondary" %>
+          <%= link_to "Poor fit", bookmarks_path(result: "Poor fit"), class: "btn btn-secondary" %>
         </div>
-        <%# create individual cards here %>
-        <div class="row justify-content-center">
-          <% @bookmarks.each do |bookmark| %>
-            <div class="card-flashy col-6">
-              <%=cl_image_tag bookmark.apartment.photos.first.key, class: "img-flashy" %>
+      </div>
+      <%# create individual cards here %>
+      <div class="row justify-content-center">
+        <% @bookmarks.each do |bookmark| %>
+          <div class="card-flashy-book col-6">
+            <%=cl_image_tag bookmark.apartment.photos.first.key, class: "img-flashy-book" %>
+            <div>
               <h2><%= bookmark.apartment.name %> - <%= bookmark.apartment.category %></h2>
               <h3>Address: <i class="fa-solid fa-location-dot"></i> <%= bookmark.apartment.address %></h3>
               <p>
@@ -117,36 +117,16 @@
                 <p class="badge rounded-pill text-black bg-info"><%= bookmark.result %></p>
               <% end %>
               <div class="d-flex">
-                <ul id="side-menu" style="background: transparent;">
-                  <li>
-                    <div class="side-menu__label">Check your fit!</div>
-                  </li>
-                  <li><%= link_to "", fit_path(bookmark), class:"btn btn-outline-success btn-sm my-2 fa-solid fa-people-carry-box" %></li>
-                </ul>
-                <ul id="side-menu" style="background: transparent;">
-                  <li>
-                    <div class="side-menu__label">View details</div>
-                  </li>
-                  <li><%= link_to "", apartment_path(bookmark.apartment), class:"btn btn-outline-secondary btn-sm my-2 fa-solid fa-circle-info" %></li>
-                </ul>
-                <ul id="side-menu" style="background: transparent;">
-                  <li>
-                    <div class="side-menu__label">Contact realtor</div>
-                  </li>
-                  <li><%= link_to "", bookmark_path(bookmark), class:"btn btn-outline-secondary btn-sm my-2 fa-solid fa-envelope" %></li>
-                </ul>
-                <ul id="side-menu" style="background: transparent;">
-                  <li>
-                    <div class="side-menu__label">Delete home</div>
-                  </li>
-                  <li><%= link_to "", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-outline-secondary btn-sm my-2 fa-solid fa-trash-can" %></li>
-                </ul>
+                <%= link_to "Check your fit", fit_path(bookmark), class:"btn btn-outline-success btn-sm my-2 fa-solid fa-people-carry-box" %>
+                <%= link_to "View apartment", apartment_path(bookmark.apartment), class:"btn btn-outline-secondary btn-sm my-2 fa-solid fa-circle-info" %>
+                <%= link_to "Contact agency", bookmark_path(bookmark), class:"btn btn-outline-secondary btn-sm my-2 fa-solid fa-envelope" %>
+                <%= link_to "Delete apartment", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-outline-secondary btn-sm my-2 fa-solid fa-trash-can" %>
               </div>
-            <% end %>
+            </div>
           </div>
-        <% else %>
-          <p class="my-5">You don't have any apartments saved yet!</p>
         <% end %>
       </div>
-    </div>
+    <% else %>
+      <p class="my-5">You don't have any apartments saved yet!</p>
+    <% end %>
   </div>
