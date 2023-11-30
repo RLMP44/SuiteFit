@@ -24,6 +24,13 @@ class Agency::ApartmentsController < ApplicationController
   end
 
   def show
+    if @apartment.geocoded?
+      @marker = {
+        lat: @apartment.latitude,
+        lng: @apartment.longitude,
+        marker_html: render_to_string(partial: "apartments/marker")
+      }
+    end
     authorize([:agency, @apartment])
     @floor_plan_picture = FloorPlanPicture.new
   end
