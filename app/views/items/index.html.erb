@@ -1,4 +1,3 @@
-  
 <div class="container">
   <div class="row justify-content-between align-items-center">
     <div class="col-6">
@@ -10,29 +9,31 @@
     </div>
   </div>
   <%# create individual cards here %>
-  <div class="row justify-content-between" style="border: black; background-color: #B1C7FF;border-radius:4px;">
-    <% @items.each do |item| %>
-      <div class="col-6">
-        <div class="card-product my-2 mx-2 row justify-content-between">
-          <div class="row justify-content-between">
-            <%# Photo for item %>
-            <div class="col-3">
-              <img src="<%= image_path(item.image)%>" alt="<%= item.name %>" class= "image-item">
-            </div>
-            <div class="col-7 card-product-infos">
-              <h2><%= item.name %> X <%= item.quantity %></h2>
-              <p>Length: <%= item.length %></p>
-              <p>Width: <%= item.width %></p>
-            </div>
-            <div class="col-2 align-self-center">
-              <div class="d-grid gap-2">
+  <div class="d-flex justify-content-center">
+    <div style="border: black; background: linear-gradient(180deg, #8ed7f2, #48b6de);border-radius:4px; width: 160vh; margin-bottom:15px;">
+      <div class="row justify-content-center">
+        <% @items.each do |item| %>
+          <div class="card col-4 my-3 mx-2 p-2 align-items-center"
+            id="fit-img">
+            <div class="justify-content-around">
+              <%# Photo for item %>
+              <div class="text-center">
+                <img src="<%= image_path(item.image)%>" alt="<%= item.name %>" class= "image-item"
+              id="image-<%= item.name %>">
+              </div>
+              <div class="card-body text-center">
+                <h2 class="card-title"><%= item.name %></h2>
+                <p class="card-text">Length: <%= item.length %></p>
+                <p class="card-text">Width: <%= item.width %></p>
+              </div>
+              <div class="d-flex gap-2 mb-2">
                 <%= render "delete_item", item: item %>
                 <%= render "item_form", item: item, new: false, popup: false %>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>

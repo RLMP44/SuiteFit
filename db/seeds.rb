@@ -92,14 +92,6 @@ fridge = Item.create!(
   user: ryan
 )
 
-washing_machine = Item.create!(
-  name: "Washing machine",
-  length: 60,
-  width: 50,
-  quantity: 1,
-  user: shinji
-)
-
 tv = Item.create!(
   name: "TV",
   length: 120,
