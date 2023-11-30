@@ -17,9 +17,25 @@
           <p><strong>Managed by <%= @apartment.agency.username %></strong></p>
         </div>
         <div class="row justify-content-between align-items-center">
-          <%# <div class="col-6 text-end mt-4"> %>
-          <%= image_tag(@apartment.floor_plan_picture.photo, class: "show-floor-plan col-6 text-end mt-4") %>
-          <%# </div> %>
+          <%# floor plan display %>
+          <% if @apartment.floor_plan_picture.photo.present? %>
+            <%= image_tag(@apartment.floor_plan_picture.photo, class: "show-floor-plan col-6 text-end mt-4") %>
+            <div>
+              <%= link_to "Floor Plan Editor", edit_agency_apartment_path(@apartment, floor_plan: "true"), class: "button-flashy" %>
+            </div>
+          <% else %>
+            <button class="button-flashy" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFP" aria-expanded="false" aria-controls="collapseFP">
+              Upload Floor Plan
+            </button>
+            <div class="collapse" id="collapseFP">
+              <div class="card card-body">
+                <%= simple_form_for [@apartment, @floor_plan_picture], url: apartment_floor_plan_pictures_path(@apartment) do |f| %>
+                  <%= f.input :photo, as: :file, label: "Upload the floor plan of your apartment" %>
+                  <%= f.button :submit, "Save", class:"btn btn-secondary" %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
           <div class="col-6">
             <div id="qr" class="my-2">
               <%# displaying the qr code %>
@@ -32,20 +48,22 @@
           </div>
         </div>
         <%# display stats %>
-        <div class="row stats-number">
-          <div class="col">
-            <h5><strong><%= @apartment.impression_counter %></strong></h5>
+        <div class="stats mt-4">
+          <div class="row stats-number">
+            <div class="col">
+              <h5><strong><%= @apartment.impression_counter %></strong></h5>
+            </div>
+            <div class="col">
+              <h5><strong><%= @apartment.bookmarks.count %></strong></h5>
+            </div>
           </div>
-          <div class="col">
-            <h5><strong><%= @apartment.bookmarks.count %></strong></h5>
-          </div>
-        </div>
-        <div class="row stats-title">
-          <div class="col">
-            <p>Views</p>
-          </div>
-          <div class="col">
-            <p>Bookmarks</p>
+          <div class="row stats-title">
+            <div class="col">
+              <p>Views</p>
+            </div>
+            <div class="col">
+              <p>Bookmarks</p>
+            </div>
           </div>
         </div>
         <%# end of stats %>
@@ -59,25 +77,5 @@
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
-  </div>
-</div>
-<%# old stuff %>
-<%# upload floor plan button and form %>
-<div class="row justify-content-around">
-  <div class="col">
-    <button class="button-flashy-agency" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFP" aria-expanded="false" aria-controls="collapseFP">
-      Upload Floor Plan
-    </button>
-    <div class="collapse" id="collapseFP">
-      <div class="card card-body">
-        <%= simple_form_for [@apartment, @floor_plan_picture], url: apartment_floor_plan_pictures_path(@apartment) do |f| %>
-          <%= f.input :photo, as: :file, label: "Upload the floor plan of your apartment" %>
-          <%= f.button :submit, "Save", class:"btn btn-secondary" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <%= link_to "Floor Plan Editor", edit_agency_apartment_path(@apartment, floor_plan: "true"), class: "button-flashy-agency" %>
   </div>
 </div>
