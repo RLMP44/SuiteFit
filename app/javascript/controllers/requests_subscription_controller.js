@@ -3,29 +3,38 @@ import { createConsumer } from "@rails/actioncable"
 
 // Connects to data-controller="requests-subscription"
 export default class extends Controller {
-  static targets = ["userRequests", "requestsSidebar", "requestsIndex"]
+  static targets = ["requestList", "requestsSidebar"]
 
   connect() {
     this.channel = createConsumer().subscriptions.create(
       {channel: "RequestsChannel"},
-      {received: data => this.#insertCountAndRequests(data)}
+      {received: data => this.#insertCountAndRequest(data)}
     )
   }
 
-  #insertCountAndRequests(data) {
+  #insertCountAndRequest(data) {
     this.#insertCountIntoSidebar(data)
-    this.#insertRequestsIntoIndex(data)
+    this.#insertRequestIntoRequestList(data)
   }
 
   #insertCountIntoSidebar(data) {
     this.requestsSidebarTarget.innerHTML = data.count
-    this.requestsSidebarTarget.classList.add("rounded-pill", "bg-secondary", "text-white", "px-2")
   }
 
-  #insertRequestsIntoIndex(data) {
-    if (this.userRequestsTarget) {
-      this.requestsIndexTarget.innerHTML = data.count
-      this.userRequestsTarget.outerHTML = data.user_message
+  #insertRequestIntoRequestList(data) {
+    if (this.requestListTarget) {
+      Array.from(this.requestListTarget.children).forEach(child => {
+        if (data.bookmark_id === child.id) {
+          child.remove()
+        }
+      });
     }
+    this.requestListTarget.insertAdjacentHTML("afterbegin", data.user_message)
   }
 }
+
+// sidebar: the new requests badge should stay until a request has been clicked
+// requests page should have all requests, newer on top
+// the same request should only appear once
+// a request should go to the top if there is a new message from the client %>
+// <% if bookmark.user_last_message.present? && bookmark.user_last_message.unread? %>
