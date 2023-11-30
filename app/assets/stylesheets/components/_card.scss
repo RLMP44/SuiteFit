@@ -39,15 +39,16 @@
 // Items pictures on index page (my inventory)
 .image-item {
   object-fit: contain;
-  width: 9rem;
-  height: 9rem;
-  padding:16px
+  width: 5rem;
+  height: 5rem;
+  padding:16px;
+  mix-blend-mode: darken;
 }
 
 // Items cards on fitting page
 #fit-item {
-  width: 214px;
-  height: 245px;
+  width: 212px;
+  height: 186px;
   border-radius: 7px;
   position: relative;
 }
