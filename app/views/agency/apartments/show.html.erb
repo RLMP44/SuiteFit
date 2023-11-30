@@ -18,12 +18,15 @@
         </div>
         <div class="justify-content-between align-items-center d-flex">
           <%# floor plan display %>
-          <% if @apartment.floor_plan_picture.photo.present? %>
+          <% if @apartment.floor_plan_picture.present? %>
             <%= image_tag(@apartment.floor_plan_picture.photo, class: "show-floor-plan col-6 text-end my-2") %>
           <% else %>
-            <button class="button-flashy" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFP" aria-expanded="false" aria-controls="collapseFP">
-              Upload Floor Plan
-            </button>
+            <div class="d-flex flex-column justify-content-center align-items-center">
+              <span style="font-size: 15px">You haven't uploaded a floor plan yet!</span>
+              <button class="button-flashy w-75 my-2" style="color: black; display: inline;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFP" aria-expanded="false" aria-controls="collapseFP">
+                Upload Floor Plan
+              </button>
+            </div>
           <% end %>
           <div class="col-6">
             <div id="qr" class="my-2">
@@ -35,7 +38,7 @@
         </div>
         <%# buttons row %>
         <div class="my-4 d-flex justify-content-around">
-          <% if @apartment.floor_plan_picture.photo.present? %>
+          <% if @apartment.floor_plan_picture.present? %>
             <div class="col">
               <%= link_to "Floor Plan Editor", edit_agency_apartment_path(@apartment, floor_plan: "true"), class: "button-flashy", style: "color: black;" %>
             </div>
