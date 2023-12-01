@@ -5,7 +5,9 @@
     <i class="fa-regular fa-envelope-open card-flashy-request-status"></i>
   <% end %>
   <div class="d-flex">
-    <div class="agency-requests-img" style="background-image: url('<%= bookmark.apartment.photos.first.url %>')"></div>
+    <% if bookmark.apartment.photos.attached? %>
+      <div class="agency-requests-img" style="background-image: url('<%= bookmark.apartment.photos.first.url %>')"></div>
+    <% end %>
     <div class="card-flashy-request-text">
       <div>
         <div><i class="fa-regular fa-comment"></i> Request from <strong><%= bookmark.user.username %></strong></div>
