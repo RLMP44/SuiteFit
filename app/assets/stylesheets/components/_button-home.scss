@@ -1,4 +1,5 @@
-/* CSS */
+// button general
+
 .button-52 {
   font-size: 16px;
   font-weight: 200;
@@ -41,5 +42,53 @@
 @media (min-width: 768px) {
   .button-52 {
     padding: 13px 50px 13px;
+  }
+}
+
+// Button fitting page
+
+.button-51 {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-51:after {
+  content: "";
+  background: #e2ebf7;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.button-51:hover:after {
+  top: 0px;
+  left: 0px;
+  opacity: 1 !important;
+}
+
+.button-51:hover {
+  top: 0px;
+  left: 0px;
+  opacity: 1 !important;
+}
+
+@media (min-width: 768px) {
+  .button-51 {
+    padding: 4px 50px 5px;
+    margin-top: 12px;
   }
 }
