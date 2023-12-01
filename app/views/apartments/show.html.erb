@@ -1,6 +1,6 @@
 <% content_for :meta_title, "#{@apartment.name} is on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, @apartment.description %>
-<% content_for :meta_image, cl_image_path(@apartment.photos[0].path) %>
+<% content_for :meta_image, cl_image_path(@apartment.photos[0].key) %>
 <div class="container flashy-container-show">
   <div class="row" style="display: flex;">
     <div class="card-flashy-show col-7">

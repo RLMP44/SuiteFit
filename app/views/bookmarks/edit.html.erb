@@ -31,26 +31,29 @@
           collection: ["Good fit", "Tight fit", "Poor fit"],
           input_html: {data: {load_canvas_target: "result"}} %>
           <%# <% end %>
-          <button
-          data-action="click->load-canvas#save"
-            data-arrangement="<%= @bookmark.arrangement %>"
-            data-bookmark="<%= @bookmark.id %>"
-            class="button-52"
-            style="width: 15%"
-            >
-            Book Now!
-          </button>
+          <div>
+            <%= link_to "Book Now!", bookmarks_path, class:"button-52 mb-3", style:"width: 15%; height: 91%;" %>
+          </div>
         </div>
       </div>
       <%# canvas elements %>
-      <canvas id="new-canvas"  class="col-8 border border-2 border-primary-subtle my-4" style="border-width: 2px;">
+      <canvas id="new-canvas"  class="col-8 my-4">
         <%# render canvas here %>
       </canvas>
       <%# items list menu %>
       <div class="col-4 container my-4" style="border: black; background: linear-gradient(180deg, #8ed7f2, #48b6de); overflow-y: scroll; height:98vh; border-radius:4px; width: 30rem;">
+        <h3 class="mt-3">Click to add</h3>
         <div class="row justify-content-around align-items-center">
           <div class="col-6 text-center">
-            <h3 class="mt-3">Click to add</h3>
+            <button
+              data-action="click->load-canvas#save"
+              data-arrangement="<%= @bookmark.arrangement%>"
+              data-bookmark="<%= @bookmark.id %>"
+              class="btn btn-outline-warning btn-sm mt-3"
+              style="width: 50%;"
+              >
+              Save
+            </button>
           </div>
           <div class="col-6 text-center">
             <button
