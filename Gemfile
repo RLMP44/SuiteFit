@@ -60,6 +60,7 @@ gem "rqrcode", "~> 2.0"
 gem "pundit"
 gem 'chunky_png'
 gem "geocoder"
+gem 'scout_apm'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
