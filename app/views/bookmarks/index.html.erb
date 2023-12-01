@@ -92,7 +92,9 @@
     <div class="row justify-content-center">
       <% @bookmarks.each do |bookmark| %>
         <div class="card-flashy-book col-6">
-          <%=cl_image_tag bookmark.apartment.photos.first.key, class: "img-flashy-book" %>
+          <% if bookmark.apartment.photos.attached? %>
+            <%=cl_image_tag bookmark.apartment.photos.first.key, class: "img-flashy-book" %>
+          <% end %>
           <div>
             <h2><%= bookmark.apartment.name %> - <%= bookmark.apartment.category %></h2>
             <h3 style="opacity:0.6;"><i class="fa-solid fa-location-dot"></i> <%= bookmark.apartment.address %></h3>

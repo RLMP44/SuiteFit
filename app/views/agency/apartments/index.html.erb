@@ -6,7 +6,9 @@
       <% @apartments.each do |apartment| %>
         <div class="card-flashy-agency col-6">
           <%= link_to "", edit_agency_apartment_path(apartment), class: "fa-solid fa-pen flashy-edit-button" %>
-          <%= image_tag(apartment.photos[0], class: "img-flashy-agency") %>
+          <% if apartment.photos.attached? %>
+            <%= image_tag(apartment.photos[0], class: "img-flashy-agency") %>
+          <% end %>
           <div>
             <h2><%= apartment.name %> - <%= apartment.category %></h2>
             <h3 style="opacity:0.6;"><i class="fa-solid fa-location-dot"></i> <%= apartment.address %></h3>
