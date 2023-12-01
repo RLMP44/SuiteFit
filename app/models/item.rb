@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   has_one_attached :photo
   validates :length, presence: true
   validates :width, presence: true
-  validates :quantity, presence: true
+  # validates :quantity, presence: true
 
   ITEMTYPES = ["Table", "Chair", "Armchair", "Couch", "Sofa", "Single bed", "Double bed", "Fridge", "Washing machine", "TV", "Wardrobe", "Microwave", "Trash can", "Basket", "Desk"]
 

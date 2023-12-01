@@ -162,7 +162,7 @@ meguro_heights.qr_code = meguro_heights_qr_code
 meguro_heights.save!
 
 shimouma_building = Apartment.create!(
-  name: "Shimouma building",
+  name: "Shimouma Building",
   address: "Shimouma 6-chome, Setagaya-ku",
   total_floorspace: 29.10,
   price: 128_000,
