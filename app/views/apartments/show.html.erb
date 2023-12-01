@@ -7,8 +7,6 @@
   <div class="row" style="display: flex;">
     <div class="card-flashy-show col-7">
       <%= render "carousel", apartment: @apartment %>
-      <%= link_to "", edit_agency_apartment_path(@apartment), class: "fa-solid fa-pen flashy-edit-button-agency-show" %>
-      <%= link_to "", agency_apartment_path(@apartment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "fa-solid fa-trash flashy-delete-button-agency-show" %>
       <div class="row">
         <div class="g-col-6 text-center" style="position: relative;">
           <h2><%= @apartment.name %> - <%= @apartment.category %></h2>
