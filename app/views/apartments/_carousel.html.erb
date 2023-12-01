@@ -1,15 +1,17 @@
 <%# <%= image_tag(@apartment.photos[0], class: "img-flashy") %>
 <div id="carouselExampleIndicators" class="carousel slide mb-3" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <% apartment.photos.each_with_index do |photo, index| %>
-      <% if index == 0 %>
-        <div class="carousel-item active">
-          <img src="<%= image_path(photo.url) %>" class="d-block img-flashy-show carousel-image" alt="Apartment photo">
-        </div>
-      <% else %>
-        <div class="carousel-item">
-          <img src="<%= image_path(photo.url) %>" class="d-block img-flashy-show carousel-image" alt="Apartment photo">
-        </div>
+    <% if apartment.photos.attached? %>
+      <% apartment.photos.each_with_index do |photo, index| %>
+        <% if index == 0 %>
+          <div class="carousel-item active">
+            <img src="<%= image_path(photo.url) %>" class="d-block img-flashy-show carousel-image" alt="Apartment photo">
+          </div>
+        <% else %>
+          <div class="carousel-item">
+            <img src="<%= image_path(photo.url) %>" class="d-block img-flashy-show carousel-image" alt="Apartment photo">
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
