@@ -1,8 +1,12 @@
 <% content_for :meta_title, "#{@apartment.name} is on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, @apartment.description %>
+<<<<<<< HEAD
+<% content_for :meta_image, cl_image_path(@apartment.photos[0].key) %>
+=======
 <% if @apartment&.photos.attached? %>
   <% content_for :meta_image, cl_image_path(@apartment.photos[0].path) %>
 <% end %>
+>>>>>>> a1350e5ac31c4fceed307ca6a2f244b501d176fe
 <div class="container flashy-container-show">
   <div class="row" style="display: flex;">
     <div class="card-flashy-show col-7">
