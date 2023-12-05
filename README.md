@@ -1,4 +1,5 @@
-# Suite Fit
+![suitefitlogo1_small](https://github.com/RLMP44/SuiteFit/assets/109778611/f6898223-a485-4c3e-ac84-919d35c1b14c)
+
 
 A moving app that allows users to see if their furniture/items will fit in an apartment before moving.
 
