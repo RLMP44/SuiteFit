@@ -1,7 +1,8 @@
 ![suitefitlogo1_small](https://github.com/RLMP44/SuiteFit/assets/109778611/f6898223-a485-4c3e-ac84-919d35c1b14c)
 
 
-A moving app that allows users to see if their furniture/items will fit in an apartment before moving.
+Suite Fit is a moving app that allows users to see if their furniture/items will fit in an apartment before moving, giving them the confidence they need to commit to a move.
+At the same time, our app also allows real estate agents to gauge client interest in specific apartments and close sales more easily.
 
 
 App home: www.suitefit.tech
