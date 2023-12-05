@@ -3,14 +3,14 @@
 
 A moving app that allows users to see if their furniture/items will fit in an apartment before moving.
 
+<br>
+App home: www.suitefit.tech
+
 
 ![User Bookmarks Fitting Page collision](https://github.com/RLMP44/SuiteFit/assets/109778611/76b62f28-7bbc-46dd-842b-d79559129d27)
 ![User Bookmarks Index Page](https://github.com/RLMP44/SuiteFit/assets/109778611/0dbdfbab-3c05-4d34-8460-5f7f1fdc90dd)
 ![User Items New](https://github.com/RLMP44/SuiteFit/assets/109778611/fac00ba6-dfbc-42f1-bff6-2d15dc0ecb5a)
 
-
-<br>
-App home: www.suitefit.tech
    
 
 ## Getting Started
