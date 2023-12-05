@@ -10,11 +10,23 @@ App home: www.suitefit.tech
 
 <br>
 
-![User Bookmarks Fitting Page collision](https://github.com/RLMP44/SuiteFit/assets/109778611/76b62f28-7bbc-46dd-842b-d79559129d27)
-![User Bookmarks Index Page](https://github.com/RLMP44/SuiteFit/assets/109778611/0dbdfbab-3c05-4d34-8460-5f7f1fdc90dd)
-![User Items New](https://github.com/RLMP44/SuiteFit/assets/109778611/fac00ba6-dfbc-42f1-bff6-2d15dc0ecb5a)
+![User Landing Page](https://github.com/RLMP44/SuiteFit/assets/109778611/4a63061f-f24d-416f-bef0-2293694823ca)
 
-   
+![User Bookmarks Fitting Page collision](https://github.com/RLMP44/SuiteFit/assets/109778611/751142ad-49ca-495f-ae05-b22a1225daf1)
+
+![User Bookmarks Fitting Page finished](https://github.com/RLMP44/SuiteFit/assets/109778611/fd95aa6e-a1fe-4d42-9ed7-83d687b03361)
+
+![User Bookmarks Index Page](https://github.com/RLMP44/SuiteFit/assets/109778611/46200a22-4002-4bfa-98ba-31bec79d1d4a)
+
+![User Apartment Show Page](https://github.com/RLMP44/SuiteFit/assets/109778611/bf2001cf-d272-4bde-895e-3ed3120182e3)
+
+![User Apartment Show Page bottom](https://github.com/RLMP44/SuiteFit/assets/109778611/acc610e6-16da-44a4-9001-3bceeebad22b)
+
+![Agency Index Page](https://github.com/RLMP44/SuiteFit/assets/109778611/64608c1b-87c1-45e7-8344-eb143efc78c3)
+
+![Agency Requests Page](https://github.com/RLMP44/SuiteFit/assets/109778611/d6808279-cb1f-4c15-a84a-f9bd0770c6e7)
+
+
 
 ## Getting Started
 ### Setup
