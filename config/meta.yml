@@ -4,6 +4,6 @@ meta_title: "SuiteFit - Fitting people with confidence, comfort, security, homes
 
 meta_description: "A moving app to tell you if your stuff will *fit*"
 
-meta_image: "cover.png" # should exist in `app/assets/images/`
+meta_image: "cover.png"
 
 # twitter_account: “@product_twitter_account” # required for Twitter Cards
