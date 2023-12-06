@@ -10,6 +10,7 @@ App home: www.suitefit.tech
 
 <br>
 Users can start from the homepage or scan a QR code from a real estate flier to launch the app.
+
 ![User Landing Page](https://github.com/RLMP44/SuiteFit/assets/109778611/4a63061f-f24d-416f-bef0-2293694823ca)
 
 After scanning a QR code, the user can decide to favorite the apartment for later.
