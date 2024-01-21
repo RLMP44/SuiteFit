@@ -86,3 +86,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "factory_bot", "~> 6.4"
