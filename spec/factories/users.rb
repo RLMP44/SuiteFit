@@ -11,15 +11,7 @@ FactoryBot.define do
   factory :user do
     username
     email
-    password { 'shinjiiscool' }
-    password_confirmation { 'shinjiiscool' }
-  end
-
-  factory :agency, class: User do
-    username
-    email
-    agency { true }
-    password { 'fableiscool' }
-    password_confirmation { 'fableiscool' }
+    password { 'thispasswordiscool' }
+    password_confirmation { 'thispasswordiscool' }
   end
 end

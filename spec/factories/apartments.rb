@@ -6,6 +6,6 @@ FactoryBot.define do
     price { 88_000 }
     description { "Beautiful one bedroom apartment with magnificent views, with spacious storage and a fully equipped kitchen and bathroom." }
     category { "2LDK" }
-    association :agency
+    agency {create(:user, agency: true)}
   end
 end
