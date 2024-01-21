@@ -4,15 +4,19 @@ FactoryBot.define do
     "email#{n}@suitfituser.com"
   end
 
+  sequence :username do |n|
+    "suitefituser#{n}"
+  end
+
   factory :user do
-    username { 'shinji' }
+    username
     email
     password { 'shinjiiscool' }
     password_confirmation { 'shinjiiscool' }
   end
 
   factory :agency, class: User do
-    username { 'fable' }
+    username
     email
     agency { true }
     password { 'fableiscool' }
