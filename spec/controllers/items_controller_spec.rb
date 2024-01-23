@@ -3,10 +3,9 @@ require 'rails_helper'
 RSpec.describe ItemsController, type: :controller do
   # log user in before each one to get user-specific items
   before(:each) do
-    @user = User.create!(username: "Rachael", password: "wowowow", email: "rachael@rachael.com")
+    @user = create(:user)
     sign_in(@user)
     @item = Item.create!(name: 'Table', length: 30, width: 60, user: @user)
-    @item.save
   end
 
   describe 'GET #index' do
