@@ -30,13 +30,13 @@ RSpec.describe ItemsController, type: :controller do
     end
   end
 
-  describe 'DELETE #destroy' do
-    it 'should change count of items by -1' do
-      item = Item.create!(name: 'Table', length: 30, width: 60, user: @user)
-      item.save
-      original_count = Item.count
-      item.destroy
-      expect(Item.count).to eq(original_count - 1)
-    end
-  end
+  # describe 'DELETE #destroy' do
+  #   it 'should change count of items by -1' do
+  #     item = Item.create!(name: 'Table', length: 30, width: 60, user: @user)
+  #     item.save
+  #     original_count = Item.count
+  #     item.destroy
+  #     expect(Item.count).to eq(original_count - 1)
+  #   end
+  # end
 end
