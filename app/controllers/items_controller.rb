@@ -7,10 +7,6 @@ class ItemsController < ApplicationController
     @items = policy_scope(Item)
   end
 
-  def show
-    authorize @item
-  end
-
   def create
     @items = policy_scope(Item)
 
