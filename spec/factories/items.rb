@@ -5,6 +5,5 @@ FactoryBot.define do
     width { 70 }
     quantity { 1 }
     association :user
-    association :bookmark
   end
 end
